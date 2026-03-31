@@ -14,6 +14,7 @@
       background: var(--qp-blue-light);
     }
   </style>
+  <link rel="stylesheet" href="shared-tour.css" />
 </head>
 
 <body>
@@ -21,7 +22,7 @@
   <!-- MINIMAL NAV -->
   <div
     style="height:68px; background:white; border-bottom:1px solid var(--qp-border); display:flex; align-items:center; justify-content:space-between; padding:0 48px;">
-    <a href="01_homepage.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+    <a href="index.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
       <img src="Logo_withName.png" height="40" alt="Qpedia logo" />
     </a>
     <div style="display:flex; align-items:center; gap:12px;">
@@ -130,7 +131,7 @@
       <!-- Create Account CTA -->
       <a href="05_onboarding.html" id="create-account-btn"
         style="display:flex; width:100%; height:50px; align-items:center; justify-content:center; font-size:16px; font-weight:600; border-radius:10px; text-decoration:none; margin-bottom:12px; background:var(--qp-navy); color:white; box-sizing:border-box; transition:opacity 0.15s;"
-        onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Create Account</a>
+        onmouseover="this.style.opacity='0.88'" class="qp-step-4" onmouseout="this.style.opacity='1'">Create Account</a>
 
       <!-- Legal -->
       <p class="qp-caption" style="text-align:center; margin-bottom:20px;">By continuing you agree to Qpedia's Terms and
@@ -161,7 +162,7 @@
     <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
     <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
   </div>
-
+  <script src="shared-tour.js"></script>
 </body>
 
 </html>

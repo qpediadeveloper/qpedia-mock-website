@@ -3,47 +3,474 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=01_homepage.html" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Qpedia Demo</title>
+  <title>Qpedia — The System of Record for Quantum Technologies</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="description"
+    content="Search 500+ peer-reviewed entries covering quantum hardware, supply chains, research groups, and ecosystem intelligence." />
   <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="shared-tour.css" />
   <style>
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      background: var(--qp-off-white);
-    }
-
-    .loading-wrap {
+    /* ── Hero ──────────────────────────────────────────────── */
+    .hero {
+      width: 100%;
+      background: var(--qp-white);
+      padding: 80px 48px 64px;
       text-align: center;
     }
 
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid var(--qp-border);
-      border-top-color: var(--qp-blue);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+    .hero-badge {
+      display: inline-block;
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      max-width: 720px;
       margin: 0 auto 16px;
     }
 
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
+    .hero .hero-sub {
+      max-width: 540px;
+      margin: 0 auto 36px;
+      color: var(--qp-text-2);
+    }
+
+    /* ── Search box ─────────────────────────────────────────── */
+    .search-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-wrap input[type="text"] {
+      width: 100%;
+      height: 58px;
+      border: 2px solid var(--qp-border);
+      border-radius: 14px;
+      padding: 0 120px 0 52px;
+      font-size: 16px;
+      font-family: inherit;
+      color: var(--qp-text);
+      outline: none;
+      box-shadow: 0 4px 24px rgba(13, 43, 62, 0.10);
+      transition: border-color 0.2s;
+    }
+
+    .search-wrap input[type="text"]:focus {
+      border-color: var(--qp-blue);
+    }
+
+    .search-wrap input[type="text"]::placeholder {
+      color: var(--qp-text-3);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: var(--qp-text-3);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .search-right {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .search-mic {
+      font-size: 16px;
+      cursor: pointer;
+      line-height: 1;
+      color: var(--qp-text-3);
+      transition: color 0.15s;
+    }
+
+    .search-mic:hover {
+      color: var(--qp-navy);
+    }
+
+    .search-hint {
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* ── Trending tags ──────────────────────────────────────── */
+    .trending-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    /* ── Featured cards section ─────────────────────────────── */
+    .featured-section {
+      margin-top: 64px;
+      padding-bottom: 64px;
+    }
+
+    .featured-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .entry-card {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .entry-card .card-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin: 12px 0 8px;
+      line-height: 1.35;
+    }
+
+    .entry-card .card-excerpt {
+      font-size: 14px;
+      color: var(--qp-text-2);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--qp-border);
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .card-footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* ── Capability teasers ─────────────────────────────────── */
+    .capability-section {
+      background: var(--qp-off-white);
+      padding: 56px 48px;
+      margin-top: 0;
+      border-top: 1px solid var(--qp-border);
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+
+    .capability-col {
+      text-align: center;
+    }
+
+    .capability-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--qp-blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 24px;
+    }
+
+    .capability-col .qp-h3 {
+      margin-bottom: 8px;
+    }
+
+    .capability-cta {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .capability-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+
+      .qp-nav {
+        padding: 0 24px;
+      }
+
+      .hero {
+        padding: 60px 24px 48px;
+      }
+
+      .capability-section {
+        padding: 48px 24px;
+      }
+
+      .qp-footer {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .cards-grid,
+      .capability-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
-<body>
-  <div class="loading-wrap">
-    <div class="spinner"></div>
-    <p class="qp-body">Loading Qpedia Demo…</p>
-  </div>
+<body class="qp-page">
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAV BAR
+  ═══════════════════════════════════════════════════════ -->
+  <nav class="qp-nav">
+    <!-- Brand -->
+    <a href="index.html" class="qp-nav-brand">
+      <img src="Logo_withName.png" alt="Qpedia" height="40" />
+    </a>
+
+    <!-- Links -->
+    <ul class="qp-nav-links">
+      <li><a href="knowledge_hub.html">Knowledge Hub</a></li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="ecosystem.html">Ecosystem</a></li>
+    </ul>
+
+    <!-- Actions -->
+    <div class="qp-nav-actions">
+      <a class="qp-btn-ghost" href="04_signup.html">Sign In</a>
+      <a class="qp-btn-primary" href="04_signup.html">Try Free</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════════════ -->
+  <div class="qp-content">
+    <section class="hero">
+      <!-- Logo with name -->
+      <img src="Logo_withName.png" alt="Qpedia" style="height:52px; display:block; margin:0 auto 24px;" />
+
+      <!-- Pill badge -->
+      <span class="hero-badge">India's Quantum Intelligence Platform</span>
+
+      <!-- Headline -->
+      <h1 class="qp-h1 hero-h1">The System of Record for&nbsp;Quantum Technologies</h1>
+
+      <!-- Sub-heading -->
+      <p class="qp-body-lg hero-sub">
+        Search 500+ peer-reviewed entries covering quantum hardware, supply chains,
+        research groups, and ecosystem intelligence.
+      </p>
+
+      <!-- Search box -->
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="main-search" placeholder="Ask anything about quantum technologies..."
+          autocomplete="off" />
+        <div class="search-right">
+          <span class="qp-chip" style="font-size:11px; padding:4px 10px;">AI</span>
+          <span class="search-mic" title="Voice search">🎤</span>
+        </div>
+      </div>
+
+      <!-- Hint -->
+      <p class="qp-caption search-hint">
+        Try: "What is quantum error correction?" or "Superconducting qubit companies in India"
+      </p>
+
+      <!-- Trending tags -->
+      <div class="trending-row">
+        <a class="qp-chip qp-step-1" href="02_search_results.html">Superconducting Qubit Companies India</a>
+        <a class="qp-chip" href="#">India NQM Progress</a>
+        <a class="qp-chip" href="#">TRL 7 Qubits</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FEATURED KNOWLEDGE ENTRIES
+    ═══════════════════════════════════════════════════════ -->
+    <div class="qp-container featured-section">
+      <div class="featured-header">
+        <h3 class="qp-h3">Featured Knowledge Entries</h3>
+        <span class="qp-caption">Updated today</span>
+      </div>
+
+      <div class="cards-grid">
+
+        <!-- Card 1 — Quantum Error Correction -->
+        <a class="qp-card entry-card" href="09_quantum_error_correction.html" style="text-decoration:none;">
+          <span class="qp-chip" style="align-self:flex-start;">Quantum Computing</span>
+          <div class="card-title">Quantum Error Correction — Overview</div>
+          <p class="card-excerpt qp-body">
+            Techniques for protecting quantum information from decoherence and other
+            quantum noise, fundamental to fault-tolerant quantum computing.
+          </p>
+          <div class="card-footer">
+            <div class="card-footer-left">
+              <!-- TRL: 9 segments, 4 filled -->
+              <div class="qp-trl">
+                <div class="qp-trl-bar">
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                </div>
+                <span class="qp-trl-label">TRL 4</span>
+              </div>
+              <span class="qp-badge-expert">✦ Expert Peer-Reviewed</span>
+            </div>
+            <span class="qp-btn-ghost" style="font-size:13px; padding:0;">Read entry →</span>
+          </div>
+        </a>
+
+        <!-- Card 2 — India National Quantum Mission -->
+        <a class="qp-card entry-card" href="#" style="text-decoration:none;">
+          <span class="qp-chip" style="align-self:flex-start; background:#EDE9FE; color:#5B21B6;">Policy</span>
+          <div class="card-title">India National Quantum Mission</div>
+          <p class="card-excerpt qp-body">
+            India's ₹6,003 crore National Quantum Mission aims to develop intermediate-scale
+            quantum computers and build sovereign quantum capabilities by 2031.
+          </p>
+          <div class="card-footer">
+            <div class="card-footer-left">
+              <span class="qp-label" style="color: var(--qp-text-3); font-size:11px;">Policy &amp; Funding</span>
+              <span class="qp-badge-editor">✎ Editor Verified</span>
+            </div>
+            <span class="qp-btn-ghost" style="font-size:13px; padding:0;">Read entry →</span>
+          </div>
+        </a>
+
+        <!-- Card 3 — Superconducting Transmon Qubit -->
+        <a class="qp-card entry-card" href="#" style="text-decoration:none;">
+          <span class="qp-chip" style="align-self:flex-start;">Quantum Computing</span>
+          <div class="card-title">Superconducting Transmon Qubit</div>
+          <p class="card-excerpt qp-body">
+            A leading qubit architecture for gate-based quantum computation using the
+            transmon design with improved charge noise tolerance.
+          </p>
+          <div class="card-footer">
+            <div class="card-footer-left">
+              <!-- TRL: 9 segments, 7 filled -->
+              <div class="qp-trl">
+                <div class="qp-trl-bar">
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                </div>
+                <span class="qp-trl-label">TRL 7</span>
+              </div>
+              <span class="qp-badge-expert">✦ Expert Peer-Reviewed</span>
+            </div>
+            <span class="qp-btn-ghost" style="font-size:13px; padding:0;">Read entry →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CAPABILITY TEASERS
+    ═══════════════════════════════════════════════════════ -->
+    <section class="capability-section">
+      <div class="qp-container">
+        <div class="capability-grid">
+
+          <!-- Col 1 -->
+          <div class="capability-col">
+            <h3 class="qp-h3">500+ Peer-Reviewed Entries</h3>
+            <p class="qp-body">The authoritative system-of-record for the global quantum ecosystem.</p>
+          </div>
+
+          <!-- Col 2 -->
+          <div class="capability-col">
+            <h3 class="qp-h3">Intelligence Layer</h3>
+            <p class="qp-body">Supply chain maps, TRL tracking, and sector dashboards for enterprises and government.
+            </p>
+          </div>
+
+          <!-- Col 3 -->
+          <div class="capability-col">
+            <h3 class="qp-h3">Ecosystem</h3>
+            <p class="qp-body">Connect researchers, founders, and policymakers across the global quantum world.</p>
+          </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="capability-cta">
+          <a class="qp-btn-ghost" href="04_signup.html">
+            Sign up free to access the full platform →
+          </a>
+        </div>
+      </div>
+    </section>
+  </div><!-- /.qp-content -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="qp-footer">
+    <img src="Logo.jpeg" alt="Qpedia" style="height:32px;" />
+    <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
+    <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════
+       VANILLA JS
+  ═══════════════════════════════════════════════════════ -->
+  <script>
+    document.getElementById('main-search').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && this.value.trim() !== '') {
+        window.location.href = '02_search_results.html';
+      }
+    });
+  </script>
+  <script src="shared-tour.js"></script>
 </body>
 
 </html>

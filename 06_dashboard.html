@@ -9,6 +9,7 @@
   <meta name="description"
     content="Your personalised Qpedia dashboard — continue your learning path, explore matched knowledge, and connect with researchers in quantum technologies." />
   <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="shared-tour.css" />
   <style>
     /* ── Page layout ──────────────────────────────────────────── */
     .page-layout {
@@ -408,6 +409,222 @@
       border-color: var(--qp-blue);
       color: var(--qp-blue-mid);
     }
+
+    /* ── Locked intelligence feed card ───────────────────────── */
+    .feed-card-locked {
+      position: relative;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .feed-card-locked-preview {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      filter: blur(3px);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .supply-map-placeholder {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .supply-node {
+      border-radius: 50%;
+      background: var(--qp-border);
+    }
+
+    .feed-card-locked-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(248, 250, 252, 0.82);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      gap: 16px;
+    }
+
+    .locked-overlay-text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .locked-overlay-icon {
+      width: 34px;
+      height: 34px;
+      background: var(--qp-navy);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .locked-overlay-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--qp-navy);
+    }
+
+    .locked-overlay-sub {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      margin-top: 2px;
+    }
+
+    /* ── People network gate ─────────────────────────────────── */
+    .people-network-gate {
+      margin-top: 14px;
+      background: var(--qp-off-white);
+      border: 1px dashed var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .people-network-gate-avatars {
+      display: flex;
+      margin-right: 4px;
+    }
+
+    .people-network-gate-avatars .ghost-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--qp-border);
+      border: 2px solid white;
+      margin-left: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--qp-text-3);
+    }
+
+    .people-network-gate-avatars .ghost-avatar:first-child {
+      margin-left: 0;
+    }
+
+    .people-network-gate-text {
+      flex: 1;
+    }
+
+    .people-network-gate-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 2px;
+    }
+
+    .people-network-gate-text span {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    /* ── Phase upsell (right panel) ──────────────────────────── */
+    .phase-upsell-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: var(--qp-off-white);
+      border-radius: var(--qp-radius-sm);
+      border: 1px solid var(--qp-border);
+    }
+
+    .phase-upsell-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .phase-lock-icon {
+      font-size: 14px;
+      color: var(--qp-text-3);
+    }
+
+    .phase-upsell-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--qp-text-2);
+    }
+
+    .phase-upsell-sub {
+      font-size: 11px;
+      color: var(--qp-text-3);
+    }
+
+    .phase-upsell-price {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      white-space: nowrap;
+    }
+
+    /* ── Dashboard summit strip (right panel) ────────────────── */
+    .dash-summit-strip {
+      background: linear-gradient(135deg, #0D2B3E 0%, #1B5E8A 100%);
+      border-radius: var(--qp-radius);
+      padding: 14px;
+      color: #fff;
+      margin-top: 14px;
+    }
+
+    .dash-summit-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7BB8D8;
+      margin-bottom: 5px;
+    }
+
+    .dash-summit-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .dash-summit-meta {
+      font-size: 11px;
+      color: #A8C4D8;
+      margin-bottom: 10px;
+    }
+
+    .dash-summit-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--qp-navy);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .dash-summit-btn:hover {
+      background: #E8F3FA;
+    }
   </style>
 </head>
 
@@ -417,14 +634,14 @@
        NAV BAR — authenticated
   ════════════════════════════════════════════════════════════════ -->
   <nav class="qp-nav">
-    <a class="qp-nav-brand" href="01_homepage.html">
+    <a class="qp-nav-brand" href="index.html">
       <img src="Logo_withName.png" height="40" alt="Qpedia logo" />
     </a>
 
     <ul class="qp-nav-links">
-      <li><a href="09_topic_browse.html">Knowledge Hub</a></li>
-      <li><a href="#">Intelligence</a></li>
-      <li><a href="#">Ecosystem</a></li>
+      <li><a href="knowledge_hub.html">Knowledge Hub</a></li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="ecosystem.html">Ecosystem</a></li>
     </ul>
 
     <div class="qp-nav-actions">
@@ -549,7 +766,7 @@
           <span class="eta">⏱ Estimated 18 min to complete</span>
         </div>
 
-        <a class="qp-btn-primary" href="07_learning_module.html" id="btn-continue-learning">Continue →</a>
+        <a class="qp-btn-primary qp-step-6" href="07_learning_module.html" id="btn-continue-learning">Continue →</a>
       </div>
 
       <!-- ── SECTION 2: Knowledge Feed ────────────────────────── -->
@@ -595,6 +812,44 @@
             <span class="qp-caption">Updated this week</span>
             <a class="qp-btn-ghost" style="font-size:13px; padding:0; margin-left:auto;" href="#">Read →</a>
           </div>
+        </div>
+      </div>
+
+      <!-- Feed card: Locked intelligence -->
+      <div class="feed-card-locked">
+        <!-- Blurred preview underneath -->
+        <div class="feed-card-locked-preview">
+          <div class="supply-map-placeholder">
+            <div class="supply-node" style="width:28px;height:28px;"></div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div class="supply-node" style="width:18px;height:18px;"></div>
+              <div class="supply-node" style="width:18px;height:18px;"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div class="supply-node" style="width:14px;height:14px;"></div>
+              <div class="supply-node" style="width:14px;height:14px;"></div>
+              <div class="supply-node" style="width:14px;height:14px;"></div>
+            </div>
+          </div>
+          <div class="feed-card-body">
+            <h4>Superconducting QC — Full Supply Chain Map</h4>
+            <div class="feed-card-meta">
+              <span class="qp-chip" style="font-size:12px;">Supply Chain</span>
+              <span class="qp-badge-expert">Expert Peer-Reviewed</span>
+              <span class="qp-caption">23 nodes · 6 tiers</span>
+            </div>
+          </div>
+        </div>
+        <!-- Lock overlay -->
+        <div class="feed-card-locked-overlay">
+          <div class="locked-overlay-text">
+            <div class="locked-overlay-icon">🔒</div>
+            <div>
+              <div class="locked-overlay-label">Intelligence Layer — Supply Chain Maps</div>
+              <div class="locked-overlay-sub">Full depth maps, procurement signals &amp; gap analysis</div>
+            </div>
+          </div>
+          <a href="#" class="qp-btn-primary" style="font-size:12px; padding:8px 14px; white-space:nowrap;">Unlock →</a>
         </div>
       </div>
 
@@ -676,6 +931,23 @@
 
       </div>
 
+      <!-- People network gate -->
+      <div class="people-network-gate">
+        <div class="people-network-gate-avatars">
+          <div class="ghost-avatar">+</div>
+          <div class="ghost-avatar">+</div>
+          <div class="ghost-avatar">+</div>
+          <div class="ghost-avatar" style="background:var(--qp-blue-light); color:var(--qp-blue); font-weight:700;">47
+          </div>
+        </div>
+        <div class="people-network-gate-text">
+          <strong>47 more researchers match your profile</strong>
+          <span>Unlock full network discovery — see collaborators, open positions &amp; grant co-applicants</span>
+        </div>
+        <a href="#" class="qp-btn-primary" style="font-size:12px; padding:8px 14px; white-space:nowrap;">Unlock Network
+          →</a>
+      </div>
+
       <!-- ── SECTION 4: Bookmarks ──────────────────────────────── -->
       <div class="section-header">
         <h3 class="qp-h3">Bookmarks (12)</h3>
@@ -727,6 +999,16 @@
         <p style="font-size:13px; color:var(--qp-text-3); margin-top:8px;">7-day streak &nbsp;·&nbsp;
           <a href="07_learning_module.html" style="color:var(--qp-blue); font-size:13px;">View full path →</a>
         </p>
+        <!-- Phase 2 upsell -->
+        <div class="phase-upsell-row">
+          <div class="phase-upsell-left">
+            <div>
+              <div class="phase-upsell-label">Phase 2: Advanced Algorithms</div>
+              <div class="phase-upsell-sub">QEC · Variational methods · Fault tolerance</div>
+            </div>
+          </div>
+          <a href="#" class="phase-upsell-price" style="text-decoration:none;">₹999 →</a>
+        </div>
       </div>
 
       <!-- Widget 2 — This Week -->
@@ -744,6 +1026,14 @@
           <span class="week-dot"></span>
           NQM update published yesterday
         </div>
+      </div>
+
+      <!-- Summit strip -->
+      <div class="dash-summit-strip">
+        <div class="dash-summit-eyebrow">Upcoming · Based on your interests</div>
+        <div class="dash-summit-title">Qpedia Quantum Summit 2026</div>
+        <div class="dash-summit-meta">June 12 · New Delhi · Quantum Error Correction track</div>
+        <a href="#" class="dash-summit-btn">Register Now →</a>
       </div>
 
       <!-- Widget 3 — Quick Search -->
@@ -827,7 +1117,7 @@
       if (isListening) { stopListening(); } else { startListening(); }
     });
   </script>
-
+  <script src="shared-tour.js"></script>
 </body>
 
 </html>

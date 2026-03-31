@@ -10,6 +10,7 @@
     content="QNu Labs is India's leading quantum-safe cryptography company, developing QKD and QRNG solutions. Peer-reviewed knowledge entry on Qpedia." />
   <link rel="stylesheet" href="shared.css" />
   <link rel="stylesheet" href="shared-search.css" />
+  <link rel="stylesheet" href="shared-tour.css" />
   <style>
     /* ── Breadcrumb ─────────────────────────────────────────── */
     .breadcrumb {
@@ -299,6 +300,215 @@
       background: var(--qp-blue-light);
       border-color: transparent;
     }
+
+    /* ── Sponsored inline card (main column) ─────────────── */
+    .sponsored-inline {
+      margin-top: 28px;
+      background: #FDFAF5;
+      border: 1px solid #E8DFC8;
+      border-left: 3px solid #C9963A;
+      border-radius: var(--qp-radius);
+      padding: 16px 20px;
+    }
+
+    .sponsored-inline-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      color: #A07830;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .sponsored-inline-body {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .sponsored-inline-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--qp-navy);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .sponsored-inline-text {
+      flex: 1;
+    }
+
+    .sponsored-inline-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 5px;
+    }
+
+    .sponsored-inline-desc {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    /* ── Gate commission CTA ─────────────────────────────── */
+    .gate-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .gate-divider::before,
+    .gate-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--qp-border);
+    }
+
+    .gate-divider span {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      white-space: nowrap;
+    }
+
+    .gate-commission {
+      background: var(--qp-off-white);
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 16px 20px;
+      text-align: center;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .gate-commission-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--qp-text-3);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .gate-commission-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin-bottom: 6px;
+    }
+
+    .gate-commission-desc {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .gate-commission-price {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin-bottom: 12px;
+    }
+
+    /* ── Journal APC card (sidebar) ──────────────────────── */
+    .journal-apc-card {
+      background: var(--qp-white);
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .journal-apc-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .journal-apc-icon {
+      width: 30px;
+      height: 30px;
+      background: #EDE9FE;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .journal-apc-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #5B21B6;
+    }
+
+    .journal-apc-sublabel {
+      font-size: 11px;
+      color: var(--qp-text-3);
+    }
+
+    /* ── Enterprise API card (sidebar) ───────────────────── */
+    .api-teaser-card {
+      background: var(--qp-off-white);
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 16px;
+    }
+
+    .api-teaser-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .api-teaser-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--qp-navy);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .api-teaser-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--qp-navy);
+    }
+
+    .api-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin: 10px 0 4px;
+    }
+
+    .api-price {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--qp-navy);
+    }
+
+    .api-price-unit {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
   </style>
 </head>
 
@@ -308,16 +518,16 @@
        NAV BAR
   ═══════════════════════════════════════════════════════ -->
   <nav class="qp-nav">
-    <a href="01_homepage.html" class="qp-nav-brand">
+    <a href="index.html" class="qp-nav-brand">
       <img src="Logo_withName.png" alt="Qpedia" height="40" />
     </a>
     <ul class="qp-nav-links">
-      <li><a href="09_topic_browse.html">Knowledge Hub</a></li>
-      <li><a href="#">Intelligence</a></li>
-      <li><a href="#">Ecosystem</a></li>
+      <li><a href="knowledge_hub.html">Knowledge Hub</a></li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="ecosystem.html">Ecosystem</a></li>
     </ul>
     <div class="qp-nav-actions">
-      <a class="qp-btn-ghost" href="04_signup.html">Sign In</a>
+      <a class="qp-btn-ghost qp-step-3" href="04_signup.html">Sign In</a>
       <a class="qp-btn-primary" href="04_signup.html">Try Free</a>
     </div>
   </nav>
@@ -327,9 +537,9 @@
 
       <!-- ── Breadcrumb ──────────────────────────────────────── -->
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="01_homepage.html">Home</a>
+        <a href="index.html">Home</a>
         <span class="sep">›</span>
-        <a href="09_topic_browse.html">Knowledge Hub</a>
+        <a href="knowledge_hub.html">Knowledge Hub</a>
         <span class="sep">›</span>
         <span>Quantum Cryptography</span>
         <span class="sep">›</span>
@@ -486,6 +696,23 @@
             </div>
           </div>
 
+          <!-- Sponsored: TCS Cyber Security -->
+          <div class="sponsored-inline">
+            <div class="sponsored-inline-eyebrow">Sponsored · TCS Cyber Security Practice</div>
+            <div class="sponsored-inline-body">
+              <div class="sponsored-inline-logo">TCS</div>
+              <div class="sponsored-inline-text">
+                <div class="sponsored-inline-title">Quantum-Safe Readiness Assessment for Enterprise</div>
+                <p class="sponsored-inline-desc">
+                  TCS helps Indian enterprises evaluate cryptographic vulnerabilities and migrate to
+                  post-quantum encryption standards aligned with NIST and NQM requirements.
+                  Trusted by 40+ BFSI and government clients.
+                </p>
+                <a href="#" class="qp-btn-ghost" style="font-size:12px; padding:6px 14px;">Request Assessment →</a>
+              </div>
+            </div>
+          </div>
+
           <!-- Sign-up gate -->
           <div class="qp-gate">
             <div class="gate-lock">🔒</div>
@@ -494,8 +721,22 @@
               Explore connections to 14 organisations, 6 researchers, 3 government programs,
               and 2 supply chain maps. Free account, no credit card required.
             </p>
-            <a class="qp-btn-primary gate-cta-primary" href="04_signup.html">Create Free Account</a>
+            <a class="qp-btn-primary gate-cta-primary qp-step-3" href="04_signup.html">Create Free Account</a>
             <a class="qp-btn-ghost gate-cta-secondary" href="04_signup.html">Already have an account? Sign in</a>
+
+            <div class="gate-divider"><span>or</span></div>
+
+            <div class="gate-commission">
+              <div class="gate-commission-label">Intelligence Report</div>
+              <div class="gate-commission-title">Need a deeper brief on QNu Labs?</div>
+              <p class="gate-commission-desc">
+                Commission a custom intelligence report — competitive landscape, supply chain depth,
+                funding trajectory, and procurement outlook.
+              </p>
+              <div class="gate-commission-price">From ₹25,000 · delivered in 5 business days</div>
+              <a href="04_signup.html" class="qp-btn-primary"
+                style="font-size:13px; padding:10px 20px; display:inline-block;">Commission Report →</a>
+            </div>
           </div>
 
           <!-- Related entries -->
@@ -618,13 +859,56 @@
             </div>
           </div>
 
+          <!-- Journal APC -->
+          <div class="journal-apc-card">
+            <div class="journal-apc-header">
+              <div class="journal-apc-icon">📄</div>
+              <div>
+                <div class="journal-apc-label">Qpedia Journal</div>
+                <div class="journal-apc-sublabel">Peer-reviewed · Open access</div>
+              </div>
+            </div>
+            <p class="qp-body" style="font-size:13px; line-height:1.5; margin-bottom:12px;">
+              Is your research missing from this entry? Submit to the Qpedia Journal and have your
+              work peer-reviewed, indexed, and linked to the knowledge graph.
+            </p>
+            <p style="font-size:12px; color:var(--qp-text-3); margin-bottom:12px;">APC: ₹15,000 · Waiver available for
+              students</p>
+            <a href="04_signup.html" class="qp-btn-ghost"
+              style="font-size:12px; padding:7px 14px; display:block; text-align:center;">Submit Your Paper →</a>
+          </div>
+
           <!-- Start Learning -->
-          <div class="qp-card learn-card">
+          <div class="qp-card learn-card" style="margin-bottom:20px;">
             <div class="sidebar-section-title">Start Learning</div>
             <p class="qp-body" style="font-size:14px; margin-bottom:16px;">
               Learn Quantum Cryptography in Qpedia Learning
             </p>
             <a class="qp-btn-primary" href="07_learning_module.html">Start module →</a>
+          </div>
+
+          <!-- Enterprise API -->
+          <div class="api-teaser-card">
+            <div class="api-teaser-header">
+              <div class="api-teaser-icon">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M2 8h3M11 8h3M8 2v3M8 11v3" stroke="#7BB8D8" stroke-width="1.5" stroke-linecap="round" />
+                  <circle cx="8" cy="8" r="2.5" stroke="#7BB8D8" stroke-width="1.5" />
+                </svg>
+              </div>
+              <div class="api-teaser-label">Qpedia Enterprise API</div>
+            </div>
+            <p class="qp-body" style="font-size:13px; color:var(--qp-text-2); line-height:1.5; margin-bottom:4px;">
+              Embed Qpedia's knowledge graph — company data, TRL scores, supply chain links — directly into your
+              research or enterprise stack.
+            </p>
+            <div class="api-price-row">
+              <span class="api-price">₹8,000</span>
+              <span class="api-price-unit">/ month</span>
+            </div>
+            <p style="font-size:11px; color:var(--qp-text-3); margin-bottom:12px;">JSON + REST · 10,000 calls/month</p>
+            <a href="04_signup.html" class="qp-btn-ghost"
+              style="font-size:12px; padding:7px 14px; display:block; text-align:center;">View API Docs →</a>
           </div>
 
         </aside>
@@ -651,6 +935,7 @@
     });
   </script>
   <script src="shared-search.js"></script>
+  <script src="shared-tour.js"></script>
 </body>
 
 </html>

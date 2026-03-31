@@ -1,0 +1,98 @@
+/* ============================================================
+   QPEDIA SHARED TOUR — shared-tour.css
+   Drop-in guided step highlight for prototype pages.
+   Usage: add class="qp-step-1" to any one element per page.
+   ============================================================ */
+
+/* ── Overlay (absolute layer, never blocks clicks) ───────── */
+.qp-tour-overlay {
+  position: fixed;
+  pointer-events: none;
+  z-index: 500;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.qp-tour-overlay.qp-tour-visible {
+  opacity: 0.5;
+}
+
+/* ── Corner brackets ─────────────────────────────────────── */
+.qp-tour-corner {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  animation: qp-tour-breathe 2.8s ease-in-out infinite;
+}
+
+.qp-tour-tl {
+  top: 0;
+  left: 0;
+  border-top: 2px solid #0D2B3E;
+  border-left: 2px solid #0D2B3E;
+}
+
+.qp-tour-tr {
+  top: 0;
+  right: 0;
+  border-top: 2px solid #0D2B3E;
+  border-right: 2px solid #0D2B3E;
+}
+
+.qp-tour-bl {
+  bottom: 0;
+  left: 0;
+  border-bottom: 2px solid #0D2B3E;
+  border-left: 2px solid #0D2B3E;
+}
+
+.qp-tour-br {
+  bottom: 0;
+  right: 0;
+  border-bottom: 2px solid #0D2B3E;
+  border-right: 2px solid #0D2B3E;
+}
+
+/* ── Step badge ──────────────────────────────────────────── */
+.qp-tour-badge {
+  position: absolute;
+  top: -11px;
+  right: -11px;
+  width: 22px;
+  height: 22px;
+  background: #0D2B3E;
+  color: #ffffff;
+  border-radius: 50%;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: qp-tour-badge-pulse 2.8s ease-in-out infinite;
+}
+
+/* ── Animations ──────────────────────────────────────────── */
+@keyframes qp-tour-breathe {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes qp-tour-badge-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+}

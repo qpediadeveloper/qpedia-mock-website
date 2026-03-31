@@ -10,6 +10,7 @@
     content="Qpedia search results for superconducting qubit companies in India — peer-reviewed quantum ecosystem intelligence." />
   <link rel="stylesheet" href="shared.css" />
   <link rel="stylesheet" href="shared-search.css" />
+  <link rel="stylesheet" href="shared-tour.css" />
 
   <style>
     /* ── Nav search override ───────────────────────────────── */
@@ -367,6 +368,147 @@
       font-weight: 500;
       white-space: nowrap;
     }
+
+    /* ── Sponsored card ───────────────────────────────────── */
+    .result-card-sponsored {
+      margin-bottom: 12px;
+      background: #FDFAF5;
+      border: 1px solid #E8DFC8;
+      border-left: 3px solid #C9963A;
+      border-radius: var(--qp-radius);
+      padding: 16px 20px;
+    }
+
+    .chip-sponsored {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      background: #FDF3DC;
+      color: #92600A;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .sponsored-label {
+      font-size: 11px;
+      color: #A07830;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    /* ── Right panel: Intelligence Report card ────────────── */
+    .intel-report-card {
+      background: var(--qp-white);
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .intel-report-header {
+      background: var(--qp-navy);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .intel-report-header-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #A8C4D8;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .intel-report-body {
+      padding: 14px;
+    }
+
+    .intel-report-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .intel-report-meta {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .intel-report-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .intel-report-price {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--qp-navy);
+    }
+
+    .intel-report-price-note {
+      font-size: 11px;
+      color: var(--qp-text-3);
+    }
+
+    /* ── Right panel: Summit strip ────────────────────────── */
+    .summit-strip {
+      background: linear-gradient(135deg, #0D2B3E 0%, #1B5E8A 100%);
+      border-radius: var(--qp-radius);
+      padding: 16px 14px;
+      color: #fff;
+    }
+
+    .summit-strip-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7BB8D8;
+      margin-bottom: 6px;
+    }
+
+    .summit-strip-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .summit-strip-meta {
+      font-size: 12px;
+      color: #A8C4D8;
+      margin-bottom: 12px;
+    }
+
+    .summit-strip-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--qp-navy);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .summit-strip-btn:hover {
+      background: #E8F3FA;
+    }
   </style>
 </head>
 
@@ -377,7 +519,7 @@
   ═══════════════════════════════════════════════════════ -->
   <nav class="qp-nav">
     <!-- Brand -->
-    <a href="01_homepage.html" class="qp-nav-brand">
+    <a href="index.html" class="qp-nav-brand">
       <img src="Logo_withName.png" alt="Qpedia" height="40" />
     </a>
 
@@ -539,7 +681,7 @@
         <div class="result-card-inner">
           <span class="chip-company">Company</span>
           <div class="result-card-body">
-            <a class="result-title" href="03_knowledge_entry.html">
+            <a class="result-title qp-step-2" href="03_knowledge_entry.html">
               QNu Labs — Quantum-Safe Security Solutions
             </a>
             <p class="result-excerpt">
@@ -601,6 +743,30 @@
               </div>
               <span class="qp-badge-editor">✎ Editor Verified</span>
               <span class="qp-caption">Updated Feb 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Sponsored Card: IBM Quantum ── -->
+      <div class="result-card-sponsored">
+        <div class="result-card-inner">
+          <span class="chip-sponsored">Sponsored</span>
+          <div class="result-card-body">
+            <div class="sponsored-label">IBM Quantum Network · Partner</div>
+            <a class="result-title" href="#" style="font-size:16px;">
+              IBM Quantum Network — Joining India's Quantum Ecosystem
+            </a>
+            <p class="result-excerpt">
+              The IBM Quantum Network connects universities, research labs, and enterprises to
+              real quantum hardware and curriculum resources. Indian institutions including IIT
+              Bombay and IISc are active members with dedicated compute allocation.
+            </p>
+            <div class="result-meta">
+              <span class="qp-chip" style="font-size:12px; background:#FDF3DC; color:#92600A;">Enterprise Partner</span>
+              <span class="qp-chip" style="font-size:12px;">Quantum Hardware Access</span>
+              <a href="#" class="qp-btn-ghost" style="font-size:12px; padding:5px 14px; margin-left:auto;">Learn More
+                →</a>
             </div>
           </div>
         </div>
@@ -703,11 +869,44 @@
         </div>
       </div>
 
+      <!-- Intelligence Report -->
+      <div class="intel-report-card" style="margin-top:24px;">
+        <div class="intel-report-header">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <rect x="3" y="7" width="10" height="8" rx="1.5" stroke="#7BB8D8" stroke-width="1.5" />
+            <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" stroke="#7BB8D8" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          <span class="intel-report-header-label">Intelligence Report</span>
+        </div>
+        <div class="intel-report-body">
+          <div class="intel-report-title">India Quantum Computing Landscape — Q1 2026</div>
+          <div class="intel-report-meta">
+            47 companies · 12 institutions · supply chain depth map · funding tracker
+          </div>
+          <div class="intel-report-price-row">
+            <div>
+              <div class="intel-report-price">₹12,000</div>
+              <div class="intel-report-price-note">single report · PDF + data</div>
+            </div>
+          </div>
+          <a href="04_signup.html" class="qp-btn-primary"
+            style="font-size:12px; padding:8px 14px; display:block; text-align:center;">Download Preview →</a>
+        </div>
+      </div>
+
       <!-- Did you mean -->
       <div class="context-panel-title did-you-mean" style="margin-top:24px; margin-bottom:12px;">Did you mean?</div>
       <div class="did-you-mean">
         <a href="#">superconducting qubit research India</a>
         <a href="#">quantum computing companies Bengaluru</a>
+      </div>
+
+      <!-- Quantum Summit strip -->
+      <div class="summit-strip" style="margin-top:24px;">
+        <div class="summit-strip-eyebrow">Upcoming Event</div>
+        <div class="summit-strip-title">Qpedia Quantum Summit 2026</div>
+        <div class="summit-strip-meta">June 12 · New Delhi · In-person + virtual</div>
+        <a href="04_signup.html" class="summit-strip-btn">Register Now →</a>
       </div>
 
     </aside>
@@ -742,6 +941,7 @@
     });
   </script>
   <script src="shared-search.js"></script>
+  <script src="shared-tour.js"></script>
 </body>
 
 </html>
