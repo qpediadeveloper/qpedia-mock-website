@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Intelligence — Qpedia</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="description"
+    content="AI-driven quantum intelligence for enterprises, governments, and investors. Sector dashboards, supply chain maps, TRL tracking, and executive briefings — all grounded in Qpedia's peer-reviewed knowledge graph." />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="shared-search.css" />
+
+  <style>
+    /* ============================================================
+       INTELLIGENCE — PAGE-SPECIFIC STYLES
+       All tokens from shared.css
+       ============================================================ */
+
+    /* ── Hero ─────────────────────────────────────────────────── */
+    .int-hero {
+      background: var(--qp-off-white);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 60px 48px 52px;
+      text-align: center;
+    }
+
+    .int-hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .int-hero-badge {
+      display: inline-block;
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 18px;
+      letter-spacing: 0.02em;
+    }
+
+    .int-hero-h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin: 0 0 12px;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    .int-hero-sub {
+      font-size: 15px;
+      color: var(--qp-text-3);
+      margin: 0 auto 32px;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    /* Sector filter chips in hero */
+    .int-sector-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .int-sector-chip {
+      background: white;
+      color: var(--qp-text-2);
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      font-family: inherit;
+    }
+
+    .int-sector-chip:hover,
+    .int-sector-chip.active {
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border-color: var(--qp-blue);
+    }
+
+    /* Hero query bar */
+    .int-query-wrap {
+      position: relative;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .int-query-input {
+      width: 100%;
+      height: 58px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      background: white;
+      padding: 0 160px 0 52px;
+      font-size: 16px;
+      font-family: inherit;
+      color: var(--qp-text);
+      outline: none;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.30);
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+
+    .int-query-input::placeholder {
+      color: var(--qp-text-3);
+    }
+
+    .int-query-input:focus {
+      border-color: var(--qp-blue);
+    }
+
+    .int-query-icon {
+      position: absolute;
+      left: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .int-query-right {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .int-query-btn {
+      background: var(--qp-navy);
+      color: white;
+      border: none;
+      border-radius: 9px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+
+    .int-query-btn:hover {
+      background: var(--qp-blue-mid);
+    }
+
+    .int-hero-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    /* ── Section wrapper ──────────────────────────────────────── */
+    .int-section {
+      padding: 52px 0;
+      border-bottom: 1px solid var(--qp-border);
+    }
+
+    .int-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .int-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--qp-blue);
+      margin-bottom: 6px;
+    }
+
+    .int-section-h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin: 0 0 6px;
+    }
+
+    .int-section-sub {
+      font-size: 14px;
+      color: var(--qp-text-3);
+      margin: 0 0 28px;
+    }
+
+    .int-section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* ── Sector Dashboards ────────────────────────────────────── */
+    .int-sector-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .int-sector-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 22px 18px;
+      position: relative;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .int-sector-card:hover {
+      border-color: var(--qp-blue);
+      box-shadow: var(--qp-shadow);
+    }
+
+    .int-sector-card-icon {
+      font-size: 26px;
+      margin-bottom: 12px;
+    }
+
+    .int-sector-card-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 4px;
+    }
+
+    .int-sector-card-meta {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      margin-bottom: 14px;
+    }
+
+    .int-sector-card-metric {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin-bottom: 2px;
+    }
+
+    .int-sector-card-metric-label {
+      font-size: 11px;
+      color: var(--qp-text-3);
+    }
+
+    .int-lock-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--qp-off-white);
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      padding: 3px 9px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--qp-text-3);
+    }
+
+    .int-sector-card-bar {
+      height: 4px;
+      background: var(--qp-border);
+      border-radius: 2px;
+      margin-top: 14px;
+      overflow: hidden;
+    }
+
+    .int-sector-card-bar-fill {
+      height: 100%;
+      background: var(--qp-blue);
+      border-radius: 2px;
+    }
+
+    /* ── Supply Chain ─────────────────────────────────────────── */
+    .int-chain-cap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .int-chain-cap-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 22px 20px;
+      position: relative;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .int-chain-cap-card:hover {
+      border-color: var(--qp-blue);
+      box-shadow: var(--qp-shadow);
+    }
+
+    .int-chain-cap-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .int-chain-cap-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 6px;
+    }
+
+    .int-chain-cap-desc {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      line-height: 1.55;
+    }
+
+    .int-chain-stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .int-chain-stat-card {
+      background: var(--qp-blue-light);
+      border: 1px solid #B5D0E8;
+      border-radius: var(--qp-radius);
+      padding: 20px 22px;
+    }
+
+    .int-chain-stat-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin-bottom: 4px;
+    }
+
+    .int-chain-stat-label {
+      font-size: 13px;
+      color: var(--qp-text-2);
+    }
+
+    /* ── TRL Heatmap ──────────────────────────────────────────── */
+    .int-trl-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 40px;
+    }
+
+    .int-trl-table-wrap {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      overflow: hidden;
+    }
+
+    .int-trl-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .int-trl-table th {
+      background: var(--qp-off-white);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--qp-text-3);
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--qp-border);
+    }
+
+    .int-trl-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--qp-border);
+      font-size: 13px;
+      vertical-align: middle;
+    }
+
+    .int-trl-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .int-trl-domain {
+      font-weight: 500;
+      color: var(--qp-navy);
+    }
+
+    .int-trl-bar-cell {
+      min-width: 140px;
+    }
+
+    .int-trl-mini-bar {
+      height: 6px;
+      background: var(--qp-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .int-trl-mini-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--qp-blue);
+    }
+
+    .int-trl-num {
+      font-weight: 700;
+      color: var(--qp-navy);
+      font-size: 13px;
+    }
+
+    .int-trl-geo {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .int-trl-filter-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .int-filter-group-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--qp-text-3);
+      margin-bottom: 8px;
+    }
+
+    .int-filter-options {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .int-filter-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--qp-text-2);
+      cursor: pointer;
+    }
+
+    .int-filter-option input[type="checkbox"] {
+      accent-color: var(--qp-blue);
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ── Executive Intelligence ───────────────────────────────── */
+    .int-exec-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .int-exec-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .int-exec-card.featured {
+      background: var(--qp-navy);
+      border-color: var(--qp-navy);
+    }
+
+    .int-exec-icon {
+      font-size: 24px;
+    }
+
+    .int-exec-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--qp-blue);
+    }
+
+    .int-exec-card.featured .int-exec-card-label {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .int-exec-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      line-height: 1.3;
+    }
+
+    .int-exec-card.featured .int-exec-card-title {
+      color: white;
+    }
+
+    .int-exec-card-desc {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .int-exec-card.featured .int-exec-card-desc {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .int-exec-card-cta {
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--qp-blue-mid);
+      align-self: flex-start;
+      transition: color 0.15s;
+    }
+
+    .int-exec-card-cta:hover {
+      color: var(--qp-blue);
+    }
+
+    .int-exec-card.featured .int-exec-card-cta {
+      color: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+
+    .int-exec-card.featured .int-exec-card-cta:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: white;
+    }
+
+    /* Digest preview */
+    .int-digest-preview {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .int-digest-week {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .int-digest-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .int-digest-item:last-child {
+      border-bottom: none;
+    }
+
+    .int-digest-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--qp-blue);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .int-digest-text {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.5;
+    }
+
+    /* ── Revenue Signals ──────────────────────────────────────── */
+    .int-revenue-strip {
+      background: var(--qp-off-white);
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 32px 48px;
+    }
+
+    .int-revenue-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .int-revenue-card {
+      flex: 1;
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .int-revenue-card:hover {
+      border-color: var(--qp-blue);
+    }
+
+    .int-revenue-emoji {
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .int-revenue-body {
+      flex: 1;
+    }
+
+    .int-revenue-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--qp-blue);
+      margin-bottom: 3px;
+    }
+
+    .int-revenue-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 2px;
+    }
+
+    .int-revenue-sub {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .int-revenue-action {
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--qp-blue);
+      border: 1px solid var(--qp-blue);
+      padding: 7px 14px;
+      border-radius: var(--qp-radius-sm);
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .int-revenue-action:hover {
+      background: var(--qp-blue);
+      color: white;
+    }
+
+    /* ── Nav active override ──────────────────────────────────── */
+    .qp-nav-links a.int-active {
+      color: var(--qp-navy);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  </style>
+</head>
+
+<body class="qp-page">
+
+  <!-- =========================================================
+       1. NAVIGATION BAR
+       ========================================================= -->
+  <nav class="qp-nav">
+    <a href="01_homepage.html" class="qp-nav-brand">
+      <img src="Logo_withName.png" alt="Qpedia logo" />
+    </a>
+    <ul class="qp-nav-links">
+      <li><a href="knowledge_hub.html">Knowledge Hub</a></li>
+      <li><a href="intelligence.html" class="int-active">Intelligence</a></li>
+      <li><a href="ecosystem.html">Ecosystem</a></li>
+    </ul>
+    <div class="qp-nav-actions">
+      <a href="04_signup.html" class="qp-btn-ghost" id="nav-signin">Sign In</a>
+      <a href="04_signup.html" class="qp-btn-primary" id="nav-try-free">Try Free</a>
+    </div>
+  </nav>
+
+  <!-- =========================================================
+       2. HERO — Query + Sector Selector
+       ========================================================= -->
+  <section class="int-hero" id="hero">
+    <div class="int-hero-inner">
+      <span class="int-hero-badge">Enterprise · Government · Investors</span>
+      <h1 class="int-hero-h1">Quantum Intelligence<br />for every decision-maker</h1>
+      <p class="int-hero-sub">Sector dashboards, supply chain maps, TRL tracking, and critically reviewed executive
+        briefings, all grounded in Qpedia's peer-reviewed knowledge graph.</p>
+
+      <!-- Sector filter chips -->
+      <div class="int-sector-row" id="sector-filters">
+        <button class="int-sector-chip active" data-sector="all">All Sectors</button>
+        <button class="int-sector-chip" data-sector="healthcare">Healthcare</button>
+        <button class="int-sector-chip" data-sector="defence">Defence</button>
+        <button class="int-sector-chip" data-sector="finance">Finance</button>
+        <button class="int-sector-chip" data-sector="energy">Energy</button>
+        <button class="int-sector-chip" data-sector="telecom">Telecom</button>
+      </div>
+
+      <!-- Query bar -->
+      <div class="int-query-wrap">
+        <span class="int-query-icon">🔍</span>
+        <input type="text" id="int-query-input" class="int-query-input"
+          placeholder="e.g. Quantum readiness for Indian defence sector" autocomplete="off" />
+        <div class="int-query-right">
+          <button class="int-query-btn" id="int-get-intel-btn">Get Intelligence →</button>
+        </div>
+      </div>
+      <p class="int-hero-note">Full access requires an Enterprise or Government account · <a href="04_signup.html"
+          style="color:rgba(4, 0, 0, 0.5);text-decoration:underline;">Request access</a></p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       4. SECTOR DASHBOARDS
+       ========================================================= -->
+  <section class="int-section" id="sector-dashboards">
+    <div class="qp-container">
+      <div class="int-section-header">
+        <div>
+          <p class="int-section-label">Sector Intelligence</p>
+          <h2 class="int-section-h2">Quantum readiness by industry</h2>
+          <p class="int-section-sub">Quantum use cases, maturity indicators, and policy signals per sector. Full
+            dashboards for enterprise accounts.</p>
+        </div>
+        <a href="04_signup.html" class="qp-btn-ghost" style="font-size:13px;" id="all-dashboards-cta">View all
+          dashboards →</a>
+      </div>
+
+      <div class="int-sector-grid">
+
+        <!-- Healthcare -->
+        <div class="int-sector-card" id="sector-healthcare">
+          <span class="int-lock-badge">🔒 Enterprise</span>
+          <div class="int-sector-card-icon">🏥</div>
+          <p class="int-sector-card-name">Healthcare</p>
+          <p class="int-sector-card-meta">Drug discovery · Imaging · Genomics</p>
+          <p class="int-sector-card-metric">TRL 4–6</p>
+          <p class="int-sector-card-metric-label">Avg. maturity across 14 use cases</p>
+          <div class="int-sector-card-bar">
+            <div class="int-sector-card-bar-fill" style="width:55%"></div>
+          </div>
+        </div>
+
+        <!-- Defence -->
+        <div class="int-sector-card" id="sector-defence">
+          <span class="int-lock-badge">🔒 Enterprise</span>
+          <div class="int-sector-card-icon">🛡️</div>
+          <p class="int-sector-card-name">Defence &amp; Security</p>
+          <p class="int-sector-card-meta">QKD · Sensing · Cryptography</p>
+          <p class="int-sector-card-metric">TRL 5–8</p>
+          <p class="int-sector-card-metric-label">Avg. maturity across 9 use cases</p>
+          <div class="int-sector-card-bar">
+            <div class="int-sector-card-bar-fill" style="width:72%"></div>
+          </div>
+        </div>
+
+        <!-- Finance -->
+        <div class="int-sector-card" id="sector-finance">
+          <span class="int-lock-badge">🔒 Enterprise</span>
+          <div class="int-sector-card-icon">🏦</div>
+          <p class="int-sector-card-name">Finance</p>
+          <p class="int-sector-card-meta">Optimisation · Risk · Cryptography</p>
+          <p class="int-sector-card-metric">TRL 3–5</p>
+          <p class="int-sector-card-metric-label">Avg. maturity across 11 use cases</p>
+          <div class="int-sector-card-bar">
+            <div class="int-sector-card-bar-fill" style="width:40%"></div>
+          </div>
+        </div>
+
+        <!-- Energy -->
+        <div class="int-sector-card" id="sector-energy">
+          <span class="int-lock-badge">🔒 Enterprise</span>
+          <div class="int-sector-card-icon">⚡</div>
+          <p class="int-sector-card-name">Energy</p>
+          <p class="int-sector-card-meta">Grid optimisation · Materials · Sensing</p>
+          <p class="int-sector-card-metric">TRL 3–6</p>
+          <p class="int-sector-card-metric-label">Avg. maturity across 8 use cases</p>
+          <div class="int-sector-card-bar">
+            <div class="int-sector-card-bar-fill" style="width:48%"></div>
+          </div>
+        </div>
+
+        <!-- Telecom -->
+        <div class="int-sector-card" id="sector-telecom">
+          <span class="int-lock-badge">🔒 Enterprise</span>
+          <div class="int-sector-card-icon">📡</div>
+          <p class="int-sector-card-name">Telecom</p>
+          <p class="int-sector-card-meta">QKD networks · PQC · Sensing</p>
+          <p class="int-sector-card-metric">TRL 6–8</p>
+          <p class="int-sector-card-metric-label">Avg. maturity across 7 use cases</p>
+          <div class="int-sector-card-bar">
+            <div class="int-sector-card-bar-fill" style="width:68%"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       5. SUPPLY CHAIN INTELLIGENCE
+       ========================================================= -->
+  <section class="int-section" id="supply-chain">
+    <div class="qp-container">
+      <div class="int-section-header">
+        <div>
+          <p class="int-section-label">Supply Chain Intelligence</p>
+          <h2 class="int-section-h2">Map the quantum supply chain</h2>
+          <p class="int-section-sub">Full component dependency mapping for quantum systems — from qubit platforms to
+            peripheral enabling technologies. Identify vendors, vulnerabilities, and sourcing opportunities.</p>
+        </div>
+        <a href="04_signup.html" class="qp-btn-ghost" style="font-size:13px;" id="supply-chain-cta">Request full report
+          →</a>
+      </div>
+
+      <!-- 4 capability cards -->
+      <div class="int-chain-cap-grid">
+        <div class="int-chain-cap-card" id="chain-cap-deps">
+          <p class="int-chain-cap-title">Component Dependency Maps</p>
+          <p class="int-chain-cap-desc">Full decomposition of quantum systems from qubit platform through to peripheral
+            enabling technologies, structured by component category and technology domain.</p>
+          <span class="int-lock-badge" style="position:static;display:inline-block;margin-top:12px;">🔒
+            Enterprise</span>
+        </div>
+        <div class="int-chain-cap-card" id="chain-cap-vendors">
+          <p class="int-chain-cap-title">Vendor Intelligence</p>
+          <p class="int-chain-cap-desc">Supplier identification and qualification data by technology category and
+            geography. Side-by-side vendor comparison within each supply chain category.</p>
+          <span class="int-lock-badge" style="position:static;display:inline-block;margin-top:12px;">🔒
+            Enterprise</span>
+        </div>
+        <div class="int-chain-cap-card" id="chain-cap-vuln">
+          <p class="int-chain-cap-title">Dependency Vulnerability</p>
+          <p class="int-chain-cap-desc">Single points of failure analysis across quantum supply chains. India import
+            dependency assessment by component category and qubit platform.</p>
+          <span class="int-lock-badge" style="position:static;display:inline-block;margin-top:12px;">🔒
+            Enterprise</span>
+        </div>
+        <div class="int-chain-cap-card" id="chain-cap-rfp">
+          <p class="int-chain-cap-title">RFP Matching</p>
+          <p class="int-chain-cap-desc">Request-for-proposal matching for enterprises sourcing quantum solutions.
+            Curated shortlists of qualified vendors by specification and geography.</p>
+          <span class="int-lock-badge" style="position:static;display:inline-block;margin-top:12px;">🔒
+            Enterprise</span>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="int-chain-stats-row">
+        <div class="int-chain-stat-card" id="chain-stat-vendors">
+          <p class="int-chain-stat-num">340+</p>
+          <p class="int-chain-stat-label">Quantum vendors &amp; suppliers mapped globally</p>
+        </div>
+        <div class="int-chain-stat-card" id="chain-stat-components">
+          <p class="int-chain-stat-num">18</p>
+          <p class="int-chain-stat-label">Component categories tracked across qubit platforms</p>
+        </div>
+        <div class="int-chain-stat-card" id="chain-stat-india">
+          <p class="int-chain-stat-num">64%</p>
+          <p class="int-chain-stat-label">India import dependency in critical quantum components</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       6. TRL HEATMAP — Full Version
+       ========================================================= -->
+  <section class="int-section" id="trl-heatmap">
+    <div class="qp-container">
+      <div class="int-section-header">
+        <div>
+          <p class="int-section-label">TRL Tracking</p>
+          <h2 class="int-section-h2">Technology Readiness Heatmap</h2>
+          <p class="int-section-sub">Which quantum technologies are advancing fastest — by domain, geography, and
+            sector. Updated as new entries are peer-reviewed.</p>
+        </div>
+      </div>
+
+      <div class="int-trl-layout">
+
+        <!-- Table -->
+        <div class="int-trl-table-wrap">
+          <table class="int-trl-table">
+            <thead>
+              <tr>
+                <th>Domain</th>
+                <th>Current TRL</th>
+                <th>5-Year Trend</th>
+                <th>Lead Geography</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="trl-row-qc">
+                <td class="int-trl-domain">⚛️ Quantum Computing</td>
+                <td>
+                  <span class="int-trl-num">TRL 7</span>
+                  <div class="int-trl-bar-cell">
+                    <div class="int-trl-mini-bar" style="margin-top:5px;">
+                      <div class="int-trl-mini-fill" style="width:78%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td style="color:var(--qp-blue);font-weight:600;font-size:13px;">↑ +2 TRL</td>
+                <td class="int-trl-geo">🇺🇸 USA · 🇨🇳 China</td>
+              </tr>
+              <tr id="trl-row-comm">
+                <td class="int-trl-domain">📡 Quantum Communication</td>
+                <td>
+                  <span class="int-trl-num">TRL 6</span>
+                  <div class="int-trl-bar-cell">
+                    <div class="int-trl-mini-bar" style="margin-top:5px;">
+                      <div class="int-trl-mini-fill" style="width:67%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td style="color:var(--qp-blue);font-weight:600;font-size:13px;">↑ +1 TRL</td>
+                <td class="int-trl-geo">🇨🇳 China · 🇪🇺 EU</td>
+              </tr>
+              <tr id="trl-row-sensing">
+                <td class="int-trl-domain">🔬 Quantum Sensing</td>
+                <td>
+                  <span class="int-trl-num">TRL 8</span>
+                  <div class="int-trl-bar-cell">
+                    <div class="int-trl-mini-bar" style="margin-top:5px;">
+                      <div class="int-trl-mini-fill" style="width:89%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td style="color:var(--qp-blue);font-weight:600;font-size:13px;">↑ +1 TRL</td>
+                <td class="int-trl-geo">🇬🇧 UK · 🇩🇪 Germany</td>
+              </tr>
+              <tr id="trl-row-crypto">
+                <td class="int-trl-domain">🔐 Post-Quantum Cryptography</td>
+                <td>
+                  <span class="int-trl-num">TRL 9</span>
+                  <div class="int-trl-bar-cell">
+                    <div class="int-trl-mini-bar" style="margin-top:5px;">
+                      <div class="int-trl-mini-fill" style="width:100%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td style="color:#16a34a;font-weight:600;font-size:13px;">✓ Standards set</td>
+                <td class="int-trl-geo">🇺🇸 NIST · 🌐 Global</td>
+              </tr>
+              <tr id="trl-row-india">
+                <td class="int-trl-domain">🇮🇳 India NQM — Overall</td>
+                <td>
+                  <span class="int-trl-num">TRL 4</span>
+                  <div class="int-trl-bar-cell">
+                    <div class="int-trl-mini-bar" style="margin-top:5px;">
+                      <div class="int-trl-mini-fill" style="width:44%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td style="color:var(--qp-blue);font-weight:600;font-size:13px;">↑ Rapid growth</td>
+                <td class="int-trl-geo">IISc · IITs · DRDO</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Filter panel -->
+        <div class="int-trl-filter-panel">
+          <div>
+            <p class="int-filter-group-label">Geography</p>
+            <div class="int-filter-options">
+              <label class="int-filter-option"><input type="checkbox" checked /> India</label>
+              <label class="int-filter-option"><input type="checkbox" checked /> USA</label>
+              <label class="int-filter-option"><input type="checkbox" checked /> China</label>
+              <label class="int-filter-option"><input type="checkbox" /> EU</label>
+              <label class="int-filter-option"><input type="checkbox" /> UK</label>
+            </div>
+          </div>
+          <div>
+            <p class="int-filter-group-label">Sector</p>
+            <div class="int-filter-options">
+              <label class="int-filter-option"><input type="checkbox" checked /> Defence</label>
+              <label class="int-filter-option"><input type="checkbox" checked /> Healthcare</label>
+              <label class="int-filter-option"><input type="checkbox" /> Finance</label>
+              <label class="int-filter-option"><input type="checkbox" /> Energy</label>
+            </div>
+          </div>
+          <div style="padding-top:8px;">
+            <a href="04_signup.html" class="qp-btn-primary" style="display:block;text-align:center;font-size:13px;"
+              id="trl-full-access-cta">Unlock full heatmap →</a>
+            <p style="font-size:11px;color:var(--qp-text-3);margin-top:8px;text-align:center;">Export as CSV · API
+              available</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       7. EXECUTIVE INTELLIGENCE
+       ========================================================= -->
+  <section class="int-section" id="executive-intelligence">
+    <div class="qp-container">
+      <div class="int-section-header">
+        <div>
+          <p class="int-section-label">Executive Intelligence</p>
+          <h2 class="int-section-h2">Clarity for decision-makers</h2>
+          <p class="int-section-sub">AI-cited briefings, custom watchlists, and a weekly digest — designed for CXOs,
+            heads of R&amp;D, and government decision-makers.</p>
+        </div>
+      </div>
+
+      <div class="int-exec-layout">
+
+        <!-- Weekly Digest — featured -->
+        <div class="int-exec-card featured" id="exec-digest-card">
+          <p class="int-exec-card-label">Weekly Digest</p>
+          <h3 class="int-exec-card-title">Quantum Intelligence Digest</h3>
+          <div class="int-digest-preview">
+            <p class="int-digest-week">Week of 24 March 2026</p>
+            <div class="int-digest-item">
+              <span class="int-digest-dot"></span>
+              <p class="int-digest-text">IBM Quantum reaches 1,000+ qubit milestone — curated analysis on enterprise
+                readiness timelines</p>
+            </div>
+            <div class="int-digest-item">
+              <span class="int-digest-dot"></span>
+              <p class="int-digest-text">NQM Phase 2: ₹6,000 crore allocation — sector priorities and vendor
+                opportunities</p>
+            </div>
+            <div class="int-digest-item">
+              <span class="int-digest-dot"></span>
+              <p class="int-digest-text">NIST PQC standards finalised — Qpedia intelligence team's action guide for
+                financial sector</p>
+            </div>
+          </div>
+          <a href="04_signup.html" class="int-exec-card-cta" id="digest-subscribe-cta">Subscribe to the Digest →</a>
+        </div>
+
+        <!-- Right column: 2 stacked cards -->
+        <div style="display:flex;flex-direction:column;gap:20px;">
+
+          <div class="int-exec-card" id="exec-briefing-card">
+            <p class="int-exec-card-label">Expert Briefings</p>
+            <h3 class="int-exec-card-title">On-demand intelligence briefings</h3>
+            <p class="int-exec-card-desc">Structured intelligence reports prepared by the Qpedia team — grounded in
+              peer-reviewed knowledge entries, cited to source, and written for non-technical executives. Delivered
+              within agreed SLAs.</p>
+            <a href="04_signup.html" class="int-exec-card-cta" id="briefing-cta">Request a briefing →</a>
+          </div>
+
+          <div class="int-exec-card" id="exec-watchlist-card">
+            <p class="int-exec-card-label">Custom Watchlists</p>
+            <h3 class="int-exec-card-title">Track what matters to your organisation</h3>
+            <p class="int-exec-card-desc">Follow specific technologies, organisations, or supply chain nodes. Receive
+              editorial alerts when the knowledge graph is updated — with context written by the Qpedia intelligence
+              team on what changed and why it matters.</p>
+            <a href="04_signup.html" class="int-exec-card-cta" id="watchlist-cta">Set up a watchlist →</a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       8. REVENUE SIGNALS — Reports, API, Custom Intelligence
+       ========================================================= -->
+  <div class="int-revenue-strip" id="revenue-strip">
+    <div class="int-revenue-inner">
+
+      <!-- Annual Ecosystem Report -->
+      <div class="int-revenue-card" id="annual-report-card">
+        <div class="int-revenue-body">
+          <p class="int-revenue-label">Annual Publication</p>
+          <p class="int-revenue-title">India Quantum Ecosystem Report 2026</p>
+          <p class="int-revenue-sub">Flagship annual intelligence report · Pre-order now · Institutional licensing
+            available</p>
+        </div>
+        <a href="04_signup.html" class="int-revenue-action" id="annual-report-cta">Pre-order →</a>
+      </div>
+
+      <!-- Custom Intelligence Reports -->
+      <div class="int-revenue-card" id="custom-report-card">
+        <div class="int-revenue-body">
+          <p class="int-revenue-label">Custom Intelligence</p>
+          <p class="int-revenue-title">Commission a bespoke intelligence report</p>
+          <p class="int-revenue-sub">Tailored for your sector, geography, and strategic question · Delivered by Qpedia's
+            intelligence team</p>
+        </div>
+        <a href="04_signup.html" class="int-revenue-action" id="custom-report-cta">Commission →</a>
+      </div>
+
+      <!-- API Access -->
+      <div class="int-revenue-card" id="api-revenue-card">
+        <div class="int-revenue-body">
+          <p class="int-revenue-label">Data &amp; API</p>
+          <p class="int-revenue-title">Integrate Qpedia data into your systems</p>
+          <p class="int-revenue-sub">Curated quantum datasets · Trust-level metadata · Programmatic enterprise access
+          </p>
+        </div>
+        <a href="04_signup.html" class="int-revenue-action" id="api-revenue-cta">Explore API →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       9. FOOTER
+       ========================================================= -->
+  <footer class="qp-footer">
+    <img src="Logo.jpeg" alt="Qpedia" style="height:32px;" />
+    <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
+    <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
+  </footer>
+
+  <script>
+    // Sector chip toggle
+    (function () {
+      const chips = document.querySelectorAll('#sector-filters .int-sector-chip');
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chips.forEach(function (c) { c.classList.remove('active'); });
+          this.classList.add('active');
+        });
+      });
+
+      // Query input → search results
+      const queryInput = document.getElementById('int-query-input');
+      const queryBtn = document.getElementById('int-get-intel-btn');
+
+      function goToSearch() {
+        if (queryInput.value.trim() !== '') {
+          window.location.href = '02_search_results.html';
+        }
+      }
+
+      queryInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') goToSearch();
+      });
+      queryBtn.addEventListener('click', goToSearch);
+    })();
+  </script>
+  <script src="shared-search.js"></script>
+</body>
+
+</html>

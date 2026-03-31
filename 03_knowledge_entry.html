@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>QNu Labs — Quantum-Safe Security Solutions · Qpedia</title>
+  <meta name="description"
+    content="QNu Labs is India's leading quantum-safe cryptography company, developing QKD and QRNG solutions. Peer-reviewed knowledge entry on Qpedia." />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="shared-search.css" />
+  <style>
+    /* ── Breadcrumb ─────────────────────────────────────────── */
+    .breadcrumb {
+      padding: 12px 0;
+      font-size: 14px;
+      color: var(--qp-text-3);
+    }
+
+    .breadcrumb a {
+      color: var(--qp-text-3);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--qp-blue);
+      text-decoration: underline;
+    }
+
+    .breadcrumb .sep {
+      margin: 0 6px;
+    }
+
+    .breadcrumb .current {
+      color: var(--qp-text);
+    }
+
+    /* ── Two-column layout ──────────────────────────────────── */
+    .entry-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      align-items: start;
+      padding-top: 32px;
+      padding-bottom: 60px;
+    }
+
+    /* ── Trust & TRL bar ────────────────────────────────────── */
+    .trust-bar {
+      background: var(--qp-off-white);
+      border-radius: var(--qp-radius);
+      padding: 16px 20px;
+      margin: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border: 1px solid var(--qp-border);
+    }
+
+    .trust-bar .trust-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .trust-bar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    .icon-btn:hover {
+      background: var(--qp-border);
+    }
+
+    /* ── Entry body typography ──────────────────────────────── */
+    .entry-body {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--qp-text);
+      margin-top: 28px;
+    }
+
+    .entry-body p+p {
+      margin-top: 16px;
+    }
+
+    /* ── Key facts table ────────────────────────────────────── */
+    .facts-section {
+      margin-top: 28px;
+    }
+
+    .facts-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--qp-radius);
+      overflow: hidden;
+      border: 1px solid var(--qp-border);
+      font-size: 14px;
+    }
+
+    .facts-table thead tr {
+      background: var(--qp-off-white);
+    }
+
+    .facts-table th {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--qp-text-3);
+      text-align: left;
+      padding: 10px 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--qp-border);
+    }
+
+    .facts-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--qp-border);
+      color: var(--qp-text);
+    }
+
+    .facts-table td:first-child {
+      font-weight: 500;
+      color: var(--qp-text-3);
+      width: 200px;
+    }
+
+    .facts-table tbody tr:nth-child(even) {
+      background: var(--qp-off-white);
+    }
+
+    .facts-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ── Supply chain ───────────────────────────────────────── */
+    .supply-section {
+      margin-top: 24px;
+    }
+
+    .supply-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    /* ── Gate ───────────────────────────────────────────────── */
+    .qp-gate {
+      margin-top: 36px;
+    }
+
+    .gate-lock {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .gate-cta-primary {
+      display: block;
+      max-width: 280px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 14px;
+    }
+
+    .gate-cta-secondary {
+      display: block;
+      margin-top: 12px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* ── Related entries grid ───────────────────────────────── */
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 0;
+    }
+
+    .related-card {
+      padding: 16px;
+    }
+
+    .related-card .rel-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin: 10px 0 6px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .related-card .rel-title:hover {
+      color: var(--qp-blue-mid);
+    }
+
+    /* ── Sidebar ────────────────────────────────────────────── */
+    .sidebar-section-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 12px;
+    }
+
+    /* Ecosystem SVG card */
+    .ecosystem-preview {
+      position: relative;
+      background: var(--qp-off-white);
+      border-radius: var(--qp-radius-sm);
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .ecosystem-blur-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(248, 250, 252, 0.78);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .ecosystem-lock-icon {
+      font-size: 24px;
+    }
+
+    /* Person mini rows */
+    .person-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .person-row-info .person-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--qp-navy);
+    }
+
+    /* References */
+    .ref-row {
+      border-bottom: 1px solid var(--qp-border);
+      padding: 10px 0;
+    }
+
+    .ref-row:last-child {
+      border-bottom: none;
+    }
+
+    .ref-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--qp-navy);
+      margin-bottom: 3px;
+    }
+
+    .ref-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ref-link {
+      font-size: 12px;
+      color: var(--qp-blue);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .ref-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Start learning card */
+    .learn-card {
+      background: var(--qp-blue-light);
+      border-color: transparent;
+    }
+  </style>
+</head>
+
+<body class="qp-page">
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAV BAR
+  ═══════════════════════════════════════════════════════ -->
+  <nav class="qp-nav">
+    <a href="01_homepage.html" class="qp-nav-brand">
+      <img src="Logo_withName.png" alt="Qpedia" height="40" />
+    </a>
+    <ul class="qp-nav-links">
+      <li><a href="09_topic_browse.html">Knowledge Hub</a></li>
+      <li><a href="#">Intelligence</a></li>
+      <li><a href="#">Ecosystem</a></li>
+    </ul>
+    <div class="qp-nav-actions">
+      <a class="qp-btn-ghost" href="04_signup.html">Sign In</a>
+      <a class="qp-btn-primary" href="04_signup.html">Try Free</a>
+    </div>
+  </nav>
+
+  <div class="qp-content">
+    <div class="qp-container">
+
+      <!-- ── Breadcrumb ──────────────────────────────────────── -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="01_homepage.html">Home</a>
+        <span class="sep">›</span>
+        <a href="09_topic_browse.html">Knowledge Hub</a>
+        <span class="sep">›</span>
+        <span>Quantum Cryptography</span>
+        <span class="sep">›</span>
+        <span class="current">QNu Labs</span>
+      </nav>
+
+      <!-- ── Two-column layout ───────────────────────────────── -->
+      <div class="entry-layout">
+
+        <!-- ════════════════════════════════════════════════════
+             MAIN CONTENT
+        ════════════════════════════════════════════════════ -->
+        <div class="entry-main">
+
+          <!-- Entry header -->
+          <span class="qp-chip" style="align-self:flex-start;">Quantum Cryptography</span>
+          <h1 style="font-size:36px; font-weight:700; color:var(--qp-navy); margin:12px 0 8px; line-height:1.2;">
+            QNu Labs
+          </h1>
+          <p style="font-size:18px; color:var(--qp-text-2); line-height:1.5;">
+            India's leading quantum-safe cryptography company, developing QKD and QRNG solutions
+          </p>
+          <p class="qp-caption" style="margin-top:8px;">
+            Last updated: March 2026 &nbsp;·&nbsp; Version 3.1 &nbsp;·&nbsp; 8 citations &nbsp;·&nbsp; 124 views this
+            week
+          </p>
+
+          <!-- Trust & TRL bar -->
+          <div class="trust-bar">
+            <div class="trust-col">
+              <span class="qp-badge-expert">✓ Expert Peer-Reviewed</span>
+              <p class="qp-caption" style="margin-top:4px;">Reviewed by Dr. Anand Rao, IISc QC Lab</p>
+            </div>
+            <div class="trust-col" style="align-items:center;">
+              <div class="qp-trl">
+                <div class="qp-trl-bar">
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                </div>
+                <span class="qp-trl-label">TRL 5</span>
+              </div>
+              <p class="qp-caption" style="margin-top:4px; text-align:center;">Technology validated in relevant
+                environment</p>
+            </div>
+            <div class="trust-bar-actions">
+              <a class="qp-btn-ghost" href="#" style="font-size:13px; padding:8px 12px;">Cite this entry</a>
+              <button class="icon-btn" title="Copy link" aria-label="Copy link">🔗</button>
+            </div>
+          </div>
+
+          <!-- AI Summary Box -->
+          <div class="qp-ai-box">
+            <div class="qp-ai-box-header">
+              <span class="qp-ai-label">Summary</span>
+            </div>
+            <p style="font-size:15px; line-height:1.65; color:var(--qp-text); margin-bottom:12px;">
+              QNu Labs (est. 2016, Bengaluru) is India's most commercially advanced quantum-safe cryptography
+              company, offering Quantum Key Distribution (QKD) hardware and Quantum Random Number Generators
+              (QRNG) to enterprise, government, and defence clients. The company operates at TRL 5 and is
+              a recognised participant in India's National Quantum Mission. It occupies a strategic position
+              in the quantum-safe communications supply chain, with dependencies on single-photon detectors
+              and optical infrastructure.
+            </p>
+            <p style="font-size:12px; color:var(--qp-text-3);">
+              Sources: Qpedia Expert Review (2026) &nbsp;·&nbsp; DST-NQM Stakeholder Registry &nbsp;·&nbsp; QNu Labs
+              Press Releases
+            </p>
+            <p style="font-size:12px; color:var(--qp-text-3); font-style:italic; margin-top:8px;">
+              Generated from peer-reviewed sources in the Qpedia knowledge graph. Always verify with primary sources.
+            </p>
+          </div>
+
+          <!-- Entry body -->
+          <div class="entry-body">
+            <p>
+              QNu Labs was founded in 2016 by a team of physicists and engineers with the mission of
+              making quantum-safe security commercially viable for Indian enterprise and government
+              infrastructure. Operating from Bengaluru, the company has since built a product suite
+              spanning hardware security modules (HSMs), quantum key distribution systems, and quantum
+              random number generators deployed in production environments across BFSI and defence.
+            </p>
+            <p>
+              The company's core platform relies on <a class="qp-kg-link" href="#">quantum key distribution</a>
+              protocols, specifically BB84 and decoy-state variants adapted for metropolitan optical
+              networks. Complementing this, QNu's <a class="qp-kg-link" href="#">QRNG</a> modules
+              provide certified entropy sources that exceed classical pseudo-random generators in
+              unpredictability, critical for key generation in high-assurance applications. Both
+              product lines are eligible for procurement support under India's
+              <a class="qp-kg-link" href="#">National Quantum Mission</a>, which has earmarked funding
+              for domestic quantum-safe communications infrastructure.
+            </p>
+            <p>
+              As of March 2026, QNu Labs has completed a Series A funding round and is scaling
+              manufacturing to support broader government procurement timelines under the NQM.
+              The company's roadmap includes integration with post-quantum encryption (PQE) standards
+              finalised by NIST, positioning it at the intersection of hardware and software quantum
+              security — a relatively rare position among Indian deep-tech startups.
+            </p>
+          </div>
+
+          <!-- Key Facts table -->
+          <div class="facts-section">
+            <h3 class="qp-h3" style="font-size:17px; margin-bottom:12px;">Key Facts</h3>
+            <table class="facts-table">
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Founded</td>
+                  <td>2016, Bengaluru, India</td>
+                </tr>
+                <tr>
+                  <td>Technology</td>
+                  <td>QKD &nbsp;·&nbsp; QRNG &nbsp;·&nbsp; Post-Quantum Encryption</td>
+                </tr>
+                <tr>
+                  <td>Funding Stage</td>
+                  <td>Series A</td>
+                </tr>
+                <tr>
+                  <td>TRL</td>
+                  <td>5 — Technology validated in relevant environment</td>
+                </tr>
+                <tr>
+                  <td>Team Size</td>
+                  <td>~80 employees</td>
+                </tr>
+                <tr>
+                  <td>Key Customers</td>
+                  <td>BFSI &nbsp;·&nbsp; Government &nbsp;·&nbsp; Defence</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Supply Chain Dependencies -->
+          <div class="supply-section">
+            <h3 class="qp-h3" style="font-size:17px; margin-bottom:12px;">Supply Chain Dependencies</h3>
+            <div class="supply-chips">
+              <a class="qp-chip" href="#">Single-Photon Detectors</a>
+              <a class="qp-chip" href="#">Optical Fiber Infrastructure</a>
+              <a class="qp-chip" href="#">HSM Hardware</a>
+            </div>
+          </div>
+
+          <!-- Sign-up gate -->
+          <div class="qp-gate">
+            <div class="gate-lock">🔒</div>
+            <h3 class="qp-h3" style="margin-bottom:12px;">See QNu Labs in the full ecosystem</h3>
+            <p class="qp-body" style="max-width:380px; margin:0 auto 20px;">
+              Explore connections to 14 organisations, 6 researchers, 3 government programs,
+              and 2 supply chain maps. Free account, no credit card required.
+            </p>
+            <a class="qp-btn-primary gate-cta-primary" href="04_signup.html">Create Free Account</a>
+            <a class="qp-btn-ghost gate-cta-secondary" href="04_signup.html">Already have an account? Sign in</a>
+          </div>
+
+          <!-- Related entries -->
+          <h3 class="qp-h3" style="margin-top:40px; margin-bottom:16px;">Related Knowledge Entries</h3>
+          <div class="related-grid">
+
+            <div class="qp-card related-card">
+              <span class="qp-chip" style="font-size:11px; padding:4px 10px;">Quantum Cryptography</span>
+              <a class="rel-title" href="#">Quantum Key Distribution — BB84 Protocol</a>
+              <p class="qp-body" style="font-size:13px; line-height:1.5;">
+                The foundational protocol for QKD using polarised photons and classical reconciliation.
+              </p>
+            </div>
+
+            <div class="qp-card related-card">
+              <span class="qp-chip"
+                style="font-size:11px; padding:4px 10px; background:#E0F4F4; color:#0F766E;">Policy</span>
+              <a class="rel-title" href="#">India NQM — Quantum Communication Hub</a>
+              <p class="qp-body" style="font-size:13px; line-height:1.5;">
+                IITM-anchored QTA hub focusing on QKD deployment across metropolitan networks.
+              </p>
+            </div>
+
+            <div class="qp-card related-card">
+              <span class="qp-chip" style="font-size:11px; padding:4px 10px;">Quantum Hardware</span>
+              <a class="rel-title" href="#">Single-Photon Avalanche Diodes (SPADs)</a>
+              <p class="qp-body" style="font-size:13px; line-height:1.5;">
+                Core detector components used in QKD receivers, critical supply chain dependency.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════════════
+             RIGHT SIDEBAR
+        ════════════════════════════════════════════════════ -->
+        <aside>
+
+          <!-- Ecosystem node card -->
+          <div class="qp-card" style="margin-bottom:20px;">
+            <div class="sidebar-section-title">In the Ecosystem</div>
+            <div class="ecosystem-preview">
+              <!-- Simple SVG: center node + 4 blurred outer nodes -->
+              <svg width="260" height="160" viewBox="0 0 260 160" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <!-- Edges -->
+                <line x1="130" y1="80" x2="50" y2="36" stroke="#B5D0E8" stroke-width="1.5" />
+                <line x1="130" y1="80" x2="210" y2="36" stroke="#B5D0E8" stroke-width="1.5" />
+                <line x1="130" y1="80" x2="44" y2="128" stroke="#B5D0E8" stroke-width="1.5" />
+                <line x1="130" y1="80" x2="216" y2="128" stroke="#B5D0E8" stroke-width="1.5" />
+                <!-- Outer nodes -->
+                <circle cx="50" cy="36" r="20" fill="#EBF4FB" stroke="#B5D0E8" stroke-width="1" />
+                <circle cx="210" cy="36" r="20" fill="#EBF4FB" stroke="#B5D0E8" stroke-width="1" />
+                <circle cx="44" cy="128" r="20" fill="#EBF4FB" stroke="#B5D0E8" stroke-width="1" />
+                <circle cx="216" cy="128" r="20" fill="#EBF4FB" stroke="#B5D0E8" stroke-width="1" />
+                <!-- Centre node -->
+                <circle cx="130" cy="80" r="32" fill="#0D2B3E" />
+                <text x="130" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="8"
+                  font-weight="600" fill="white">QNu</text>
+                <text x="130" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-size="8"
+                  font-weight="600" fill="white">Labs</text>
+              </svg>
+              <!-- Blur overlay -->
+              <div class="ecosystem-blur-overlay">
+                <span class="ecosystem-lock-icon">🔒</span>
+                <a class="qp-btn-primary" href="04_signup.html" style="font-size:13px; padding:8px 16px;">Sign up to
+                  explore</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key People -->
+          <div class="qp-card" style="margin-bottom:20px;">
+            <div class="sidebar-section-title">Key People</div>
+
+            <div class="person-row">
+              <div class="qp-avatar">SS</div>
+              <div class="person-row-info">
+                <div class="person-name">Sunil Sharma</div>
+                <span class="qp-caption">CEO &amp; Co-founder · QNu Labs</span>
+              </div>
+            </div>
+
+            <div class="person-row">
+              <div class="qp-avatar">RK</div>
+              <div class="person-row-info">
+                <div class="person-name">Dr. Rajesh Kumar</div>
+                <span class="qp-caption">CTO · QNu Labs</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- References -->
+          <div class="qp-card" style="margin-bottom:20px;">
+            <div class="sidebar-section-title">References</div>
+
+            <div class="ref-row">
+              <p class="ref-title">Practical Quantum Key Distribution over Metropolitan Optical Networks</p>
+              <div class="ref-meta">
+                <span class="qp-caption">npj Quantum Inf. · 2023</span>
+                <a class="ref-link" href="#">Read paper ↗</a>
+              </div>
+            </div>
+
+            <div class="ref-row">
+              <p class="ref-title">Quantum Random Number Generation: Standards and Compliance</p>
+              <div class="ref-meta">
+                <span class="qp-caption">IEEE QCE · 2024</span>
+                <a class="ref-link" href="#">Read paper ↗</a>
+              </div>
+            </div>
+
+            <div class="ref-row">
+              <p class="ref-title">India National Quantum Mission — Official Stakeholder Registry</p>
+              <div class="ref-meta">
+                <span class="qp-caption">DST India · 2025</span>
+                <a class="ref-link" href="#">Read paper ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Start Learning -->
+          <div class="qp-card learn-card">
+            <div class="sidebar-section-title">Start Learning</div>
+            <p class="qp-body" style="font-size:14px; margin-bottom:16px;">
+              Learn Quantum Cryptography in Qpedia Learning
+            </p>
+            <a class="qp-btn-primary" href="07_learning_module.html">Start module →</a>
+          </div>
+
+        </aside>
+      </div><!-- /.entry-layout -->
+    </div><!-- /.qp-container -->
+  </div><!-- /.qp-content -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="qp-footer">
+    <img src="Logo.jpeg" alt="Qpedia" style="height:32px;" />
+    <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
+    <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
+  </footer>
+
+  <script>
+    // Copy link button
+    document.querySelector('.icon-btn').addEventListener('click', function () {
+      navigator.clipboard?.writeText(window.location.href).then(() => {
+        this.textContent = '✓';
+        setTimeout(() => { this.textContent = '🔗'; }, 1500);
+      });
+    });
+  </script>
+  <script src="shared-search.js"></script>
+</body>
+
+</html>

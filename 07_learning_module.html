@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Module 3.2 — Superconducting Qubit Platforms | Qpedia</title>
+  <meta name="description"
+    content="Learn about superconducting qubit platforms in Module 3.2 of Quantum Computing Foundations on Qpedia — the peer-reviewed quantum knowledge platform." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: white;
+      color: var(--qp-text);
+    }
+
+    /* ── Slim Nav ── */
+    .slim-nav {
+      height: 52px;
+      background: white;
+      border-bottom: 1px solid var(--qp-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      flex-shrink: 0;
+      z-index: 100;
+      position: relative;
+    }
+
+    .slim-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slim-nav-left img {
+      height: 30px;
+    }
+
+    .slim-nav-left .brand-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+    }
+
+    .slim-nav-left .sep {
+      color: var(--qp-border);
+      margin: 0 6px;
+      font-size: 18px;
+    }
+
+    .slim-nav-left .course-link {
+      font-size: 14px;
+      color: var(--qp-text-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .slim-nav-left .course-link:hover {
+      color: var(--qp-navy);
+    }
+
+    .slim-nav-center {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .slim-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-track {
+      width: 200px;
+      height: 6px;
+      background: var(--qp-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 38%;
+      height: 100%;
+      background: var(--qp-blue);
+      border-radius: 3px;
+    }
+
+    .exit-link {
+      font-size: 14px;
+      color: var(--qp-text-3);
+      text-decoration: none;
+      margin-left: 8px;
+      transition: color 0.15s;
+    }
+
+    .exit-link:hover {
+      color: var(--qp-navy);
+    }
+
+    /* ── Main Layout ── */
+    .main-layout {
+      display: flex;
+      height: calc(100vh - 52px);
+      overflow: hidden;
+    }
+
+    /* ── Lesson Column ── */
+    .lesson-column {
+      flex: 1;
+      overflow-y: auto;
+      padding: 40px 48px;
+      background: white;
+    }
+
+    .module-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .module-title {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .module-meta {
+      font-size: 13px;
+      color: var(--qp-text-3);
+      margin-bottom: 28px;
+    }
+
+    .lesson-body {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--qp-text);
+    }
+
+    .lesson-body p {
+      margin-bottom: 20px;
+    }
+
+    .kg-link {
+      color: var(--qp-blue);
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+
+    .kg-link::after {
+      content: '⤴';
+      font-size: 11px;
+      vertical-align: super;
+      margin-left: 2px;
+      color: var(--qp-blue);
+    }
+
+    .kg-link:hover {
+      color: var(--qp-blue-mid);
+    }
+
+    .key-concept {
+      background: var(--qp-blue-light);
+      border-left: 4px solid var(--qp-blue);
+      border-radius: 0 var(--qp-radius-sm) var(--qp-radius-sm) 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+
+    .key-concept .kc-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--qp-blue);
+      margin-bottom: 8px;
+    }
+
+    .key-concept p {
+      font-size: 15px;
+      color: var(--qp-text);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .data-table-wrap {
+      margin: 24px 0;
+    }
+
+    .data-table-caption {
+      font-size: 13px;
+      color: var(--qp-text-3);
+      margin-bottom: 8px;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      overflow: hidden;
+      font-size: 14px;
+    }
+
+    .data-table thead tr {
+      background: var(--qp-off-white);
+    }
+
+    .data-table th {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--qp-text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--qp-border);
+    }
+
+    .data-table td {
+      padding: 12px 14px;
+      border-top: 1px solid var(--qp-border);
+      color: var(--qp-text);
+    }
+
+    .data-table tbody tr:nth-child(even) {
+      background: #FAFBFC;
+    }
+
+    .quiz-wrap {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 24px;
+      margin-top: 32px;
+    }
+
+    .quiz-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 16px;
+    }
+
+    .quiz-question {
+      font-size: 16px;
+      color: var(--qp-text);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius-sm);
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--qp-text);
+      transition: all 0.15s;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--qp-blue);
+      background: var(--qp-blue-light);
+    }
+
+    .quiz-option.selected {
+      border: 2px solid var(--qp-blue);
+      background: var(--qp-blue-light);
+    }
+
+    .quiz-option .radio {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--qp-border);
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    .quiz-option.selected .radio {
+      background: var(--qp-blue);
+      border-color: var(--qp-blue);
+    }
+
+    .quiz-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .module-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--qp-border);
+      padding-bottom: 40px;
+    }
+
+    /* ── AI Tutor Column ── */
+    .tutor-column {
+      width: 380px;
+      flex-shrink: 0;
+      border-left: 1px solid var(--qp-border);
+      display: flex;
+      flex-direction: column;
+      background: var(--qp-off-white);
+      overflow: hidden;
+    }
+
+    .tutor-header {
+      height: 52px;
+      background: white;
+      border-bottom: 1px solid var(--qp-border);
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .tutor-header-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--qp-navy);
+    }
+
+    .tutor-header-sub {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .tutor-grounded {
+      background: var(--qp-blue-light);
+      padding: 7px 20px;
+      border-bottom: 1px solid var(--qp-border);
+      text-align: center;
+      font-size: 12px;
+      color: var(--qp-blue-mid);
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .chat-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .context-note {
+      background: var(--qp-blue-light);
+      border-radius: var(--qp-radius-sm);
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--qp-text-2);
+      line-height: 1.5;
+    }
+
+    .msg-user {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 14px;
+    }
+
+    .msg-user-bubble {
+      background: var(--qp-navy);
+      color: white;
+      border-radius: 12px 12px 4px 12px;
+      padding: 12px 16px;
+      max-width: 280px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .msg-ai {
+      display: flex;
+      margin-bottom: 14px;
+    }
+
+    .msg-ai-bubble {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: 4px 12px 12px 12px;
+      padding: 16px;
+      max-width: 300px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--qp-text);
+    }
+
+    .msg-ai-bubble p {
+      margin-bottom: 8px;
+    }
+
+    .msg-ai-bubble p:last-child {
+      margin-bottom: 0;
+    }
+
+    .citation-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      margin-top: 8px;
+      transition: background 0.15s;
+    }
+
+    .citation-chip:hover {
+      background: #D4E9F7;
+    }
+
+    .chat-input-wrap {
+      padding: 12px 16px;
+      background: white;
+      border-top: 1px solid var(--qp-border);
+      flex-shrink: 0;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .chat-input {
+      flex: 1;
+      height: 44px;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius-sm);
+      padding: 0 14px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+      color: var(--qp-text);
+    }
+
+    .chat-input:focus {
+      border-color: var(--qp-blue);
+      box-shadow: 0 0 0 3px rgba(43, 143, 214, 0.10);
+    }
+
+    .chat-send-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--qp-radius-sm);
+      border: none;
+      background: var(--qp-navy);
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+
+    .chat-send-btn:hover {
+      background: var(--qp-blue-mid);
+    }
+
+    .chat-disclaimer {
+      font-size: 11px;
+      color: var(--qp-text-3);
+      text-align: center;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIM TOP NAV
+  ════════════════════════════════════════════════ -->
+  <nav class="slim-nav">
+    <!-- Left -->
+    <div class="slim-nav-left">
+      <img src="Logo_withName.png" alt="Qpedia" />
+      <span class="sep">|</span>
+      <a class="course-link" href="06_dashboard.html">Quantum Computing Foundations</a>
+    </div>
+
+    <!-- Center -->
+    <div class="slim-nav-center">Module 3.2 — Superconducting Qubit Platforms</div>
+
+    <!-- Right -->
+    <div class="slim-nav-right">
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+      <span class="qp-caption">Module 3 of 12</span>
+      <a class="exit-link" href="06_dashboard.html">Exit ×</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       MAIN LAYOUT
+  ════════════════════════════════════════════════ -->
+  <div class="main-layout">
+
+    <!-- ────────────────────────────────────────────
+         LESSON COLUMN
+    ──────────────────────────────────────────── -->
+    <main class="lesson-column">
+
+      <span class="module-chip">Module 3.2</span>
+      <h1 class="module-title">Superconducting Qubit Platforms</h1>
+      <p class="module-meta">⏱ 18 minutes &nbsp;·&nbsp; 📖 2,400 words &nbsp;·&nbsp; Phase 1: Foundations</p>
+
+      <div class="lesson-body">
+
+        <p>
+          Superconducting qubits represent the leading hardware platform for gate-based quantum computation. The
+          <a class="kg-link" href="03_knowledge_entry.html">transmon qubit</a>
+          design, first introduced at Yale in 2007, improved upon the original Cooper pair box by operating at a regime
+          where charge noise has minimal effect on qubit frequency. Central to its operation is the
+          <a class="kg-link" href="#">Josephson junction</a>,
+          a tunnel junction between two superconducting electrodes that provides the non-linearity required to isolate
+          individual qubit energy levels.
+        </p>
+
+        <div class="key-concept">
+          <div class="kc-label">Key Concept: Qubit Coherence Time</div>
+          <p>Coherence time (T₂) measures how long a qubit maintains its quantum state before environmental noise causes
+            decoherence. Longer coherence times allow more quantum gate operations before errors accumulate — a critical
+            figure of merit for all quantum computing hardware.</p>
+        </div>
+
+        <p>
+          Operating conditions are extreme: superconducting qubits must be cooled to approximately 15 millikelvin using
+          a
+          <a class="kg-link" href="#">dilution refrigerator</a>
+          — colder than outer space — to suppress thermal noise that would otherwise destroy the fragile quantum state.
+          This temperature requirement is the primary driver of supply chain complexity for quantum computing systems.
+        </p>
+
+        <div class="data-table-wrap">
+          <p class="data-table-caption">Leading Superconducting Platforms — March 2026</p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Qubits</th>
+                <th>Coherence (μs)</th>
+                <th>TRL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>IBM Quantum Eagle</td>
+                <td>127</td>
+                <td>~100</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>Google Sycamore</td>
+                <td>72</td>
+                <td>~80</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>IISc QC Lab</td>
+                <td>5</td>
+                <td>~40</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Rigetti Aspen-M</td>
+                <td>80</td>
+                <td>~60</td>
+                <td>6</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Inline Quiz -->
+        <div class="quiz-wrap">
+          <h3 class="quiz-title">Check your understanding</h3>
+          <p class="quiz-question">What is the primary advantage of the transmon design over the original Cooper pair
+            box?</p>
+
+          <div class="quiz-option" id="quiz-opt-1">
+            <div class="radio"></div>
+            Higher qubit density on a single chip
+          </div>
+          <div class="quiz-option selected" id="quiz-opt-2">
+            <div class="radio"></div>
+            Reduced sensitivity to charge noise
+          </div>
+          <div class="quiz-option" id="quiz-opt-3">
+            <div class="radio"></div>
+            Lower operating temperature requirements
+          </div>
+          <div class="quiz-option" id="quiz-opt-4">
+            <div class="radio"></div>
+            Simpler fabrication process
+          </div>
+
+          <div class="quiz-actions">
+            <button class="qp-btn-primary" style="font-size:14px;" id="submit-answer-btn">Submit Answer</button>
+            <a class="qp-btn-ghost" style="font-size:14px;" href="#">Skip</a>
+          </div>
+        </div>
+
+        <!-- Module Navigation -->
+        <div class="module-nav">
+          <a class="qp-btn-secondary" style="font-size:14px;" href="06_dashboard.html">← Module 3.1</a>
+          <a class="qp-btn-primary" style="font-size:14px;" href="08_user_profile.html">Next: Module 3.3 →</a>
+        </div>
+
+      </div><!-- /lesson-body -->
+    </main>
+
+    <!-- ────────────────────────────────────────────
+         AI TUTOR COLUMN
+    ──────────────────────────────────────────── -->
+    <aside class="tutor-column">
+
+      <!-- Tutor header -->
+      <div class="tutor-header">
+        <span class="tutor-header-title">Q Tutor</span>
+      </div>
+
+      <!-- Grounded bar -->
+      <div class="tutor-grounded">
+        Grounded in Qpedia's peer-reviewed knowledge graph
+      </div>
+
+      <!-- Chat area -->
+      <div class="chat-area" id="chat-area">
+
+        <div class="context-note">
+          Helping with Module 3.2: Superconducting Qubit Platforms. Ask me anything about this lesson.
+        </div>
+
+        <!-- User message 1 -->
+        <div class="msg-user">
+          <div class="msg-user-bubble">
+            Why does low temperature matter so much for superconducting qubits?
+          </div>
+        </div>
+
+        <!-- AI message 1 -->
+        <div class="msg-ai">
+          <div class="msg-ai-bubble">
+            <p>Superconducting qubits rely on quantum mechanical effects that only emerge when thermal energy is far
+              below the qubit's energy gap. At room temperature, thermal fluctuations are billions of times larger than
+              the qubit energy levels, completely masking any quantum behaviour.</p>
+            <p>At 15 millikelvin — achieved using a dilution refrigerator — thermal noise drops to near zero, allowing
+              the Josephson junction to behave as a genuine two-level quantum system. Even a slight temperature rise
+              causes decoherence within microseconds.</p>
+            <a class="citation-chip" href="03_knowledge_entry.html">Dilution Refrigerators — Qpedia entry ⤴</a>
+          </div>
+        </div>
+
+        <!-- User message 2 -->
+        <div class="msg-user">
+          <div class="msg-user-bubble">
+            What's the difference between a transmon and a flux qubit?
+          </div>
+        </div>
+
+        <!-- AI message 2 -->
+        <div class="msg-ai">
+          <div class="msg-ai-bubble">
+            <p>The transmon operates at a charge-insensitive point, making it robust against electrical noise — the key
+              reason it dominates industry platforms. A flux qubit, by contrast, uses magnetic flux threading a
+              superconducting loop to define its energy levels, giving it faster gate speeds but greater sensitivity to
+              flux noise.</p>
+            <a class="citation-chip" href="03_knowledge_entry.html">Transmon Qubit — Expert Peer-Reviewed ⤴</a>
+          </div>
+        </div>
+
+      </div><!-- /chat-area -->
+
+      <!-- Chat input -->
+      <div class="chat-input-wrap">
+        <div class="chat-input-row">
+          <input class="chat-input" id="tutor-input" type="text" placeholder="Ask about this module..."
+            autocomplete="off" />
+          <button class="chat-send-btn" id="tutor-send" aria-label="Send message">➤</button>
+        </div>
+        <p class="chat-disclaimer">Answers cited from Qpedia's peer-reviewed knowledge graph</p>
+      </div>
+
+    </aside>
+
+  </div><!-- /main-layout -->
+
+  <script>
+    // ── Quiz option selection ──────────────────────────────
+    document.querySelectorAll('.quiz-option').forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        document.querySelectorAll('.quiz-option').forEach(function (o) {
+          o.classList.remove('selected');
+        });
+        this.classList.add('selected');
+      });
+    });
+
+    // ── Chat scroll helper ────────────────────────────────
+    function scrollChat() {
+      var chatArea = document.querySelector('.chat-area');
+      chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
+    document.getElementById('tutor-input').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && this.value.trim().length > 0) {
+        this.value = '';
+        scrollChat();
+      }
+    });
+
+    document.getElementById('tutor-send').addEventListener('click', function () {
+      var input = document.getElementById('tutor-input');
+      if (input.value.trim().length > 0) {
+        input.value = '';
+        scrollChat();
+      }
+    });
+
+    window.addEventListener('load', function () { scrollChat(); });
+  </script>
+
+</body>
+
+</html>

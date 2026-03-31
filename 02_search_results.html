@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Search: superconducting qubit companies India — Qpedia</title>
+  <meta name="description"
+    content="Qpedia search results for superconducting qubit companies in India — peer-reviewed quantum ecosystem intelligence." />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="shared-search.css" />
+
+  <style>
+    /* ── Nav search override ───────────────────────────────── */
+    .nav-search-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-search-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-search-input {
+      width: 420px;
+      height: 40px;
+      border: 2px solid var(--qp-blue);
+      border-radius: 10px;
+      padding: 0 36px 0 14px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--qp-text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-search-input:focus {
+      box-shadow: 0 0 0 3px rgba(43, 143, 214, 0.12);
+    }
+
+    .nav-search-clear {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 16px;
+      color: var(--qp-text-3);
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-search-clear:hover {
+      color: var(--qp-navy);
+    }
+
+    /* ── Three-column layout ───────────────────────────────── */
+    .results-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr 260px;
+      min-height: calc(100vh - 68px - 89px);
+      /* nav + footer */
+    }
+
+    /* ── Left filter panel ─────────────────────────────────── */
+    .filter-panel {
+      background: var(--qp-off-white);
+      border-right: 1px solid var(--qp-border);
+      padding: 24px;
+    }
+
+    .filter-panel-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin-bottom: 20px;
+    }
+
+    .filter-group {
+      margin-bottom: 20px;
+    }
+
+    .filter-group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .filter-group-header span:first-child {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--qp-navy);
+    }
+
+    .filter-group-header .caret {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .filter-label {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 14px;
+      color: var(--qp-text-2);
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    .filter-label input[type="checkbox"],
+    .filter-label input[type="radio"] {
+      accent-color: var(--qp-blue);
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .trl-range {
+      accent-color: var(--qp-blue);
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .trl-range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--qp-text-3);
+      margin-top: 4px;
+    }
+
+    .filter-divider {
+      height: 1px;
+      background: var(--qp-border);
+      margin: 8px 0 20px;
+    }
+
+    /* ── Main results column ───────────────────────────────── */
+    .results-main {
+      padding: 24px 28px;
+      min-width: 0;
+      /* prevent overflow */
+    }
+
+    /* AI box text */
+    .ai-summary-text {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--qp-text);
+      margin-bottom: 12px;
+    }
+
+    .ai-footnotes {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .ai-caveat {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      font-style: italic;
+      margin-top: 8px;
+    }
+
+    /* Results bar */
+    .results-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .results-count {
+      font-size: 15px;
+      color: var(--qp-text);
+    }
+
+    .sort-select {
+      font-size: 14px;
+      border: 1px solid var(--qp-border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-family: inherit;
+      color: var(--qp-text-2);
+      outline: none;
+      cursor: pointer;
+      background: var(--qp-white);
+    }
+
+    /* Result card internals */
+    .result-card {
+      margin-bottom: 12px;
+      border-left: 3px solid transparent;
+      transition: border-left-color 0.15s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .result-card:hover {
+      border-left-color: var(--qp-blue);
+    }
+
+    .result-card-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .result-card-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .result-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 6px;
+      transition: color 0.15s;
+    }
+
+    .result-title:hover {
+      color: var(--qp-blue-mid);
+    }
+
+    .result-excerpt {
+      font-size: 14px;
+      color: var(--qp-text-2);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .result-meta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Signup nudge */
+    .signup-nudge {
+      background: var(--qp-blue-light);
+      border-radius: var(--qp-radius);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .signup-nudge p {
+      font-size: 15px;
+      color: var(--qp-navy);
+      margin: 0;
+      flex: 1;
+    }
+
+    /* ── Right context panel ───────────────────────────────── */
+    .context-panel {
+      background: var(--qp-off-white);
+      border-left: 1px solid var(--qp-border);
+      padding: 24px;
+    }
+
+    .context-panel-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 12px;
+    }
+
+    .context-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .person-mini {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px;
+      background: var(--qp-white);
+      border-radius: var(--qp-radius-sm);
+      border: 1px solid var(--qp-border);
+      margin-bottom: 8px;
+    }
+
+    .person-mini-info .person-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--qp-navy);
+    }
+
+    .did-you-mean a {
+      display: block;
+      font-size: 14px;
+      color: var(--qp-blue);
+      margin-bottom: 8px;
+      text-decoration: none;
+      transition: text-decoration 0.1s;
+    }
+
+    .did-you-mean a:hover {
+      text-decoration: underline;
+    }
+
+    /* Chip variants for result types */
+    .chip-company {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .chip-company-alt {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      background: #F0E6FF;
+      color: #6D28D9;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .chip-research {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      background: #E6F4F0;
+      color: #065F46;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .chip-government {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      background: #E0F4F4;
+      color: #0F766E;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+
+<body class="qp-page">
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAV BAR
+  ═══════════════════════════════════════════════════════ -->
+  <nav class="qp-nav">
+    <!-- Brand -->
+    <a href="01_homepage.html" class="qp-nav-brand">
+      <img src="Logo_withName.png" alt="Qpedia" height="40" />
+    </a>
+
+    <!-- Centre: inline search -->
+    <div class="nav-search-wrap">
+      <div class="nav-search-input-wrap">
+        <input class="nav-search-input" type="text" id="nav-search" value="superconducting qubit companies India"
+          autocomplete="off" />
+        <button class="nav-search-clear" id="nav-clear" title="Clear search" aria-label="Clear">×</button>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="qp-nav-actions">
+      <a class="qp-btn-ghost" href="04_signup.html">Sign In</a>
+      <a class="qp-btn-primary" href="04_signup.html">Try Free</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       THREE-COLUMN RESULTS LAYOUT
+  ═══════════════════════════════════════════════════════ -->
+  <div class="results-layout">
+
+    <!-- ── LEFT: Filter Panel ──────────────────────────────── -->
+    <aside class="filter-panel">
+      <div class="filter-panel-title">Filters</div>
+
+      <!-- Group 1: Technology Domain -->
+      <div class="filter-group">
+        <div class="filter-group-header">
+          <span>Technology Domain</span>
+          <span class="caret">▾</span>
+        </div>
+        <label class="filter-label">
+          <input type="checkbox" checked /> Quantum Computing
+        </label>
+        <label class="filter-label">
+          <input type="checkbox" /> Quantum Sensing
+        </label>
+        <label class="filter-label">
+          <input type="checkbox" /> Quantum Communication
+        </label>
+      </div>
+
+      <div class="filter-divider"></div>
+
+      <!-- Group 2: TRL Level -->
+      <div class="filter-group">
+        <div class="filter-group-header">
+          <span>TRL Level</span>
+          <span class="caret">▾</span>
+        </div>
+        <input type="range" class="trl-range" min="1" max="9" value="4" />
+        <div class="trl-range-labels">
+          <span>TRL 1</span>
+          <span>TRL 9</span>
+        </div>
+      </div>
+
+      <div class="filter-divider"></div>
+
+      <!-- Group 3: Trust Level -->
+      <div class="filter-group">
+        <div class="filter-group-header">
+          <span>Trust Level</span>
+          <span class="caret">▾</span>
+        </div>
+        <label class="filter-label">
+          <input type="radio" name="trust" /> Expert Reviewed only
+        </label>
+        <label class="filter-label">
+          <input type="radio" name="trust" checked /> Editor Verified+
+        </label>
+        <label class="filter-label">
+          <input type="radio" name="trust" /> All
+        </label>
+      </div>
+
+      <div class="filter-divider"></div>
+
+      <!-- Group 4: Geography -->
+      <div class="filter-group">
+        <div class="filter-group-header">
+          <span>Geography</span>
+          <span class="caret">▾</span>
+        </div>
+        <label class="filter-label">
+          <input type="checkbox" checked /> India
+        </label>
+        <label class="filter-label">
+          <input type="checkbox" /> Global
+        </label>
+      </div>
+
+      <div class="filter-divider"></div>
+
+      <!-- Group 5: Stakeholder Type -->
+      <div class="filter-group">
+        <div class="filter-group-header">
+          <span>Stakeholder Type</span>
+          <span class="caret">▾</span>
+        </div>
+        <label class="filter-label">
+          <input type="checkbox" checked /> Companies
+        </label>
+        <label class="filter-label">
+          <input type="checkbox" /> Research Labs
+        </label>
+        <label class="filter-label">
+          <input type="checkbox" /> Government
+        </label>
+      </div>
+
+      <a class="qp-btn-ghost" href="#" style="font-size:13px; margin-top:8px; display:inline-block; padding: 6px 0;">
+        Clear all filters
+      </a>
+    </aside>
+
+    <!-- ── CENTRE: Main Results ────────────────────────────── -->
+    <main class="results-main">
+
+      <!-- AI Summary Box -->
+      <div class="qp-ai-box" style="margin-bottom:24px;">
+        <div class="qp-ai-box-header">
+          <span class="qp-ai-label">Summary</span>
+        </div>
+        <p class="ai-summary-text">
+          India's quantum computing ecosystem includes two prominent companies:
+          <span class="qp-kg-link">QNu Labs</span><sup>¹</sup>, a Bengaluru-based startup focused
+          on quantum-safe cryptography, and <span class="qp-kg-link">BosonQ Psi</span><sup>²</sup>,
+          offering quantum simulation platforms. IISc's
+          <span class="qp-kg-link">Centre for Quantum Technology</span><sup>³</sup> also has active
+          industry collaboration programs in superconducting qubit research. All three are operating
+          at TRL 4–6 as of March 2026.
+        </p>
+        <p class="ai-footnotes">
+          ¹ QNu Labs — Expert Peer-Reviewed &nbsp;·&nbsp;
+          ² BosonQ Psi — Editor Verified &nbsp;·&nbsp;
+          ³ IISc QC Centre — Expert Peer-Reviewed
+        </p>
+        <p class="ai-caveat">
+          Grounded in Qpedia's peer-reviewed knowledge graph. Always verify with source entries.
+        </p>
+      </div>
+
+      <!-- Results bar -->
+      <div class="results-bar">
+        <span class="results-count">14 results for <strong>'superconducting qubit companies India'</strong></span>
+        <select class="sort-select" aria-label="Sort by">
+          <option>Relevance</option>
+          <option>TRL Level</option>
+          <option>Most Recent</option>
+        </select>
+      </div>
+
+      <!-- ── Card 1: QNu Labs ── -->
+      <div class="qp-card result-card">
+        <div class="result-card-inner">
+          <span class="chip-company">Company</span>
+          <div class="result-card-body">
+            <a class="result-title" href="03_knowledge_entry.html">
+              QNu Labs — Quantum-Safe Security Solutions
+            </a>
+            <p class="result-excerpt">
+              Bengaluru-based deep-tech startup building quantum-safe cryptographic systems,
+              including Quantum Random Number Generators (QRNG) and Quantum Key Distribution
+              (QKD) hardware for enterprise and defence applications.
+            </p>
+            <div class="result-meta">
+              <span class="qp-chip" style="font-size:12px;">Quantum Cryptography</span>
+              <div class="qp-trl">
+                <div class="qp-trl-bar">
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                </div>
+                <span class="qp-trl-label">TRL 5</span>
+              </div>
+              <span class="qp-badge-expert">✦ Expert</span>
+              <span class="qp-caption">Updated Jan 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Card 2: BosonQ Psi ── -->
+      <div class="qp-card result-card">
+        <div class="result-card-inner">
+          <span class="chip-company-alt">Company</span>
+          <div class="result-card-body">
+            <a class="result-title" href="#">
+              BosonQ Psi — Quantum Simulation Platform
+            </a>
+            <p class="result-excerpt">
+              Pune-based startup offering quantum simulation software for aerospace, energy,
+              and pharmaceutical industries. Builds hybrid classical-quantum workflows accessible
+              via cloud APIs.
+            </p>
+            <div class="result-meta">
+              <span class="qp-chip" style="font-size:12px;">Quantum Simulation</span>
+              <div class="qp-trl">
+                <div class="qp-trl-bar">
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                </div>
+                <span class="qp-trl-label">TRL 4</span>
+              </div>
+              <span class="qp-badge-editor">✎ Editor Verified</span>
+              <span class="qp-caption">Updated Feb 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Card 3: IISc ── -->
+      <div class="qp-card result-card">
+        <div class="result-card-inner">
+          <span class="chip-research">Research Lab</span>
+          <div class="result-card-body">
+            <a class="result-title" href="#">
+              Superconducting Qubit Research, IISc Bengaluru
+            </a>
+            <p class="result-excerpt">
+              The Centre for Quantum Technology at IISc is developing transmon-based
+              superconducting qubits with industry collaboration programs under the NQM umbrella,
+              aiming for a 10-qubit demonstrator by 2027.
+            </p>
+            <div class="result-meta">
+              <span class="qp-chip" style="font-size:12px;">Quantum Hardware</span>
+              <div class="qp-trl">
+                <div class="qp-trl-bar">
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                </div>
+                <span class="qp-trl-label">TRL 6</span>
+              </div>
+              <span class="qp-badge-expert">✦ Expert</span>
+              <span class="qp-caption">Updated Mar 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Card 4: NQM ── -->
+      <div class="qp-card result-card">
+        <div class="result-card-inner">
+          <span class="chip-government">Government</span>
+          <div class="result-card-body">
+            <a class="result-title" href="#">
+              National Quantum Mission — Industry Partnerships
+            </a>
+            <p class="result-excerpt">
+              The DST-led National Quantum Mission has established four Quantum Technology &amp;
+              Application (QTA) hubs to foster industry collaboration, with a dedicated track for
+              quantum hardware startups seeking prototype funding.
+            </p>
+            <div class="result-meta">
+              <span class="qp-chip" style="font-size:12px; background:#EDE9FE; color:#5B21B6;">Policy</span>
+              <span class="qp-badge-editor">✎ Editor Verified</span>
+              <span class="qp-caption">Updated Jan 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Signup nudge -->
+      <div class="signup-nudge">
+        <p>Sign up free to see full ecosystem connections, supply chain maps, and 10 more results.</p>
+        <a class="qp-btn-primary" href="04_signup.html" style="white-space:nowrap;">Create Free Account →</a>
+      </div>
+
+    </main>
+
+    <!-- ── RIGHT: Context Panel ────────────────────────────── -->
+    <aside class="context-panel">
+
+      <!-- Related Concepts -->
+      <div class="context-panel-title">Related Concepts</div>
+      <div class="context-chips">
+        <a class="qp-chip qp-chip-outline" href="#">Quantum Cryptography</a>
+        <a class="qp-chip qp-chip-outline" href="#">QKD</a>
+        <a class="qp-chip qp-chip-outline" href="#">Post-Quantum Encryption</a>
+        <a class="qp-chip qp-chip-outline" href="#">QRNG</a>
+      </div>
+
+      <!-- People -->
+      <div class="context-panel-title" style="margin-top:24px; margin-bottom:12px;">People in this ecosystem</div>
+
+      <div class="person-mini">
+        <div class="qp-avatar">PS</div>
+        <div class="person-mini-info">
+          <div class="person-name">Dr. Priya Sharma</div>
+          <span class="qp-caption">Asst Prof · IISc</span>
+        </div>
+      </div>
+
+      <div class="person-mini">
+        <div class="qp-avatar">RK</div>
+        <div class="person-mini-info">
+          <div class="person-name">Dr. Rajesh Kumar</div>
+          <span class="qp-caption">CTO · QNu Labs</span>
+        </div>
+      </div>
+
+      <!-- Did you mean -->
+      <div class="context-panel-title did-you-mean" style="margin-top:24px; margin-bottom:12px;">Did you mean?</div>
+      <div class="did-you-mean">
+        <a href="#">superconducting qubit research India</a>
+        <a href="#">quantum computing companies Bengaluru</a>
+      </div>
+
+    </aside>
+
+  </div><!-- /.results-layout -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="qp-footer">
+    <img src="Logo.jpeg" alt="Qpedia" style="height:32px;" />
+    <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
+    <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════
+       VANILLA JS
+  ═══════════════════════════════════════════════════════ -->
+  <script>
+    // Clear button
+    document.getElementById('nav-clear').addEventListener('click', function () {
+      const inp = document.getElementById('nav-search');
+      inp.value = '';
+      inp.focus();
+    });
+
+    // Enter key → back to homepage search
+    document.getElementById('nav-search').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && this.value.trim() !== '') {
+        window.location.href = '02_search_results.html';
+      }
+    });
+  </script>
+  <script src="shared-search.js"></script>
+</body>
+
+</html>

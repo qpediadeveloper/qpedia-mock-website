@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Knowledge Hub — Qpedia</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="description"
+    content="The definitive peer-reviewed system-of-record for quantum technologies. Browse 500+ expert-verified entries covering quantum computing, communication, sensing, cryptography, supply chains, and policy." />
+  <link rel="stylesheet" href="shared.css" />
+
+  <style>
+    /* ============================================================
+       KNOWLEDGE HUB — PAGE-SPECIFIC STYLES ONLY
+       All tokens and base classes come from shared.css
+       ============================================================ */
+
+    /* ---- Hero Strip ----------------------------------------- */
+    .kh-hero {
+      background: var(--qp-off-white);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 52px 48px 44px;
+      text-align: center;
+    }
+
+    .kh-hero-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .kh-hero-badge {
+      display: inline-block;
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .kh-hero-h1 {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin: 0 0 8px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .kh-hero-sub {
+      font-size: 15px;
+      color: var(--qp-text-3);
+      margin: 0 auto 24px;
+      max-width: 480px;
+      line-height: 1.5;
+    }
+
+    /* ---- Inline stats row ----------------------------------- */
+    .kh-stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-top: 24px;
+      border-top: 1px solid var(--qp-border);
+      padding-top: 20px;
+    }
+
+    .kh-stat-item {
+      padding: 0 28px;
+      border-right: 1px solid var(--qp-border);
+      text-align: center;
+    }
+
+    .kh-stat-item:last-child {
+      border-right: none;
+    }
+
+    .kh-stat-item .stat-num {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      display: block;
+      line-height: 1;
+    }
+
+    .kh-stat-item .stat-label {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+
+    /* ---- Hero Search Bar ------------------------------------ */
+    .kh-search-wrap {
+      position: relative;
+      margin: 0 auto;
+      max-width: 780px;
+    }
+
+    .kh-search-input {
+      width: 100%;
+      height: 60px;
+      border: 2px solid var(--qp-border);
+      border-radius: 14px;
+      background: white;
+      padding: 0 136px 0 54px;
+      font-size: 16px;
+      font-family: inherit;
+      color: var(--qp-text);
+      outline: none;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.22);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+
+    .kh-search-input::placeholder {
+      color: var(--qp-text-3);
+    }
+
+    .kh-search-input:focus {
+      border-color: var(--qp-blue);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.22), 0 0 0 3px rgba(43, 143, 214, 0.15);
+    }
+
+    .kh-search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: var(--qp-text-3);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .kh-search-right {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kh-search-ai-chip {
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    .kh-search-mic {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--qp-blue-light);
+      border: none;
+      color: var(--qp-blue-mid);
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      line-height: 1;
+    }
+
+    .kh-search-mic:hover {
+      background: #D4E9F7;
+    }
+
+    .kh-search-mic.listening {
+      background: rgba(220, 53, 69, 0.75);
+      color: white;
+      animation: kh-mic-pulse 1s ease-in-out infinite;
+    }
+
+    @keyframes kh-mic-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 0 6px rgba(220, 53, 69, 0);
+      }
+    }
+
+    .kh-search-hint {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--qp-text-3);
+    }
+
+    .kh-trending-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .kh-trending-chip {
+      background: white;
+      color: var(--qp-text-2);
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      padding: 5px 13px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .kh-trending-chip:hover {
+      border-color: var(--qp-blue);
+      color: var(--qp-blue-mid);
+    }
+
+
+
+    /* ---- Trust Bar ------------------------------------------ */
+    .kh-trust-bar {
+      background: var(--qp-off-white);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 14px 48px;
+    }
+
+    .kh-trust-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .kh-trust-left {
+      font-size: 13px;
+      color: var(--qp-text-3);
+      margin: 0;
+    }
+
+    .kh-trust-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .kh-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--qp-text-3);
+    }
+
+    /* ---- News section --------------------------------------- */
+    .kh-news-section {
+      padding: 40px 0;
+    }
+
+    .kh-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .kh-ticker-wrap {
+      background: var(--qp-off-white);
+      border-radius: 12px;
+      border: 1px solid var(--qp-border);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .kh-ticker-scroll {
+      display: flex;
+      overflow-x: auto;
+      padding: 16px 20px;
+      gap: 0;
+      scrollbar-width: none;
+    }
+
+    .kh-ticker-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .kh-ticker-item {
+      flex-shrink: 0;
+      padding: 0 24px;
+      border-right: 1px solid var(--qp-border);
+    }
+
+    .kh-ticker-item:last-child {
+      border-right: none;
+    }
+
+    .kh-ticker-time {
+      font-size: 11px;
+      color: var(--qp-blue);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .kh-ticker-headline {
+      font-size: 14px;
+      color: var(--qp-navy);
+      font-weight: 500;
+      line-height: 1.4;
+      max-width: 240px;
+      margin: 0;
+    }
+
+    /* News cards grid */
+    .kh-news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .kh-news-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: border-color 0.15s;
+      cursor: pointer;
+    }
+
+    .kh-news-card:hover {
+      border-color: var(--qp-blue);
+    }
+
+    .kh-news-category {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--qp-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .kh-news-headline {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .kh-news-meta {
+      font-size: 13px;
+      color: var(--qp-text-3);
+      margin: 0;
+    }
+
+    .kh-sponsored-tag {
+      display: inline-block;
+      background: #FEF3C7;
+      color: #92400E;
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    /* ---- Domain Navigation ---------------------------------- */
+    .kh-domains-section {
+      background: var(--qp-off-white);
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 48px 0;
+    }
+
+    .kh-domain-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .kh-domain-card {
+      text-decoration: none;
+      display: block;
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: 12px;
+      padding: 22px 20px;
+      transition: all 0.2s;
+    }
+
+    .kh-domain-card:hover {
+      border-color: var(--qp-blue);
+      box-shadow: var(--qp-shadow);
+    }
+
+    .kh-domain-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--qp-blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .kh-domain-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 4px;
+    }
+
+    .kh-domain-count {
+      font-size: 13px;
+      color: var(--qp-text-3);
+      margin: 0;
+    }
+
+    /* ---- Featured Entries + Sidebar ------------------------- */
+    .kh-featured-section {
+      padding: 48px 0;
+    }
+
+    .kh-featured-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 40px;
+    }
+
+    .kh-entry-list-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .kh-entry-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--qp-border);
+    }
+
+    .kh-entry-row:last-child {
+      border-bottom: none;
+    }
+
+    .kh-entry-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: var(--qp-blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .kh-entry-body {
+      flex: 1;
+    }
+
+    .kh-entry-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 4px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .kh-entry-title:hover {
+      color: var(--qp-blue);
+    }
+
+    .kh-entry-excerpt {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      margin-bottom: 8px;
+    }
+
+    .kh-entry-meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Sidebar */
+    .kh-sidebar-ad {
+      background: var(--qp-off-white);
+      border-radius: 12px;
+      border: 1px solid var(--qp-border);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .kh-sidebar-sponsor-label {
+      font-size: 11px;
+      color: var(--qp-text-3);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .kh-sidebar-ad-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 8px;
+    }
+
+    .kh-sidebar-ad-desc {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .kh-sidebar-ad-footer {
+      font-size: 11px;
+      color: var(--qp-text-3);
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    /* TRL Heatmap teaser */
+    .kh-trl-teaser {
+      background: var(--qp-blue-light);
+      border-radius: 12px;
+      border: 1px solid #B5D0E8;
+      padding: 20px;
+    }
+
+    .kh-trl-teaser-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 8px;
+    }
+
+    .kh-trl-teaser-desc {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .kh-heatmap-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .kh-heatmap-row {
+      display: flex;
+      gap: 4px;
+    }
+
+    .kh-heatmap-cell {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+    }
+
+    .kh-heatmap-labels {
+      display: flex;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .kh-heatmap-lbl {
+      width: 32px;
+      text-align: center;
+      font-size: 10px;
+      color: var(--qp-text-3);
+    }
+
+    .kh-trl-link {
+      font-size: 13px;
+      padding: 0;
+      display: block;
+      margin-top: 12px;
+    }
+
+    /* ---- Learning Section ----------------------------------- */
+    .kh-learning-section {
+      background: var(--qp-navy);
+      padding: 56px 0;
+    }
+
+    .kh-learning-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .kh-learn-left {
+      flex: 1;
+    }
+
+    .kh-learn-right {
+      flex: 1;
+    }
+
+    .kh-learn-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .kh-learn-h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .kh-learn-sub {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.65;
+      margin-bottom: 24px;
+      max-width: 480px;
+    }
+
+    .kh-learn-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .kh-learn-cta-primary {
+      background: white;
+      color: var(--qp-navy);
+      font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 15px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .kh-learn-cta-primary:hover {
+      opacity: 0.9;
+    }
+
+    .kh-learn-cta-ghost {
+      background: transparent;
+      color: white;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 15px;
+      text-decoration: none;
+      transition: border-color 0.15s;
+    }
+
+    .kh-learn-cta-ghost:hover {
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .kh-phase-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .kh-phase-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .kh-phase-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .kh-phase-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 2px;
+    }
+
+    .kh-phase-desc {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0;
+    }
+
+    /* ---- Institutional Teaser ------------------------------- */
+    .kh-institutional-section {
+      padding: 48px 0;
+      border-top: 1px solid var(--qp-border);
+    }
+
+    .kh-institutional-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--qp-off-white);
+      border-radius: 16px;
+      padding: 32px 40px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .kh-inst-left {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .kh-inst-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--qp-blue);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .kh-inst-h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin-bottom: 8px;
+    }
+
+    .kh-inst-desc {
+      font-size: 15px;
+      color: var(--qp-text-2);
+      max-width: 480px;
+      margin: 0;
+    }
+
+    .kh-inst-right {
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .kh-inst-sub {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      margin-top: 8px;
+    }
+
+    /* ---- Nav active underline override ---------------------- */
+    .qp-nav-links a.kh-active {
+      color: var(--qp-navy);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* ---- Sidebar btn full-width override -------------------- */
+    .kh-sidebar-cta {
+      width: 100%;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      padding: 11px 22px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      background: var(--qp-navy);
+      color: white;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .kh-sidebar-cta:hover {
+      background: var(--qp-blue-mid);
+    }
+
+
+
+    /* ---- Journal / Sponsored Teaser Strip ------------------- */
+    .kh-journal-strip {
+      background: var(--qp-off-white);
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 32px 48px;
+    }
+
+    .kh-journal-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .kh-journal-card {
+      flex: 1;
+      background: var(--qp-white);
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .kh-journal-emoji {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .kh-journal-body {
+      flex: 1;
+    }
+
+    .kh-journal-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--qp-blue);
+      margin-bottom: 3px;
+    }
+
+    .kh-journal-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 3px;
+    }
+
+    .kh-journal-sub {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .kh-journal-action {
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--qp-blue);
+      border: 1px solid var(--qp-blue);
+      padding: 7px 14px;
+      border-radius: var(--qp-radius-sm);
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .kh-journal-action:hover {
+      background: var(--qp-blue);
+      color: white;
+    }
+  </style>
+</head>
+
+<body class="qp-page">
+
+  <!-- =========================================================
+       1. NAVIGATION BAR
+       ========================================================= -->
+  <nav class="qp-nav">
+    <a href="01_homepage.html" class="qp-nav-brand">
+      <img src="Logo_withName.png" alt="Qpedia logo" />
+    </a>
+
+    <ul class="qp-nav-links">
+      <li><a href="knowledge_hub.html" class="kh-active">Knowledge Hub</a></li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="ecosystem.html">Ecosystem</a></li>
+    </ul>
+
+    <div class="qp-nav-actions">
+      <a href="04_signup.html" class="qp-btn-ghost" id="nav-signin">Sign In</a>
+      <a href="04_signup.html" class="qp-btn-primary" id="nav-try-free">Try Free</a>
+    </div>
+  </nav>
+
+  <!-- =========================================================
+       2. HERO STRIP
+       ========================================================= -->
+  <section class="kh-hero" id="hero">
+    <div class="kh-hero-inner">
+
+      <!-- Badge -->
+      <span class="kh-hero-badge">500+ Peer-Reviewed Entries · Updated Daily</span>
+
+      <!-- Headline -->
+      <h1 class="kh-hero-h1">The Quantum Knowledge Hub</h1>
+      <p class="kh-hero-sub">Peer-reviewed knowledge graph for quantum technologies — search, browse, learn.</p>
+
+      <!-- ★ PROMINENT SEARCH BAR ★ -->
+      <div class="kh-search-wrap">
+        <span class="kh-search-icon">🔍</span>
+        <input type="text" id="kh-search-input" class="kh-search-input"
+          placeholder="Ask anything about quantum technologies…" autocomplete="off" />
+        <div class="kh-search-right">
+          <span class="kh-search-ai-chip">AI</span>
+          <button class="kh-search-mic" id="kh-mic-btn" title="Voice search" aria-label="Voice search">🎤</button>
+        </div>
+      </div>
+
+      <!-- Hint -->
+      <p class="kh-search-hint">Try: "Superconducting qubit companies India" · "NQM Phase 2" · "TRL 7 technologies"</p>
+
+      <!-- Trending chips -->
+      <div class="kh-trending-row" id="kh-trending">
+        <span class="kh-trending-chip" data-query="Quantum Error Correction">⚛️ Quantum Error Correction</span>
+        <span class="kh-trending-chip" data-query="India NQM Progress">🇮🇳 India NQM</span>
+        <span class="kh-trending-chip" data-query="TRL 7 Quantum Hardware">📊 TRL 7 Hardware</span>
+        <span class="kh-trending-chip" data-query="QKD Supply Chain">🔐 QKD Supply Chain</span>
+        <span class="kh-trending-chip" data-query="Photonic qubit overview">💡 Photonic Qubits</span>
+      </div>
+
+      <!-- Stats row -->
+      <div class="kh-stats-row">
+        <div class="kh-stat-item">
+          <span class="stat-num">500+</span>
+          <p class="stat-label">Knowledge Entries</p>
+        </div>
+        <div class="kh-stat-item">
+          <span class="stat-num">9</span>
+          <p class="stat-label">TRL Levels Tracked</p>
+        </div>
+        <div class="kh-stat-item">
+          <span class="stat-num">300+</span>
+          <p class="stat-label">Organisations Mapped</p>
+        </div>
+        <div class="kh-stat-item">
+          <span class="stat-num">Expert</span>
+          <p class="stat-label">Peer-Reviewed</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       3. TRUST BAR
+       ========================================================= -->
+  <div class="kh-trust-bar" id="trust-bar">
+    <div class="kh-trust-inner">
+      <p class="kh-trust-left">Editorial governance anchored by Indian Institute of Science, Bengaluru</p>
+      <div class="kh-trust-right">
+        <span class="kh-trust-item">✓ Expert Peer-Reviewed</span>
+        <span class="kh-trust-item">✓ TRL-Tagged</span>
+        <span class="kh-trust-item">✓ DPDP Act Compliant</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       4. LATEST QUANTUM NEWS
+       ========================================================= -->
+  <div class="qp-container kh-news-section" id="latest-news">
+
+    <!-- Section header -->
+    <div class="kh-section-header">
+      <h3 class="qp-h3">Latest Quantum News</h3>
+      <a href="#" class="qp-btn-ghost" style="font-size:13px;" id="see-all-news">See all news →</a>
+    </div>
+
+    <!-- Ticker strip -->
+    <div class="kh-ticker-wrap" id="news-ticker">
+      <div class="kh-ticker-scroll">
+        <div class="kh-ticker-item">
+          <span class="kh-ticker-time">2 hours ago</span>
+          <p class="kh-ticker-headline">India allocates ₹6,000 crore for National Quantum Mission Phase 2</p>
+        </div>
+        <div class="kh-ticker-item">
+          <span class="kh-ticker-time">5 hours ago</span>
+          <p class="kh-ticker-headline">IBM Quantum reaches 1,000+ qubit milestone with Condor processor</p>
+        </div>
+        <div class="kh-ticker-item">
+          <span class="kh-ticker-time">Yesterday</span>
+          <p class="kh-ticker-headline">IISc researchers demonstrate surface code error correction at TRL 5</p>
+        </div>
+        <div class="kh-ticker-item">
+          <span class="kh-ticker-time">2 days ago</span>
+          <p class="kh-ticker-headline">Google claims quantum advantage in optimization problems</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-column news cards -->
+    <div class="kh-news-grid" id="news-cards">
+
+      <!-- Card 1: Policy -->
+      <div class="kh-news-card" id="news-card-1">
+        <span class="kh-news-category">Policy</span>
+        <p class="kh-news-headline">NQM announces quantum computing centres at 5 IITs</p>
+        <p class="kh-news-meta">March 28, 2026 · PIB India</p>
+      </div>
+
+      <!-- Card 2: Research -->
+      <div class="kh-news-card" id="news-card-2">
+        <span class="kh-news-category">Research</span>
+        <p class="kh-news-headline">Trapped ion qubit coherence time breaks 1-hour barrier</p>
+        <p class="kh-news-meta">March 27, 2026 · Nature Physics</p>
+      </div>
+
+      <!-- Card 3: Industry -->
+      <div class="kh-news-card" id="news-card-3">
+        <span class="kh-news-category">Industry</span>
+        <p class="kh-news-headline">Quantinuum raises $300M Series C for fault-tolerant systems</p>
+        <p class="kh-news-meta">March 26, 2026 · TechCrunch</p>
+      </div>
+
+      <!-- Card 4: Sponsored -->
+      <div class="kh-news-card" id="news-card-4">
+        <span class="kh-sponsored-tag">Sponsored</span>
+        <span class="kh-news-category">Quantum Report</span>
+        <p class="kh-news-headline">Download: India Quantum Market Report 2026 — Free</p>
+        <p class="kh-news-meta">QNu Labs · Sponsored Content</p>
+      </div>
+
+      <!-- Card 5: Standards -->
+      <div class="kh-news-card" id="news-card-5">
+        <span class="kh-news-category">Standards</span>
+        <p class="kh-news-headline">NIST finalises post-quantum cryptography standards for 2026</p>
+        <p class="kh-news-meta">March 25, 2026 · NIST</p>
+      </div>
+
+      <!-- Card 6: Education -->
+      <div class="kh-news-card" id="news-card-6">
+        <span class="kh-news-category">Education</span>
+        <p class="kh-news-headline">Qpedia adds 50 new expert-reviewed entries on quantum photonics</p>
+        <p class="kh-news-meta">March 24, 2026 · Qpedia</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       5. DOMAIN NAVIGATION
+       ========================================================= -->
+  <section class="kh-domains-section" id="domain-nav">
+    <div class="qp-container">
+      <div class="kh-section-header">
+        <h3 class="qp-h3">Browse by Domain</h3>
+        <a href="09_topic_browse.html" class="qp-btn-ghost" style="font-size:13px;" id="full-taxonomy-link">Full
+          taxonomy →</a>
+      </div>
+
+      <div class="kh-domain-grid">
+        <a href="09_topic_browse.html" class="kh-domain-card" id="domain-qc">
+          <div class="kh-domain-icon">⚛️</div>
+          <p class="kh-domain-name">Quantum Computing</p>
+          <p class="kh-domain-count">124 entries</p>
+        </a>
+        <a href="09_topic_browse.html" class="kh-domain-card" id="domain-comm">
+          <div class="kh-domain-icon">📡</div>
+          <p class="kh-domain-name">Quantum Communication</p>
+          <p class="kh-domain-count">68 entries</p>
+        </a>
+        <a href="09_topic_browse.html" class="kh-domain-card" id="domain-sensing">
+          <div class="kh-domain-icon">🔬</div>
+          <p class="kh-domain-name">Quantum Sensing</p>
+          <p class="kh-domain-count">52 entries</p>
+        </a>
+        <a href="09_topic_browse.html" class="kh-domain-card" id="domain-crypto">
+          <div class="kh-domain-icon">🔐</div>
+          <p class="kh-domain-name">Quantum Cryptography</p>
+          <p class="kh-domain-count">44 entries</p>
+        </a>
+        <a href="09_topic_browse.html" class="kh-domain-card" id="domain-photonics">
+          <div class="kh-domain-icon">💡</div>
+          <p class="kh-domain-name">Quantum Photonics</p>
+          <p class="kh-domain-count">38 entries</p>
+        </a>
+        <a href="09_topic_browse.html" class="kh-domain-card" id="domain-materials">
+          <div class="kh-domain-icon">🧲</div>
+          <p class="kh-domain-name">Quantum Materials</p>
+          <p class="kh-domain-count">31 entries</p>
+        </a>
+        <a href="09_topic_browse.html" class="kh-domain-card" id="domain-supply">
+          <div class="kh-domain-icon">🏭</div>
+          <p class="kh-domain-name">Supply Chain</p>
+          <p class="kh-domain-count">87 entries</p>
+        </a>
+        <a href="09_topic_browse.html" class="kh-domain-card" id="domain-policy">
+          <div class="kh-domain-icon">📋</div>
+          <p class="kh-domain-name">Policy &amp; Regulation</p>
+          <p class="kh-domain-count">56 entries</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       6. FEATURED ENTRIES + SIDEBAR AD
+       ========================================================= -->
+  <section class="qp-container kh-featured-section" id="featured-entries">
+    <div class="kh-featured-layout">
+
+      <!-- LEFT: Featured entry list -->
+      <div id="entry-list">
+        <div class="kh-entry-list-header">
+          <h3 class="qp-h3">Recently Expert-Reviewed</h3>
+          <span class="qp-badge-expert" style="font-size:11px;">Expert Peer-Reviewed</span>
+        </div>
+
+        <!-- Entry 1: Superconducting Transmon Qubit -->
+        <div class="kh-entry-row" id="entry-transmon">
+          <div class="kh-entry-icon">⚛️</div>
+          <div class="kh-entry-body">
+            <a href="03_knowledge_entry.html" class="kh-entry-title">Superconducting Transmon Qubit</a>
+            <p class="kh-entry-excerpt">Leading qubit architecture for gate-based quantum computation</p>
+            <div class="kh-entry-meta">
+              <span class="qp-chip" style="font-size:11px;">Quantum Computing</span>
+              <div class="qp-trl">
+                <div class="qp-trl-bar">
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                </div>
+                <span class="qp-trl-label">TRL 7</span>
+              </div>
+              <span class="qp-badge-expert" style="font-size:11px;">Expert Peer-Reviewed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Entry 2: QNu Labs -->
+        <div class="kh-entry-row" id="entry-qnu">
+          <div class="kh-entry-icon">🔐</div>
+          <div class="kh-entry-body">
+            <a href="03_knowledge_entry.html" class="kh-entry-title">QNu Labs — Quantum-Safe Security</a>
+            <p class="kh-entry-excerpt">India's leading QKD and QRNG company</p>
+            <div class="kh-entry-meta">
+              <span class="qp-chip" style="font-size:11px;">Quantum Cryptography</span>
+              <div class="qp-trl">
+                <div class="qp-trl-bar">
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                </div>
+                <span class="qp-trl-label">TRL 5</span>
+              </div>
+              <span class="qp-badge-expert" style="font-size:11px;">Expert Peer-Reviewed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Entry 3: NQM Phase 2 -->
+        <div class="kh-entry-row" id="entry-nqm">
+          <div class="kh-entry-icon">📋</div>
+          <div class="kh-entry-body">
+            <a href="#" class="kh-entry-title">National Quantum Mission — Phase 2</a>
+            <p class="kh-entry-excerpt">India's ₹6,000 crore national quantum program</p>
+            <div class="kh-entry-meta">
+              <span class="qp-chip" style="font-size:11px;">Policy</span>
+              <span class="qp-badge-editor" style="font-size:11px;">Editor Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Entry 4: Dilution Refrigerator Supply Chain -->
+        <div class="kh-entry-row" id="entry-dilution">
+          <div class="kh-entry-icon">🏭</div>
+          <div class="kh-entry-body">
+            <a href="#" class="kh-entry-title">Dilution Refrigerator Supply Chain</a>
+            <p class="kh-entry-excerpt">Global supplier map for sub-15mK cooling systems</p>
+            <div class="kh-entry-meta">
+              <span class="qp-chip" style="font-size:11px;">Supply Chain</span>
+              <div class="qp-trl">
+                <div class="qp-trl-bar">
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment filled"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                  <div class="qp-trl-segment empty"></div>
+                </div>
+                <span class="qp-trl-label">TRL 6</span>
+              </div>
+              <span class="qp-badge-expert" style="font-size:11px;">Expert Peer-Reviewed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Sidebar -->
+      <aside id="sidebar">
+
+        <!-- Vendor Ad Card -->
+        <div class="kh-sidebar-ad" id="sidebar-ibm-ad">
+          <span class="kh-sidebar-sponsor-label">Sponsored</span>
+          <p class="kh-sidebar-ad-title">IBM Quantum Network</p>
+          <p class="kh-sidebar-ad-desc">Join the IBM Quantum Network — access quantum hardware, resources, and
+            collaboration opportunities for research institutions.</p>
+          <a href="#" class="kh-sidebar-cta" id="ibm-cta">Learn more →</a>
+          <p class="kh-sidebar-ad-footer">Sponsored · IBM Quantum</p>
+        </div>
+
+        <!-- TRL Heatmap Teaser -->
+        <div class="kh-trl-teaser" id="trl-heatmap-teaser">
+          <p class="kh-trl-teaser-title">🔥 TRL Heatmap</p>
+          <p class="kh-trl-teaser-desc">See which quantum technologies are advancing fastest. Filter by domain,
+            geography, and sector.</p>
+
+          <div class="kh-heatmap-visual">
+            <div class="kh-heatmap-row">
+              <div class="kh-heatmap-cell" style="background:rgba(43,143,214,1.0)"></div>
+              <div class="kh-heatmap-cell" style="background:rgba(43,143,214,0.85)"></div>
+              <div class="kh-heatmap-cell" style="background:rgba(43,143,214,0.65)"></div>
+            </div>
+            <div class="kh-heatmap-row">
+              <div class="kh-heatmap-cell" style="background:rgba(43,143,214,0.75)"></div>
+              <div class="kh-heatmap-cell" style="background:rgba(43,143,214,0.45)"></div>
+              <div class="kh-heatmap-cell" style="background:rgba(43,143,214,0.30)"></div>
+            </div>
+            <div class="kh-heatmap-row">
+              <div class="kh-heatmap-cell" style="background:rgba(43,143,214,0.55)"></div>
+              <div class="kh-heatmap-cell" style="background:rgba(43,143,214,0.25)"></div>
+              <div class="kh-heatmap-cell" style="background:rgba(43,143,214,0.15)"></div>
+            </div>
+          </div>
+          <div class="kh-heatmap-labels">
+            <span class="kh-heatmap-lbl">TRL1</span>
+            <span class="kh-heatmap-lbl">TRL5</span>
+            <span class="kh-heatmap-lbl">TRL9</span>
+          </div>
+
+          <a href="04_signup.html" class="qp-btn-ghost kh-trl-link" id="trl-signup-cta">Sign up to explore full heatmap
+            →</a>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       6b. PUBLISH ON QPEDIA — Journal & Whitepaper strip
+       ========================================================= -->
+  <div class="kh-journal-strip" id="publish-strip">
+    <div class="kh-journal-inner">
+
+      <!-- Qpedia Journal -->
+      <div class="kh-journal-card" id="journal-card">
+        <div class="kh-journal-emoji">📄</div>
+        <div class="kh-journal-body">
+          <p class="kh-journal-label">Qpedia Journal</p>
+          <p class="kh-journal-title">Publish your quantum research</p>
+          <p class="kh-journal-sub">Rapid peer review</p>
+        </div>
+        <a href="04_signup.html" class="kh-journal-action" id="journal-submit-cta">Submit a paper →</a>
+      </div>
+
+      <!-- Sponsored Whitepaper -->
+      <div class="kh-journal-card" id="whitepaper-card">
+        <div class="kh-journal-emoji">📊</div>
+        <div class="kh-journal-body">
+          <p class="kh-journal-label">Sponsored Intelligence</p>
+          <p class="kh-journal-title">Commission a whitepaper or policy primer</p>
+          <p class="kh-journal-sub">Reach quantum decision-makers across academia, industry & government</p>
+        </div>
+        <a href="04_signup.html" class="kh-journal-action" id="whitepaper-cta">Partner with us →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       7. LEARNING SECTION
+       ========================================================= -->
+  <section class="kh-learning-section" id="learning-section">
+    <div class="kh-learning-inner">
+
+      <div class="kh-learn-left">
+        <span class="kh-learn-badge">Free to start · No credit card</span>
+        <h3 class="kh-learn-h3">Learn Quantum — Embedded in the Knowledge Graph</h3>
+        <p class="kh-learn-sub">Every lesson links live to knowledge entries, TRL data, and ecosystem participants. 60+
+          modules across 5 phases — from mathematical foundations to applied quantum systems.</p>
+        <div class="kh-learn-ctas">
+          <a href="07_learning_module.html" class="kh-learn-cta-primary" id="learn-module1-cta">Start Module 1 —
+            Free</a>
+          <a href="04_signup.html" class="kh-learn-cta-ghost" id="learn-all-modules-cta">View all 60+ modules</a>
+        </div>
+      </div>
+
+      <div class="kh-learn-right">
+        <div class="kh-phase-card" id="phase-1">
+          <div class="kh-phase-num">1</div>
+          <div>
+            <p class="kh-phase-name">Foundations</p>
+            <p class="kh-phase-desc">Mathematical and physical principles · Free for all</p>
+          </div>
+        </div>
+        <div class="kh-phase-card" id="phase-2">
+          <div class="kh-phase-num">2</div>
+          <div>
+            <p class="kh-phase-name">Core Technologies</p>
+            <p class="kh-phase-desc">Qubits, gates, circuits · ₹999 or included in trial</p>
+          </div>
+        </div>
+        <div class="kh-phase-card" id="phase-3">
+          <div class="kh-phase-num">3</div>
+          <div>
+            <p class="kh-phase-name">Advanced Systems</p>
+            <p class="kh-phase-desc">Error correction, algorithms · Full access plan</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       9. INSTITUTIONAL TEASER
+       ========================================================= -->
+  <section class="qp-container kh-institutional-section" id="institutional-teaser">
+    <div class="kh-institutional-card">
+      <div class="kh-inst-left">
+        <p class="kh-inst-label">For Universities &amp; Enterprises</p>
+        <h3 class="kh-inst-h3">Institutional Curriculum Builder</h3>
+        <p class="kh-inst-desc">Align Qpedia learning tracks with your institution's syllabus. Bulk access for students
+          and faculty. NAAC reporting templates included.</p>
+      </div>
+      <div class="kh-inst-right">
+        <a href="04_signup.html" class="qp-btn-primary" style="font-size:15px;padding:14px 28px;"
+          id="institutional-cta">Contact for institutional access</a>
+        <p class="kh-inst-sub">Universities, IITs, IISERs, NITs, and enterprise teams</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       9. FOOTER
+       ========================================================= -->
+  <footer class="qp-footer">
+    <a href="01_homepage.html" id="footer-logo">
+      <img src="Logo.jpeg" alt="Qpedia" />
+    </a>
+    <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
+    <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
+  </footer>
+
+  <script>
+    (function () {
+      const input = document.getElementById('kh-search-input');
+      const micBtn = document.getElementById('kh-mic-btn');
+      const chips = document.querySelectorAll('#kh-trending .kh-trending-chip');
+
+      // Enter key → navigate to search results
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && this.value.trim() !== '') {
+          window.location.href = '02_search_results.html';
+        }
+      });
+
+      // Trending chips → pre-fill query and focus
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          input.value = this.dataset.query;
+          input.focus();
+        });
+      });
+
+      // Mic toggle (visual demo)
+      let listening = false;
+      micBtn.addEventListener('click', function () {
+        listening = !listening;
+        if (listening) {
+          micBtn.classList.add('listening');
+          micBtn.title = 'Listening… click to stop';
+          // Auto-stop after 5 seconds for demo
+          setTimeout(function () {
+            if (listening) {
+              listening = false;
+              micBtn.classList.remove('listening');
+              micBtn.title = 'Voice search';
+              // Simulate a recognised phrase
+              if (!input.value.trim()) {
+                input.value = 'Quantum error correction overview';
+              }
+            }
+          }, 5000);
+        } else {
+          micBtn.classList.remove('listening');
+          micBtn.title = 'Voice search';
+        }
+      });
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Quantum Error Correction — Knowledge Hub | Qpedia</title>
+  <meta name="description"
+    content="Browse the Quantum Error Correction sub-domain on Qpedia. Explore subcategories, featured entries, key researchers, and the global QEC ecosystem." />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="shared-search.css" />
+  <style>
+    /* ── Breadcrumb ─────────────────────────────────────────────── */
+    .breadcrumb {
+      padding: 12px 0;
+      font-size: 14px;
+      color: var(--qp-text-3);
+    }
+
+    .breadcrumb a {
+      color: var(--qp-text-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--qp-navy);
+      text-decoration: underline;
+    }
+
+    .breadcrumb span {
+      margin: 0 6px;
+    }
+
+    /* ── Page Header ────────────────────────────────────────────── */
+    .page-header {
+      padding: 40px 0 32px;
+      border-bottom: 1px solid var(--qp-border);
+      margin-bottom: 40px;
+    }
+
+    .page-header-domain-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .page-title {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+
+    .page-description {
+      font-size: 18px;
+      color: var(--qp-text-2);
+      max-width: 640px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .meta-pill {
+      background: var(--qp-off-white);
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: var(--qp-text-2);
+    }
+
+    .scoped-search-wrap {
+      max-width: 420px;
+    }
+
+    /* ── Section Header Row ─────────────────────────────────────── */
+    .section-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    /* ── Subcategory Scroll (horizontal slider) ────────────────── */
+    .subcat-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      margin-bottom: 52px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--qp-border) transparent;
+    }
+
+    .subcat-scroll::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .subcat-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .subcat-scroll::-webkit-scrollbar-thumb {
+      background: var(--qp-border);
+      border-radius: 2px;
+    }
+
+    .subcat-card {
+      min-width: 200px;
+      max-width: 200px;
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .subcat-card:hover {
+      border-color: var(--qp-blue);
+      box-shadow: var(--qp-shadow);
+      transform: translateY(-2px);
+    }
+
+    .subcat-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--qp-blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .subcat-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+
+    .subcat-count {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      margin-bottom: 10px;
+    }
+
+    /* ── Featured Scroll ────────────────────────────────────────── */
+    .featured-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 52px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--qp-border) transparent;
+    }
+
+    .featured-scroll::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .featured-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .featured-scroll::-webkit-scrollbar-thumb {
+      background: var(--qp-border);
+      border-radius: 2px;
+    }
+
+    .featured-entry-card {
+      min-width: 280px;
+      max-width: 280px;
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: block;
+    }
+
+    .featured-entry-card:hover {
+      border-color: var(--qp-blue);
+      box-shadow: var(--qp-shadow);
+    }
+
+    .featured-entry-card .card-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .featured-entry-card .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .featured-entry-card .card-excerpt {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .featured-entry-card .card-bottom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      border-top: 1px solid var(--qp-border);
+    }
+
+    /* ── Researchers Section ────────────────────────────────────── */
+    .researchers-section {
+      background: var(--qp-off-white);
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 40px 0;
+      margin-bottom: 52px;
+    }
+
+    .researchers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    .researcher-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.15s;
+      text-decoration: none;
+    }
+
+    .researcher-card:hover {
+      border-color: var(--qp-blue);
+    }
+
+    .researcher-card-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .researcher-card-top .name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 2px;
+    }
+
+    .researcher-card-top .role {
+      font-size: 13px;
+      color: var(--qp-text-3);
+    }
+
+    /* ── Ecosystem Teaser ───────────────────────────────────────── */
+    .ecosystem-teaser {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      padding: 40px 0;
+      margin-bottom: 40px;
+    }
+
+    .ecosystem-teaser-text {
+      flex: 1;
+    }
+
+    .ecosystem-teaser-text h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 12px;
+    }
+
+    .ecosystem-teaser-text p {
+      font-size: 15px;
+      color: var(--qp-text-2);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 440px;
+    }
+
+    /* Neo4j-style graph panel */
+    .neo4j-graph-panel {
+      width: 460px;
+      height: 300px;
+      background: #0f1923;
+      border-radius: var(--qp-radius-lg);
+      border: 1px solid #1e3a52;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(13, 43, 62, 0.18);
+    }
+
+    .neo4j-graph-panel .graph-label {
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #4a7fa5;
+      text-transform: uppercase;
+    }
+
+    .neo4j-graph-panel .lock-overlay {
+      position: absolute;
+      bottom: 10px;
+      right: 14px;
+      font-size: 11px;
+      color: #4a7fa5;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    @keyframes neo4j-pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        r: 22px;
+      }
+
+      50% {
+        opacity: 0.7;
+        r: 26px;
+      }
+    }
+
+    @keyframes neo4j-ring {
+      0% {
+        r: 22px;
+        opacity: 0.5;
+      }
+
+      100% {
+        r: 40px;
+        opacity: 0;
+      }
+    }
+
+    /* ── Footer Editor Link ─────────────────────────────────────── */
+    .footer-editor-link {
+      text-align: right;
+      padding-top: 8px;
+    }
+
+    .footer-editor-link a {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-editor-link a:hover {
+      color: var(--qp-navy);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       1. AUTHENTICATED NAV BAR
+  ══════════════════════════════════════════════════════════════ -->
+  <nav class="qp-nav">
+    <a class="qp-nav-brand" href="01_homepage.html">
+      <img src="Logo_withName.png" height="40" alt="Qpedia logo" />
+    </a>
+
+    <ul class="qp-nav-links">
+      <li>
+        <a href="knowledge_hub.html" class="active"
+          style="color:var(--qp-navy); font-weight:600; border-bottom:2px solid var(--qp-navy); padding-bottom:2px;">
+          Knowledge Hub
+        </a>
+      </li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="ecosystem.html">Ecosystem</a></li>
+    </ul>
+
+    <div class="qp-nav-actions">
+      <div style="position:relative; cursor:pointer;">
+        <span style="font-size:20px;">🔔</span>
+        <span
+          style="position:absolute; top:-4px; right:-4px; background:#EF4444; color:white; font-size:10px; font-weight:700; border-radius:50%; width:16px; height:16px; display:flex; align-items:center; justify-content:center;">2</span>
+      </div>
+      <div class="qp-nav-avatar">AK</div>
+    </div>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       2. BREADCRUMB
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="qp-container">
+    <div class="breadcrumb">
+      <a href="01_homepage.html">Home</a>
+      <span>›</span>
+      <a href="knowledge_hub.html">Knowledge Hub</a>
+      <span>›</span>
+      Quantum Computing
+      <span>›</span>
+      Quantum Error Correction
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       3. PAGE HEADER
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="qp-container">
+    <div class="page-header">
+      <span class="page-header-domain-chip">Knowledge Hub · Quantum Computing</span>
+      <h1 class="page-title">Quantum Error Correction</h1>
+      <p class="page-description">Methods for protecting quantum information from errors due to decoherence and noise.
+        Covers surface codes, stabilizer codes, fault-tolerant gates, and logical qubit encoding.</p>
+      <div class="meta-pills">
+        <span class="meta-pill">68 knowledge entries</span>
+        <span class="meta-pill">11 subcategories</span>
+        <span class="meta-pill">Updated today</span>
+        <span class="meta-pill">TRL Range: 2–6</span>
+        <span class="meta-pill">22 Organisations tracked</span>
+      </div>
+      <div class="scoped-search-wrap">
+        <input class="qp-input" id="qec-search" type="text" style="height:44px; font-size:15px;"
+          placeholder="Search within Quantum Error Correction..." />
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       4. SUBCATEGORIES SECTION
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="qp-container">
+    <div class="section-header-row">
+      <h3 class="qp-h3">Explore Subcategories</h3>
+      <a class="qp-btn-ghost" style="font-size:13px;" href="#">See all 11 →</a>
+    </div>
+
+    <div class="subcat-scroll">
+
+      <!-- Card 1 — Surface Codes -->
+      <a class="subcat-card" href="#" id="subcat-surface-codes">
+        <div class="subcat-icon">🔷</div>
+        <p class="subcat-title">Surface Codes</p>
+        <p class="subcat-count">24 entries</p>
+        <div class="qp-trl">
+          <div class="qp-trl-bar">
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+          </div>
+          <span class="qp-trl-label">TRL 4–5 avg</span>
+        </div>
+      </a>
+
+      <!-- Card 2 — Stabilizer Codes -->
+      <a class="subcat-card" href="#" id="subcat-stabilizer-codes">
+        <div class="subcat-icon">🔹</div>
+        <p class="subcat-title">Stabilizer Codes</p>
+        <p class="subcat-count">12 entries</p>
+        <div class="qp-trl">
+          <div class="qp-trl-bar">
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+          </div>
+          <span class="qp-trl-label">TRL 3–4 avg</span>
+        </div>
+      </a>
+
+      <!-- Card 3 — Fault-Tolerant Gates -->
+      <a class="subcat-card" href="#" id="subcat-fault-tolerant-gates">
+        <div class="subcat-icon">⚙️</div>
+        <p class="subcat-title">Fault-Tolerant Gates</p>
+        <p class="subcat-count">8 entries</p>
+        <div class="qp-trl">
+          <div class="qp-trl-bar">
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+          </div>
+          <span class="qp-trl-label">TRL 4–5 avg</span>
+        </div>
+      </a>
+
+      <!-- Card 4 — Logical Qubit Encoding -->
+      <a class="subcat-card" href="#" id="subcat-logical-qubit">
+        <div class="subcat-icon">🔲</div>
+        <p class="subcat-title">Logical Qubit Encoding</p>
+        <p class="subcat-count">14 entries</p>
+        <div class="qp-trl">
+          <div class="qp-trl-bar">
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+          </div>
+          <span class="qp-trl-label">TRL 3–4 avg</span>
+        </div>
+      </a>
+
+      <!-- Card 5 — Decoding Algorithms -->
+      <a class="subcat-card" href="#" id="subcat-decoding-algorithms">
+        <div class="subcat-icon">📐</div>
+        <p class="subcat-title">Decoding Algorithms</p>
+        <p class="subcat-count">6 entries</p>
+        <div class="qp-trl">
+          <div class="qp-trl-bar">
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+          </div>
+          <span class="qp-trl-label">TRL 5–6 avg</span>
+        </div>
+      </a>
+
+      <!-- Card 6 — Error Mitigation -->
+      <a class="subcat-card" href="#" id="subcat-error-mitigation">
+        <div class="subcat-icon">🛡️</div>
+        <p class="subcat-title">Error Mitigation</p>
+        <p class="subcat-count">9 entries</p>
+        <div class="qp-trl">
+          <div class="qp-trl-bar">
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+          </div>
+          <span class="qp-trl-label">TRL 6 avg</span>
+        </div>
+      </a>
+
+      <!-- Card 7 — Topological Codes -->
+      <a class="subcat-card" href="#" id="subcat-topological-codes">
+        <div class="subcat-icon">🌀</div>
+        <p class="subcat-title">Topological Codes</p>
+        <p class="subcat-count">5 entries</p>
+        <div class="qp-trl">
+          <div class="qp-trl-bar">
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+          </div>
+          <span class="qp-trl-label">TRL 2–3 avg</span>
+        </div>
+      </a>
+
+      <!-- Card 8 — Hardware-Specific QEC -->
+      <a class="subcat-card" href="#" id="subcat-hardware-qec">
+        <div class="subcat-icon">🔧</div>
+        <p class="subcat-title">Hardware-Specific QEC</p>
+        <p class="subcat-count">10 entries</p>
+        <div class="qp-trl">
+          <div class="qp-trl-bar">
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment filled"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+            <div class="qp-trl-segment"></div>
+          </div>
+          <span class="qp-trl-label">TRL 4–5 avg</span>
+        </div>
+      </a>
+
+    </div><!-- /.subcat-scroll -->
+  </div><!-- /.qp-container (subcategories) -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       5. FEATURED ENTRIES SECTION
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="qp-container">
+    <div class="section-header-row">
+      <h3 class="qp-h3">Recently Updated</h3>
+      <a class="qp-btn-ghost" style="font-size:13px;" href="#">See all 68 entries →</a>
+    </div>
+
+    <div class="featured-scroll">
+
+      <!-- Entry 1 — Surface Code Threshold Theorem -->
+      <a class="featured-entry-card" href="03_knowledge_entry.html" id="entry-surface-code-threshold">
+        <span class="card-chip">Quantum Computing</span>
+        <p class="card-title">Surface Code — Threshold Theorem</p>
+        <p class="card-excerpt">Defines the noise threshold below which arbitrarily long quantum computations can be
+          performed reliably using surface code error correction.</p>
+        <div class="card-bottom">
+          <div class="qp-trl">
+            <div class="qp-trl-bar">
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+            </div>
+            <span class="qp-trl-label">TRL 4</span>
+          </div>
+          <span class="qp-badge-expert" style="font-size:11px;">Expert Peer-Reviewed</span>
+        </div>
+      </a>
+
+      <!-- Entry 2 — Logical Qubit Overhead Analysis -->
+      <a class="featured-entry-card" href="#" id="entry-logical-qubit-overhead">
+        <span class="card-chip">Quantum Computing</span>
+        <p class="card-title">Logical Qubit Overhead Analysis</p>
+        <p class="card-excerpt">Quantifies the number of physical qubits required per logical qubit for various surface
+          code distances and target error rates.</p>
+        <div class="card-bottom">
+          <div class="qp-trl">
+            <div class="qp-trl-bar">
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+            </div>
+            <span class="qp-trl-label">TRL 3</span>
+          </div>
+          <span class="qp-badge-editor" style="font-size:11px;">Editor Verified</span>
+        </div>
+      </a>
+
+      <!-- Entry 3 — Shor Code -->
+      <a class="featured-entry-card" href="#" id="entry-shor-code">
+        <span class="card-chip">Quantum Computing</span>
+        <p class="card-title">Shor Code — Error Correction</p>
+        <p class="card-excerpt">The first quantum error correcting code, encoding one logical qubit into nine physical
+          qubits to protect against arbitrary single-qubit errors.</p>
+        <div class="card-bottom">
+          <div class="qp-trl">
+            <div class="qp-trl-bar">
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+            </div>
+            <span class="qp-trl-label">TRL 3</span>
+          </div>
+          <span class="qp-badge-expert" style="font-size:11px;">Expert Peer-Reviewed</span>
+        </div>
+      </a>
+
+      <!-- Entry 4 — Magic State Distillation -->
+      <a class="featured-entry-card" href="#" id="entry-magic-state-distillation">
+        <span class="card-chip">Quantum Computing</span>
+        <p class="card-title">Magic State Distillation</p>
+        <p class="card-excerpt">Protocol for purifying noisy magic states into high-fidelity states required for
+          universal fault-tolerant quantum computation.</p>
+        <div class="card-bottom">
+          <div class="qp-trl">
+            <div class="qp-trl-bar">
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment filled"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+              <div class="qp-trl-segment"></div>
+            </div>
+            <span class="qp-trl-label">TRL 4</span>
+          </div>
+          <span class="qp-badge-expert" style="font-size:11px;">Expert Peer-Reviewed</span>
+        </div>
+      </a>
+
+    </div><!-- /.featured-scroll -->
+  </div><!-- /.qp-container (featured) -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       6. KEY RESEARCHERS SECTION
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="researchers-section">
+    <div class="qp-container">
+      <div class="section-header-row">
+        <h3 class="qp-h3">Key Researchers in this Domain</h3>
+        <a class="qp-btn-ghost" style="font-size:13px;" href="08_user_profile.html">See all →</a>
+      </div>
+
+      <div class="researchers-grid">
+
+        <!-- Researcher 1 — Dr. Priya Sharma -->
+        <a class="researcher-card" href="08_user_profile.html" id="researcher-priya-sharma">
+          <div class="researcher-card-top">
+            <div class="qp-avatar">PS</div>
+            <div>
+              <p class="name">Dr. Priya Sharma</p>
+              <p class="role">Asst Prof · IISc, Bengaluru</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <span class="qp-chip" style="font-size:11px;">Surface Codes</span>
+            <span class="qp-chip" style="font-size:11px;">Fault-Tolerant QC</span>
+          </div>
+          <button class="qp-btn-ghost" style="font-size:12px; padding:4px 0; text-align:left;">Connect</button>
+        </a>
+
+        <!-- Researcher 2 — Dr. Rajiv Kumar -->
+        <a class="researcher-card" href="#" id="researcher-rajiv-kumar">
+          <div class="researcher-card-top">
+            <div class="qp-avatar">RK</div>
+            <div>
+              <p class="name">Dr. Rajiv Kumar</p>
+              <p class="role">Associate Prof · IIT Bombay</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <span class="qp-chip" style="font-size:11px;">Stabilizer Codes</span>
+            <span class="qp-chip" style="font-size:11px;">Decoding Algorithms</span>
+          </div>
+          <button class="qp-btn-ghost" style="font-size:12px; padding:4px 0;">Connect</button>
+        </a>
+
+        <!-- Researcher 3 — Dr. Aditya Nair -->
+        <a class="researcher-card" href="#" id="researcher-aditya-nair">
+          <div class="researcher-card-top">
+            <div class="qp-avatar">AN</div>
+            <div>
+              <p class="name">Dr. Aditya Nair</p>
+              <p class="role">Research Scientist · Google Quantum AI</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <span class="qp-chip" style="font-size:11px;">Topological Codes</span>
+            <span class="qp-chip" style="font-size:11px;">Error Mitigation</span>
+          </div>
+          <button class="qp-btn-ghost" style="font-size:12px; padding:4px 0;">Connect</button>
+        </a>
+
+      </div><!-- /.researchers-grid -->
+    </div><!-- /.qp-container (researchers) -->
+  </div><!-- /.researchers-section -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       7. ECOSYSTEM TEASER
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="qp-container">
+    <div class="ecosystem-teaser">
+
+      <!-- Left — Text -->
+      <div class="ecosystem-teaser-text">
+        <h3>QEC in the Global Ecosystem</h3>
+        <p>Explore how Quantum Error Correction connects to supply chains, organisations, government programs, and
+          industry demand. See which companies are investing, which labs are leading, and where India sits globally.</p>
+        <a class="qp-btn-secondary" href="04_signup.html" id="ecosystem-map-cta">Explore Ecosystem Map 🔒</a>
+      </div>
+
+      <!-- Right — Neo4j-style Knowledge Graph Teaser -->
+      <div class="neo4j-graph-panel">
+        <span class="graph-label">Knowledge Graph Preview</span>
+        <span class="lock-overlay">🔒 Full graph unlocked on sign-up</span>
+
+        <svg width="460" height="300" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg"
+          aria-label="Neo4j-style QEC ecosystem knowledge graph teaser">
+          <defs>
+            <!-- Glow filters -->
+            <filter id="glow-navy" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="glow-teal" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2.5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <!-- Arrow markers -->
+            <marker id="arrow-blue" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+              <polygon points="0 0, 7 3.5, 0 7" fill="#2B8FD6" opacity="0.7" />
+            </marker>
+            <marker id="arrow-teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+              <polygon points="0 0, 7 3.5, 0 7" fill="#38b2ac" opacity="0.7" />
+            </marker>
+            <marker id="arrow-amber" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+              <polygon points="0 0, 7 3.5, 0 7" fill="#d97706" opacity="0.7" />
+            </marker>
+            <marker id="arrow-muted" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+              <polygon points="0 0, 7 3.5, 0 7" fill="#3a5a72" opacity="0.7" />
+            </marker>
+          </defs>
+
+          <!-- ── Edges ──────────────────────────────────────────── -->
+          <!-- QEC → Surface Code -->
+          <line x1="230" y1="150" x2="128" y2="90" stroke="#2B8FD6" stroke-width="1.5" opacity="0.6"
+            marker-end="url(#arrow-blue)" />
+          <!-- QEC → Stabilizer Code -->
+          <line x1="230" y1="150" x2="332" y2="90" stroke="#2B8FD6" stroke-width="1.5" opacity="0.6"
+            marker-end="url(#arrow-blue)" />
+          <!-- QEC → Error Mitigation -->
+          <line x1="230" y1="150" x2="230" y2="248" stroke="#38b2ac" stroke-width="1.5" opacity="0.6"
+            marker-end="url(#arrow-teal)" />
+          <!-- QEC → Google Quantum AI -->
+          <line x1="230" y1="150" x2="90" y2="210" stroke="#d97706" stroke-width="1.5" opacity="0.5"
+            marker-end="url(#arrow-amber)" />
+          <!-- QEC → IBM Research -->
+          <line x1="230" y1="150" x2="370" y2="210" stroke="#d97706" stroke-width="1.5" opacity="0.5"
+            marker-end="url(#arrow-amber)" />
+          <!-- QEC → Fault-Tolerant Gates -->
+          <line x1="230" y1="150" x2="110" y2="155" stroke="#2B8FD6" stroke-width="1" opacity="0.4"
+            marker-end="url(#arrow-blue)" />
+          <!-- Surface Code → Fault-Tolerant Gates -->
+          <line x1="120" y1="90" x2="112" y2="148" stroke="#3a5a72" stroke-width="1" opacity="0.4"
+            marker-end="url(#arrow-muted)" />
+          <!-- QEC → Logical Qubit -->
+          <line x1="230" y1="150" x2="350" y2="155" stroke="#2B8FD6" stroke-width="1" opacity="0.4"
+            marker-end="url(#arrow-blue)" />
+          <!-- Stabilizer Code → Logical Qubit -->
+          <line x1="340" y1="90" x2="348" y2="148" stroke="#3a5a72" stroke-width="1" opacity="0.4"
+            marker-end="url(#arrow-muted)" />
+
+          <!-- ── Relationship Label Badges ───────────────────────── -->
+          <!-- USES / Surface -->
+          <rect x="152" y="107" width="38" height="14" rx="4" fill="#162940" opacity="0.9" />
+          <text x="171" y="118" text-anchor="middle" font-size="8" fill="#2B8FD6"
+            font-family="Inter,sans-serif">USES</text>
+          <!-- USES / Stabilizer -->
+          <rect x="272" y="107" width="38" height="14" rx="4" fill="#162940" opacity="0.9" />
+          <text x="291" y="118" text-anchor="middle" font-size="8" fill="#2B8FD6"
+            font-family="Inter,sans-serif">USES</text>
+          <!-- MITIGATES -->
+          <rect x="196" y="197" width="68" height="14" rx="4" fill="#162940" opacity="0.9" />
+          <text x="230" y="208" text-anchor="middle" font-size="8" fill="#38b2ac"
+            font-family="Inter,sans-serif">MITIGATES</text>
+          <!-- FUNDED_BY left -->
+          <rect x="126" y="183" width="60" height="14" rx="4" fill="#162940" opacity="0.9" />
+          <text x="156" y="194" text-anchor="middle" font-size="8" fill="#d97706"
+            font-family="Inter,sans-serif">FUNDED_BY</text>
+          <!-- FUNDED_BY right -->
+          <rect x="276" y="183" width="60" height="14" rx="4" fill="#162940" opacity="0.9" />
+          <text x="306" y="194" text-anchor="middle" font-size="8" fill="#d97706"
+            font-family="Inter,sans-serif">FUNDED_BY</text>
+
+          <!-- ── Nodes ──────────────────────────────────────────── -->
+
+          <!-- CENTER: Quantum Error Correction (navy, largest, pulsing ring) -->
+          <circle cx="230" cy="150" r="44" fill="#0D2B3E" opacity="0.15">
+            <animate attributeName="r" values="34;48;34" dur="3s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.15;0;0.15" dur="3s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="230" cy="150" r="30" fill="#0D2B3E" stroke="#1B5E8A" stroke-width="2" filter="url(#glow-navy)" />
+          <!-- Node label pill —- center -->
+          <rect x="162" y="72" width="135" height="18" rx="9" fill="#0D2B3E" stroke="#1B5E8A" stroke-width="1" />
+          <text x="230" y="85" text-anchor="middle" font-size="9" font-weight="700" fill="#EBF4FB"
+            font-family="Inter,sans-serif">Quantum Error Correction</text>
+          <!-- Small type label -->
+          <text x="230" y="145" text-anchor="middle" font-size="8" fill="#5a8fb5"
+            font-family="Inter,sans-serif">Domain</text>
+          <text x="230" y="157" text-anchor="middle" font-size="11" font-weight="700" fill="#EBF4FB"
+            font-family="Inter,sans-serif">QEC</text>
+
+          <!-- SURFACE CODE — top-left, blue -->
+          <circle cx="120" cy="78" r="25" fill="#2B8FD6" stroke="#5ab0f0" stroke-width="1.5" filter="url(#glow-blue)" />
+          <text x="120" y="70" text-anchor="middle" font-size="7" fill="#c8e8fb"
+            font-family="Inter,sans-serif">Technology</text>
+          <text x="120" y="82" text-anchor="middle" font-size="9" font-weight="700" fill="white"
+            font-family="Inter,sans-serif">Surface</text>
+          <text x="120" y="92" text-anchor="middle" font-size="9" font-weight="700" fill="white"
+            font-family="Inter,sans-serif">Code</text>
+
+          <!-- STABILIZER CODE — top-right, blue -->
+          <circle cx="340" cy="78" r="25" fill="#2B8FD6" stroke="#5ab0f0" stroke-width="1.5" filter="url(#glow-blue)" />
+          <text x="340" y="70" text-anchor="middle" font-size="7" fill="#c8e8fb"
+            font-family="Inter,sans-serif">Technology</text>
+          <text x="340" y="82" text-anchor="middle" font-size="9" font-weight="700" fill="white"
+            font-family="Inter,sans-serif">Stabilizer</text>
+          <text x="340" y="92" text-anchor="middle" font-size="9" font-weight="700" fill="white"
+            font-family="Inter,sans-serif">Code</text>
+
+          <!-- ERROR MITIGATION — bottom center, teal -->
+          <circle cx="230" cy="262" r="20" fill="#285e61" stroke="#38b2ac" stroke-width="1.5"
+            filter="url(#glow-teal)" />
+          <text x="230" y="258" text-anchor="middle" font-size="7" fill="#81e6d9"
+            font-family="Inter,sans-serif">Method</text>
+          <text x="230" y="269" text-anchor="middle" font-size="8" font-weight="700" fill="white"
+            font-family="Inter,sans-serif">Err. Mit.</text>
+
+          <!-- GOOGLE QUANTUM AI — bottom-left, amber -->
+          <circle cx="78" cy="223" r="20" fill="#7b4a0a" stroke="#d97706" stroke-width="1.5" filter="url(#glow-teal)" />
+          <text x="78" y="217" text-anchor="middle" font-size="7" fill="#fbbf24"
+            font-family="Inter,sans-serif">Org</text>
+          <text x="78" y="227" text-anchor="middle" font-size="7.5" font-weight="700" fill="white"
+            font-family="Inter,sans-serif">Google</text>
+          <text x="78" y="236" text-anchor="middle" font-size="7" fill="#fbbf24"
+            font-family="Inter,sans-serif">QAI</text>
+
+          <!-- IBM RESEARCH — bottom-right, amber -->
+          <circle cx="382" cy="225" r="22" fill="#7b4a0a" stroke="#d97706" stroke-width="1.5"
+            filter="url(#glow-teal)" />
+          <text x="382" y="217" text-anchor="middle" font-size="7" fill="#fbbf24"
+            font-family="Inter,sans-serif">Org</text>
+          <text x="382" y="227" text-anchor="middle" font-size="7.5" font-weight="700" fill="white"
+            font-family="Inter,sans-serif">IBM</text>
+          <text x="382" y="236" text-anchor="middle" font-size="7" fill="#fbbf24"
+            font-family="Inter,sans-serif">Research</text>
+
+          <!-- FAULT-TOLERANT GATES — mid-left, muted blue -->
+          <circle cx="100" cy="155" r="20" fill="#1a3a52" stroke="#3a6a8a" stroke-width="1" />
+          <text x="100" y="152" text-anchor="middle" font-size="7" fill="#7ab0cc"
+            font-family="Inter,sans-serif">Method</text>
+          <text x="100" y="162" text-anchor="middle" font-size="7" font-weight="600" fill="#aacfe8"
+            font-family="Inter,sans-serif">FT Gates</text>
+
+          <!-- LOGICAL QUBIT — mid-right, muted blue -->
+          <circle cx="360" cy="155" r="25" fill="#1a3a52" stroke="#3a6a8a" stroke-width="1" />
+          <text x="360" y="152" text-anchor="middle" font-size="7" fill="#7ab0cc"
+            font-family="Inter,sans-serif">Concept</text>
+          <text x="360" y="162" text-anchor="middle" font-size="7" font-weight="600" fill="#aacfe8"
+            font-family="Inter,sans-serif">Logi. Qubit</text>
+
+          <!-- ── Legend (bottom-left corner) ───────────────────── -->
+          <rect x="12" y="265" width="140" height="28" rx="5" fill="#0f1923" stroke="#1e3a52" stroke-width="1"
+            opacity="0.95" />
+          <circle cx="24" cy="279" r="4" fill="#2B8FD6" /><text x="32" y="282" font-size="8" fill="#7ab0cc"
+            font-family="Inter,sans-serif">Technology</text>
+          <circle cx="85" cy="279" r="4" fill="#d97706" /><text x="93" y="282" font-size="8" fill="#7ab0cc"
+            font-family="Inter,sans-serif">Organisation</text>
+        </svg>
+      </div>
+
+    </div><!-- /.ecosystem-teaser -->
+  </div><!-- /.qp-container (ecosystem) -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       8. STANDARD FOOTER
+  ══════════════════════════════════════════════════════════════ -->
+  <footer class="qp-footer">
+    <img src="Logo.jpeg" style="height:32px;" alt="Qpedia wordmark" />
+    <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
+    <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
+  </footer>
+  <script src="shared-search.js"></script>
+</body>
+
+</html>

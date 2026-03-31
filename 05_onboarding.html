@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Personalise Your Qpedia · Onboarding</title>
+  <meta name="description"
+    content="Set up your Qpedia profile in three quick steps — choose your role, select your quantum domains, and discover curated content tailored to you." />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    body {
+      background: var(--qp-blue-light);
+    }
+
+    .role-card {
+      border: 1px solid var(--qp-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .role-card:hover {
+      border-color: var(--qp-blue);
+      background: var(--qp-blue-light);
+    }
+
+    .role-card.selected {
+      border: 2px solid var(--qp-blue);
+      background: var(--qp-blue-light);
+      position: relative;
+    }
+
+    .role-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 13px;
+      color: var(--qp-blue);
+      font-weight: 700;
+    }
+
+    .role-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 2px;
+    }
+
+    .role-card p {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      margin: 0;
+    }
+
+    .domain-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+    }
+
+    .domain-chip.selected {
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border: 1.5px solid var(--qp-blue);
+    }
+
+    .domain-chip.unselected {
+      background: white;
+      color: var(--qp-text-2);
+      border: 1px solid var(--qp-border);
+    }
+
+    .domain-chip.unselected:hover {
+      border-color: var(--qp-blue);
+      color: var(--qp-blue-mid);
+    }
+
+    .progress-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      transition: background 0.3s;
+    }
+
+    .progress-dot.active {
+      background: var(--qp-blue);
+    }
+
+    .progress-dot.inactive {
+      background: var(--qp-border);
+    }
+
+    .rec-card {
+      background: var(--qp-off-white);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid var(--qp-border);
+    }
+
+    .rec-card:hover {
+      border-color: var(--qp-blue);
+    }
+
+    .rec-card .emoji {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .rec-card .rec-content {
+      flex: 1;
+    }
+
+    .rec-card .rec-content h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 2px;
+    }
+
+    .rec-card .rec-content p {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      margin: 0;
+    }
+
+    .rec-card .rec-link {
+      font-size: 13px;
+      color: var(--qp-blue);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── MINIMAL NAV ─────────────────────────────────────────────── -->
+  <div id="top-nav"
+    style="height: 68px; background: white; border-bottom: 1px solid var(--qp-border); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; position: sticky; top: 0; z-index: 100;">
+    <a href="01_homepage.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+      <img src="Logo_withName.png" style="height: 40px;" alt="Qpedia logo" />
+    </a>
+    <span id="step-indicator" style="font-size: 14px; color: var(--qp-text-3);">Step 1 of 3</span>
+  </div>
+
+  <!-- ── MAIN CONTENT ────────────────────────────────────────────── -->
+  <div
+    style="display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 68px - 80px); padding: 40px 24px;">
+
+    <!-- WIZARD CARD -->
+    <div
+      style="max-width: 560px; width: 100%; background: white; border-radius: 20px; padding: 48px; box-shadow: 0 16px 48px rgba(13,43,62,0.10);">
+
+      <!-- ══════════════════════════════════════════════════════════
+           STEP 1 — Role selection
+           ══════════════════════════════════════════════════════════ -->
+      <div id="step1">
+        <img src="Logo.jpeg" style="height: 32px; margin-bottom: 20px; display: block;" alt="Qpedia" />
+
+        <!-- Progress dots -->
+        <div style="display: flex; gap: 8px; margin-bottom: 6px;">
+          <span class="progress-dot active"></span>
+          <span class="progress-dot inactive"></span>
+          <span class="progress-dot inactive"></span>
+        </div>
+
+        <p class="qp-caption">Step 1 of 3</p>
+
+        <h2 style="font-size: 26px; font-weight: 700; color: var(--qp-navy); margin: 20px 0 8px;">What describes you
+          best?</h2>
+        <p class="qp-body" style="margin-bottom: 24px;">We'll tailor your Qpedia experience to your role.</p>
+
+        <!-- Role grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px;">
+          <div class="role-card">
+            <h4>Researcher / Academic</h4>
+            <p>Universities, labs, research groups</p>
+          </div>
+          <div class="role-card selected">
+            <h4>PhD Student</h4>
+            <p>Enrolled doctoral researchers</p>
+          </div>
+          <div class="role-card">
+            <h4>Industry Engineer</h4>
+            <p>Companies, system integrators</p>
+          </div>
+          <div class="role-card">
+            <h4>Government / Policy</h4>
+            <p>Ministries, regulatory bodies</p>
+          </div>
+          <div class="role-card">
+            <h4>Investor / Analyst</h4>
+            <p>VC, PE, government funding</p>
+          </div>
+          <div class="role-card">
+            <h4>Startup Founder</h4>
+            <p>Early-stage quantum ventures</p>
+          </div>
+        </div>
+
+        <button id="btn-step1"
+          style="width: 100%; height: 50px; background: var(--qp-navy); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; font-family: inherit;">Continue
+          →</button>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════
+           STEP 2 — Domain selection
+           ══════════════════════════════════════════════════════════ -->
+      <div id="step2" style="display: none;">
+        <img src="Logo.jpeg" style="height: 32px; margin-bottom: 20px; display: block;" alt="Qpedia" />
+
+        <!-- Progress dots -->
+        <div style="display: flex; gap: 8px; margin-bottom: 6px;">
+          <span class="progress-dot active"></span>
+          <span class="progress-dot active"></span>
+          <span class="progress-dot inactive"></span>
+        </div>
+
+        <p class="qp-caption">Step 2 of 3</p>
+
+        <h2 style="font-size: 26px; font-weight: 700; color: var(--qp-navy); margin: 20px 0 8px;">Select your quantum
+          domains</h2>
+        <p class="qp-body" style="margin-bottom: 8px;">Choose up to 5. Shapes your knowledge feed and learning path.</p>
+        <p id="chip-counter" style="font-size: 13px; color: var(--qp-text-3); margin-bottom: 16px;">3 of 5 selected</p>
+
+        <!-- Domain chips -->
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;">
+          <span class="domain-chip selected">Quantum Computing ✓</span>
+          <span class="domain-chip selected">Quantum Error Correction ✓</span>
+          <span class="domain-chip selected">Superconducting Qubits ✓</span>
+          <span class="domain-chip unselected">Quantum Sensing</span>
+          <span class="domain-chip unselected">Quantum Communication</span>
+          <span class="domain-chip unselected">Quantum Cryptography</span>
+          <span class="domain-chip unselected">Quantum Materials</span>
+          <span class="domain-chip unselected">Quantum Photonics</span>
+          <span class="domain-chip unselected">Supply Chain</span>
+          <span class="domain-chip unselected">Policy &amp; Regulation</span>
+          <span class="domain-chip unselected">Investment</span>
+          <span class="domain-chip unselected">Education</span>
+        </div>
+
+        <button id="btn-step2"
+          style="width: 100%; height: 50px; background: var(--qp-navy); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; font-family: inherit;">Continue
+          →</button>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════
+           STEP 3 — Curated recommendations
+           ══════════════════════════════════════════════════════════ -->
+      <div id="step3" style="display: none;">
+        <img src="Logo.jpeg" style="height: 32px; margin-bottom: 20px; display: block;" alt="Qpedia" />
+
+        <!-- Progress dots -->
+        <div style="display: flex; gap: 8px; margin-bottom: 6px;">
+          <span class="progress-dot active"></span>
+          <span class="progress-dot active"></span>
+          <span class="progress-dot active"></span>
+        </div>
+
+        <p class="qp-caption">Step 3 of 3</p>
+
+        <div style="font-size: 36px; text-align: center; margin: 16px 0;">✦</div>
+        <h2 style="font-size: 26px; font-weight: 700; color: var(--qp-navy); text-align: center; margin-bottom: 8px;">
+          Your Qpedia is ready, Arjun</h2>
+        <p class="qp-body" style="text-align: center; margin-bottom: 24px;">Here's what we've curated based on your role
+          and interests.</p>
+
+        <!-- Recommendation cards -->
+        <div class="rec-card">
+          <span class="emoji">📚</span>
+          <div class="rec-content">
+            <h4>3 Knowledge Entries in Quantum Error Correction</h4>
+            <p>Surface codes, TRL tracking, and more</p>
+          </div>
+          <a class="rec-link" href="09_topic_browse.html">→</a>
+        </div>
+
+        <div class="rec-card">
+          <span class="emoji">🎓</span>
+          <div class="rec-content">
+            <h4>Quantum Computing Foundations</h4>
+            <p>12 modules · ~8 hours</p>
+          </div>
+          <a class="rec-link" href="07_learning_module.html">→</a>
+        </div>
+
+        <div class="rec-card">
+          <span class="emoji">👥</span>
+          <div class="rec-content">
+            <h4>5 Researchers at IISc in your domains</h4>
+            <p>Discover collaborators</p>
+          </div>
+          <a class="rec-link" href="08_user_profile.html">→</a>
+        </div>
+
+        <a style="display: block; width: 100%; text-align: center; background: var(--qp-navy); color: white; padding: 14px; border-radius: 10px; font-size: 16px; font-weight: 600; text-decoration: none; margin-top: 24px; margin-bottom: 12px;"
+          href="06_dashboard.html">Explore Qpedia →</a>
+        <a style="display: block; text-align: center; font-size: 14px; color: var(--qp-text-3); text-decoration: none;"
+          href="06_dashboard.html">Skip and explore freely</a>
+      </div>
+
+    </div><!-- /wizard card -->
+  </div><!-- /main content -->
+
+  <!-- ── FOOTER ──────────────────────────────────────────────────── -->
+  <div class="qp-footer" style="background: var(--qp-off-white);">
+    <img src="Logo.jpeg" height="32" alt="Qpedia" />
+    <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
+    <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
+  </div>
+
+  <!-- ── JAVASCRIPT ──────────────────────────────────────────────── -->
+  <script>
+    // Step 1 → Step 2
+    document.getElementById('btn-step1').addEventListener('click', function () {
+      document.getElementById('step1').style.display = 'none';
+      document.getElementById('step2').style.display = 'block';
+      document.getElementById('step-indicator').textContent = 'Step 2 of 3';
+    });
+
+    // Step 2 → Step 3
+    document.getElementById('btn-step2').addEventListener('click', function () {
+      document.getElementById('step2').style.display = 'none';
+      document.getElementById('step3').style.display = 'block';
+      document.getElementById('step-indicator').textContent = 'Step 3 of 3';
+    });
+
+    // Role card single-select
+    document.querySelectorAll('.role-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        document.querySelectorAll('.role-card').forEach(function (c) { c.classList.remove('selected'); });
+        this.classList.add('selected');
+      });
+    });
+
+    // Domain chip multi-select (max 5)
+    var selectedCount = 3;
+    document.querySelectorAll('.domain-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        if (this.classList.contains('selected')) {
+          this.classList.remove('selected');
+          this.classList.add('unselected');
+          this.textContent = this.textContent.replace(' ✓', '');
+          selectedCount--;
+        } else {
+          if (selectedCount < 5) {
+            this.classList.remove('unselected');
+            this.classList.add('selected');
+            this.textContent = this.textContent + ' ✓';
+            selectedCount++;
+          }
+        }
+        document.getElementById('chip-counter').textContent = selectedCount + ' of 5 selected';
+      });
+    });
+  </script>
+
+</body>
+
+</html>

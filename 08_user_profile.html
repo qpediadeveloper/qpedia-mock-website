@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Dr. Priya Sharma — Quantum Ecosystem Profile | Qpedia</title>
+  <meta name="description"
+    content="Dr. Priya Sharma is an Assistant Professor at IISc Bengaluru specialising in quantum error correction and surface codes. View her research, publications, and ecosystem connections on Qpedia." />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="shared-search.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 48px;
+      align-items: start;
+      padding-top: 32px;
+      padding-bottom: 64px;
+    }
+
+    .profile-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius-lg);
+      padding: 32px;
+      position: sticky;
+      top: 88px;
+    }
+
+    .profile-avatar-wrap {
+      margin-bottom: 16px;
+    }
+
+    .profile-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin-bottom: 4px;
+    }
+
+    .profile-title {
+      font-size: 15px;
+      color: var(--qp-text-2);
+      margin-bottom: 12px;
+    }
+
+    .verified-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .verified-badge {
+      font-size: 13px;
+      color: var(--qp-success);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .action-row .qp-btn-primary,
+    .action-row .qp-btn-secondary {
+      flex: 1;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .expertise-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .ecosystem-graph-wrap {
+      background: var(--qp-off-white);
+      border-radius: var(--qp-radius);
+      border: 1px solid var(--qp-border);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .ecosystem-graph-link {
+      font-size: 13px;
+      color: var(--qp-blue);
+      text-decoration: none;
+      display: block;
+      margin-top: 10px;
+      transition: color 0.15s;
+    }
+
+    .ecosystem-graph-link:hover {
+      color: var(--qp-blue-mid);
+      text-decoration: underline;
+    }
+
+    .stats-row {
+      display: flex;
+      border-top: 1px solid var(--qp-border);
+      margin-top: 4px;
+      padding-top: 4px;
+    }
+
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 12px 8px;
+    }
+
+    .stat-item .val {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      display: block;
+    }
+
+    .stat-item .lbl {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .main-content-area {
+      min-width: 0;
+    }
+
+    .about-text {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--qp-text);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-top: 32px;
+      margin-bottom: 16px;
+    }
+
+    .project-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px;
+      margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+
+    .project-card:hover {
+      border-color: var(--qp-blue);
+    }
+
+    .project-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 10px;
+    }
+
+    .project-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .project-card a {
+      font-size: 14px;
+      color: var(--qp-blue);
+      text-decoration: none;
+    }
+
+    .project-card a:hover {
+      text-decoration: underline;
+    }
+
+    .pub-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--qp-border);
+    }
+
+    .pub-row:last-child {
+      border-bottom: none;
+    }
+
+    .pub-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--qp-blue);
+      text-decoration: none;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .pub-title:hover {
+      text-decoration: underline;
+    }
+
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .contrib-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 16px;
+      transition: border-color 0.15s;
+    }
+
+    .contrib-card:hover {
+      border-color: var(--qp-blue);
+    }
+
+    .contrib-card h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .breadcrumb {
+      padding: 12px 0;
+      font-size: 14px;
+      color: var(--qp-text-3);
+    }
+
+    .breadcrumb a {
+      color: var(--qp-text-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--qp-navy);
+    }
+
+    .breadcrumb span {
+      margin: 0 6px;
+    }
+
+    /* ── Ask Qpedia Command Bar ── */
+    .ask-qpedia-band {
+      background: linear-gradient(135deg, #EBF4FB 0%, #F0F7FF 50%, #EDF5F0 100%);
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 28px 0 22px;
+    }
+
+    .ask-qpedia-inner {
+      max-width: 800px;
+    }
+
+    .ask-qpedia-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--qp-blue-mid);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .ask-qpedia-label::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--qp-blue);
+      box-shadow: 0 0 0 3px rgba(43, 143, 214, 0.18);
+    }
+
+    .ask-qpedia-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .ask-qpedia-title span {
+      color: var(--qp-blue);
+    }
+
+    /* Mode toggle */
+    .ask-mode-toggle {
+      display: inline-flex;
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: 24px;
+      padding: 3px;
+      gap: 2px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .ask-mode-btn {
+      border: none;
+      background: transparent;
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      color: var(--qp-text-3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s;
+    }
+
+    .ask-mode-btn.active {
+      background: var(--qp-navy);
+      color: white;
+      box-shadow: 0 2px 6px rgba(13, 43, 62, 0.25);
+    }
+
+    .ask-mode-btn:not(.active):hover {
+      color: var(--qp-navy);
+      background: var(--qp-off-white);
+    }
+
+    /* Input row */
+    .ask-input-shell {
+      display: flex;
+      align-items: center;
+      background: white;
+      border: 1.5px solid var(--qp-border);
+      border-radius: var(--qp-radius-lg);
+      padding: 6px 6px 6px 20px;
+      box-shadow: 0 4px 16px rgba(13, 43, 62, 0.08), 0 1px 4px rgba(13, 43, 62, 0.04);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      gap: 8px;
+    }
+
+    .ask-input-shell:focus-within {
+      border-color: var(--qp-blue);
+      box-shadow: 0 4px 20px rgba(43, 143, 214, 0.18), 0 0 0 4px rgba(43, 143, 214, 0.08);
+    }
+
+    .ask-input-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      color: var(--qp-text-3);
+      line-height: 1;
+    }
+
+    .ask-input-field {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--qp-text);
+      background: transparent;
+      padding: 10px 0;
+      min-width: 0;
+    }
+
+    .ask-input-field::placeholder {
+      color: var(--qp-text-3);
+      font-weight: 400;
+    }
+
+    /* Mic button */
+    .ask-mic-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--qp-border);
+      background: white;
+      color: var(--qp-text-2);
+      font-size: 17px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.18s;
+    }
+
+    .ask-mic-btn:hover {
+      border-color: var(--qp-blue);
+      background: var(--qp-blue-light);
+      color: var(--qp-blue);
+    }
+
+    .ask-mic-btn.listening {
+      border-color: #EF4444;
+      background: #FEF2F2;
+      color: #DC2626;
+      animation: mic-pulse 1.2s infinite;
+    }
+
+    @keyframes mic-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.3);
+      }
+
+      50% {
+        box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+      }
+    }
+
+    /* Send button */
+    .ask-send-btn {
+      height: 40px;
+      padding: 0 20px;
+      border: none;
+      border-radius: var(--qp-radius);
+      background: var(--qp-navy);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .ask-send-btn:hover {
+      background: var(--qp-blue-mid);
+    }
+
+    .ask-send-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Suggestion chips */
+    .ask-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      align-items: center;
+    }
+
+    .ask-suggest-label {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      flex-shrink: 0;
+    }
+
+    .ask-suggest-chip {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      color: var(--qp-text-2);
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .ask-suggest-chip:hover {
+      border-color: var(--qp-blue);
+      color: var(--qp-blue);
+      background: var(--qp-blue-light);
+    }
+
+    /* ── Neo4j-style ecosystem graph ── */
+    .ecosystem-graph-wrap {
+      background: #0D1B2A;
+      border-radius: var(--qp-radius);
+      border: 1px solid #1A2E42;
+      padding: 12px 10px 10px;
+      margin-bottom: 12px;
+    }
+
+    .ecosystem-svg {
+      display: block;
+      width: 100%;
+    }
+
+    .neo-node-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+
+    .neo-edge-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 8px;
+      fill: #4A6A82;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+
+    .neo-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 0 2px;
+    }
+
+    .neo-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #8AACBE;
+    }
+
+    .neo-legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       1. AUTHENTICATED NAV
+  ═══════════════════════════════════════════════════════ -->
+  <div class="qp-nav">
+    <a class="qp-nav-brand" href="01_homepage.html">
+      <img src="Logo_withName.png" height="40" alt="Qpedia logo" />
+    </a>
+
+    <ul class="qp-nav-links">
+      <li><a href="knowledge_hub.html" class="kh-active">Knowledge Hub</a></li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="#">Ecosystem</a></li>
+    </ul>
+
+    <div class="qp-nav-actions">
+      <div style="position:relative; cursor:pointer;">
+        <span style="font-size:20px;">🔔</span>
+        <span
+          style="position:absolute; top:-4px; right:-4px; background:#EF4444; color:white; font-size:10px; font-weight:700; border-radius:50%; width:16px; height:16px; display:flex; align-items:center; justify-content:center;">2</span>
+      </div>
+      <div class="qp-nav-avatar">AK</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       2. BREADCRUMB
+  ═══════════════════════════════════════════════════════ -->
+  <div class="qp-container">
+    <div class="breadcrumb">
+      <a href="01_homepage.html">Home</a><span>›</span>
+      <a href="#">Ecosystem</a><span>›</span>
+      Dr. Priya Sharma
+    </div>
+
+  </div>
+
+  <!-- ── Ask Qpedia Command Bar ── -->
+  <div class="ask-qpedia-band">
+    <div class="qp-container">
+      <div class="ask-qpedia-inner">
+        <p class="ask-qpedia-title">Ask anything related to <span>Dr. Priya Sharma</span>'s research, into the wider
+          <span>Qpedia ecosystem</span>.
+        </p>
+
+        <!-- Input shell -->
+        <div class="ask-input-shell">
+          <span class="ask-input-icon" id="ask-input-icon">🔍</span>
+          <input class="ask-input-field" id="ask-field" type="text" placeholder="Ask about Priya's research"
+            autocomplete="off" aria-label="Ask Qpedia" />
+          <button class="ask-send-btn" id="ask-send" aria-label="Send query">
+            Ask <span style="font-size:16px; line-height:1;">→</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       3. MAIN LAYOUT
+  ═══════════════════════════════════════════════════════ -->
+  <div class="qp-container">
+    <div class="profile-layout">
+
+      <!-- ─── LEFT: PROFILE CARD ─── -->
+      <div class="profile-card">
+
+        <h2 class="profile-name">Dr. Priya Sharma</h2>
+        <p class="profile-title">Assistant Professor, Quantum Computing</p>
+
+        <!-- Verified row -->
+        <div class="verified-row">
+          <span class="qp-chip">IISc, Bengaluru</span>
+          <span class="verified-badge">&#10003; Verified</span>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-row">
+          <button class="qp-btn-primary" id="btn-connect">Connect</button>
+          <button class="qp-btn-secondary" id="btn-message">Message</button>
+        </div>
+
+        <hr class="qp-divider" />
+
+        <p class="qp-label" style="margin-bottom:10px;">Expertise</p>
+
+        <!-- Expertise chips -->
+        <div class="expertise-wrap">
+          <a class="qp-chip" href="09_topic_browse.html">Quantum Error Correction</a>
+          <a class="qp-chip" href="#">Surface Codes</a>
+          <a class="qp-chip" href="#">Superconducting Qubits</a>
+          <a class="qp-chip" href="#">Fault-Tolerant QC</a>
+          <a class="qp-chip" href="#">Quantum Algorithms</a>
+        </div>
+
+        <hr class="qp-divider" />
+
+        <p class="qp-label" style="margin-bottom:10px;">Ecosystem Node</p>
+
+        <!-- Ecosystem knowledge-graph SVG — Neo4j style -->
+        <div class="ecosystem-graph-wrap">
+          <svg class="ecosystem-svg" height="210" viewBox="0 0 272 210"
+            aria-label="Priya Sharma's ecosystem connections" role="img">
+            <defs>
+              <!-- Glow filter for center node -->
+              <filter id="glow-center" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <!-- Subtle glow for satellite nodes -->
+              <filter id="glow-node" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="2.5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <!-- Arrow markers for each edge colour -->
+              <marker id="arr-blue" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 Z" fill="#2B6CB0" />
+              </marker>
+              <marker id="arr-teal" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 Z" fill="#0F766E" />
+              </marker>
+              <marker id="arr-red" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 Z" fill="#C05540" />
+              </marker>
+              <marker id="arr-purple" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 Z" fill="#6B46C1" />
+              </marker>
+            </defs>
+
+            <!-- Dark grid dots (neo4j canvas feel) -->
+            <rect width="272" height="210" fill="#0D1B2A" rx="6" />
+            <g fill="#192E42" opacity="0.7">
+              <!-- grid dots 24px apart -->
+              <circle cx="24" cy="24" r="1" />
+              <circle cx="48" cy="24" r="1" />
+              <circle cx="72" cy="24" r="1" />
+              <circle cx="96" cy="24" r="1" />
+              <circle cx="120" cy="24" r="1" />
+              <circle cx="144" cy="24" r="1" />
+              <circle cx="168" cy="24" r="1" />
+              <circle cx="192" cy="24" r="1" />
+              <circle cx="216" cy="24" r="1" />
+              <circle cx="240" cy="24" r="1" />
+              <circle cx="264" cy="24" r="1" />
+              <circle cx="24" cy="48" r="1" />
+              <circle cx="48" cy="48" r="1" />
+              <circle cx="72" cy="48" r="1" />
+              <circle cx="96" cy="48" r="1" />
+              <circle cx="120" cy="48" r="1" />
+              <circle cx="144" cy="48" r="1" />
+              <circle cx="168" cy="48" r="1" />
+              <circle cx="192" cy="48" r="1" />
+              <circle cx="216" cy="48" r="1" />
+              <circle cx="240" cy="48" r="1" />
+              <circle cx="264" cy="48" r="1" />
+              <circle cx="24" cy="72" r="1" />
+              <circle cx="48" cy="72" r="1" />
+              <circle cx="72" cy="72" r="1" />
+              <circle cx="96" cy="72" r="1" />
+              <circle cx="120" cy="72" r="1" />
+              <circle cx="144" cy="72" r="1" />
+              <circle cx="168" cy="72" r="1" />
+              <circle cx="192" cy="72" r="1" />
+              <circle cx="216" cy="72" r="1" />
+              <circle cx="240" cy="72" r="1" />
+              <circle cx="264" cy="72" r="1" />
+              <circle cx="24" cy="96" r="1" />
+              <circle cx="48" cy="96" r="1" />
+              <circle cx="72" cy="96" r="1" />
+              <circle cx="96" cy="96" r="1" />
+              <circle cx="120" cy="96" r="1" />
+              <circle cx="144" cy="96" r="1" />
+              <circle cx="168" cy="96" r="1" />
+              <circle cx="192" cy="96" r="1" />
+              <circle cx="216" cy="96" r="1" />
+              <circle cx="240" cy="96" r="1" />
+              <circle cx="264" cy="96" r="1" />
+              <circle cx="24" cy="120" r="1" />
+              <circle cx="48" cy="120" r="1" />
+              <circle cx="72" cy="120" r="1" />
+              <circle cx="96" cy="120" r="1" />
+              <circle cx="120" cy="120" r="1" />
+              <circle cx="144" cy="120" r="1" />
+              <circle cx="168" cy="120" r="1" />
+              <circle cx="192" cy="120" r="1" />
+              <circle cx="216" cy="120" r="1" />
+              <circle cx="240" cy="120" r="1" />
+              <circle cx="264" cy="120" r="1" />
+              <circle cx="24" cy="144" r="1" />
+              <circle cx="48" cy="144" r="1" />
+              <circle cx="72" cy="144" r="1" />
+              <circle cx="96" cy="144" r="1" />
+              <circle cx="120" cy="144" r="1" />
+              <circle cx="144" cy="144" r="1" />
+              <circle cx="168" cy="144" r="1" />
+              <circle cx="192" cy="144" r="1" />
+              <circle cx="216" cy="144" r="1" />
+              <circle cx="240" cy="144" r="1" />
+              <circle cx="264" cy="144" r="1" />
+              <circle cx="24" cy="168" r="1" />
+              <circle cx="48" cy="168" r="1" />
+              <circle cx="72" cy="168" r="1" />
+              <circle cx="96" cy="168" r="1" />
+              <circle cx="120" cy="168" r="1" />
+              <circle cx="144" cy="168" r="1" />
+              <circle cx="168" cy="168" r="1" />
+              <circle cx="192" cy="168" r="1" />
+              <circle cx="216" cy="168" r="1" />
+              <circle cx="240" cy="168" r="1" />
+              <circle cx="264" cy="168" r="1" />
+              <circle cx="24" cy="192" r="1" />
+              <circle cx="48" cy="192" r="1" />
+              <circle cx="72" cy="192" r="1" />
+              <circle cx="96" cy="192" r="1" />
+              <circle cx="120" cy="192" r="1" />
+              <circle cx="144" cy="192" r="1" />
+              <circle cx="168" cy="192" r="1" />
+              <circle cx="192" cy="192" r="1" />
+              <circle cx="216" cy="192" r="1" />
+              <circle cx="240" cy="192" r="1" />
+              <circle cx="264" cy="192" r="1" />
+            </g>
+
+            <!-- ── EDGES (drawn before nodes so nodes sit on top) ── -->
+
+            <!-- Edge: Priya → IISc QC Lab (AFFILIATED_WITH) -->
+            <line x1="136" y1="95" x2="62" y2="50" stroke="#2B6CB0" stroke-width="1.5" stroke-dasharray="0"
+              marker-end="url(#arr-blue)" opacity="0.8" />
+            <text class="neo-edge-label" x="90" y="66">AFFILIATED_WITH</text>
+
+            <!-- Edge: Priya → QEC Research (LEADS) -->
+            <line x1="148" y1="93" x2="212" y2="52" stroke="#6B46C1" stroke-width="1.5" marker-end="url(#arr-purple)"
+              opacity="0.8" />
+            <text class="neo-edge-label" x="188" y="66">LEADS</text>
+
+            <!-- Edge: Priya → NQM Program (FUNDED_BY) -->
+            <line x1="134" y1="117" x2="64" y2="158" stroke="#0F766E" stroke-width="1.5" marker-end="url(#arr-teal)"
+              opacity="0.8" />
+            <text class="neo-edge-label" x="91" y="147">FUNDED_BY</text>
+
+            <!-- Edge: Priya → IBM Quantum (COLLABORATES_WITH) -->
+            <line x1="150" y1="115" x2="212" y2="157" stroke="#C05540" stroke-width="1.5" marker-end="url(#arr-red)"
+              opacity="0.8" />
+            <text class="neo-edge-label" x="190" y="147">COLLAB</text>
+
+            <!-- ── SATELLITE NODES ── -->
+
+            <!-- Node 1: IISc QC Lab (Institution — blue) -->
+            <circle cx="48" cy="40" r="24" fill="#1A3A5C" stroke="#2B6CB0" stroke-width="2" filter="url(#glow-node)" />
+            <circle cx="48" cy="40" r="20" fill="#1E4976" />
+            <text class="neo-node-label" x="48" y="36" fill="#90CDF4" font-weight="600">IISc</text>
+            <text class="neo-node-label" x="48" y="47" fill="#90CDF4">QC Lab</text>
+
+            <!-- Node 2: QEC Research (Domain — purple) -->
+            <circle cx="224" cy="40" r="24" fill="#2D1B69" stroke="#6B46C1" stroke-width="2" filter="url(#glow-node)" />
+            <circle cx="224" cy="40" r="20" fill="#3B2280" />
+            <text class="neo-node-label" x="224" y="36" fill="#D6BCFA" font-weight="600">QEC</text>
+            <text class="neo-node-label" x="224" y="47" fill="#D6BCFA">Research</text>
+
+            <!-- Node 3: NQM Program (Govt — teal) -->
+            <circle cx="48" cy="170" r="24" fill="#0A2E2A" stroke="#0F766E" stroke-width="2" filter="url(#glow-node)" />
+            <circle cx="48" cy="170" r="20" fill="#0D3B36" />
+            <text class="neo-node-label" x="48" y="166" fill="#4FD1C5" font-weight="600">NQM</text>
+            <text class="neo-node-label" x="48" y="177" fill="#4FD1C5">Program</text>
+
+            <!-- Node 4: IBM Quantum (Industry — red/orange) -->
+            <circle cx="224" cy="170" r="24" fill="#3B1010" stroke="#C05540" stroke-width="2"
+              filter="url(#glow-node)" />
+            <circle cx="224" cy="170" r="20" fill="#4A1818" />
+            <text class="neo-node-label" x="224" y="166" fill="#FCA5A5" font-weight="600">IBM</text>
+            <text class="neo-node-label" x="224" y="177" fill="#FCA5A5">Quantum</text>
+
+            <!-- ── CENTER NODE (on top of all edges, with glow) ── -->
+            <!-- outer ring pulse -->
+            <circle cx="136" cy="105" r="33" fill="none" stroke="#2B8FD6" stroke-width="1" opacity="0.35" />
+            <!-- main node -->
+            <circle cx="136" cy="105" r="28" fill="#0D2B3E" stroke="#2B8FD6" stroke-width="2.5"
+              filter="url(#glow-center)" />
+            <circle cx="136" cy="105" r="24" fill="#112E45" />
+            <text class="neo-node-label" x="136" y="101" fill="#FFFFFF" font-size="10" font-weight="700">Priya</text>
+            <text class="neo-node-label" x="136" y="113" fill="#90CAF9" font-size="9">Sharma</text>
+          </svg>
+
+          <!-- Legend -->
+          <div class="neo-legend">
+            <span class="neo-legend-item"><span class="neo-legend-dot"
+                style="background:#2B6CB0;"></span>Institution</span>
+            <span class="neo-legend-item"><span class="neo-legend-dot" style="background:#6B46C1;"></span>Domain</span>
+            <span class="neo-legend-item"><span class="neo-legend-dot" style="background:#0F766E;"></span>Govt.
+              Programme</span>
+            <span class="neo-legend-item"><span class="neo-legend-dot"
+                style="background:#C05540;"></span>Industry</span>
+          </div>
+
+          <a class="ecosystem-graph-link" href="09_topic_browse.html" style="color:#4A9FD4;">View full ecosystem map
+            →</a>
+        </div>
+
+        <hr class="qp-divider" />
+
+        <!-- Stats row -->
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="val">24</span>
+            <span class="lbl">Contributions</span>
+          </div>
+          <div class="stat-item">
+            <span class="val">6</span>
+            <span class="lbl">Reviews</span>
+          </div>
+          <div class="stat-item">
+            <span class="val">312</span>
+            <span class="lbl">Views</span>
+          </div>
+        </div>
+
+      </div><!-- /profile-card -->
+
+      <!-- ─── RIGHT: MAIN CONTENT AREA ─── -->
+      <div class="main-content-area">
+
+        <!-- Tab nav -->
+        <div class="qp-tabs">
+          <a class="qp-tab active" href="#" id="tab-overview">Overview</a>
+          <a class="qp-tab" href="#" id="tab-publications">Publications</a>
+          <a class="qp-tab" href="#" id="tab-contributions">Contributions</a>
+          <a class="qp-tab" href="#" id="tab-connections">Connections</a>
+        </div>
+
+        <!-- ── About ── -->
+        <h3 class="section-title">About</h3>
+        <p class="about-text">Dr. Priya Sharma is an Assistant Professor at the Centre for Quantum Technology, Indian
+          Institute of Science, Bengaluru. Her research focuses on quantum error correction, with a particular emphasis
+          on surface code implementations for superconducting qubit platforms.</p>
+        <p class="about-text">She leads the Fault-Tolerant Quantum Computing group at IISc, working on logical qubit
+          encoding, decoding algorithm design, and hardware-aware QEC protocols. Her group collaborates with IBM Quantum
+          and the National Quantum Mission on applied error correction research.</p>
+        <p class="about-text">Prior to joining IISc, Dr. Sharma completed her postdoctoral fellowship at Caltech's
+          Institute for Quantum Information and Matter, where she worked on topological quantum codes under Prof. John
+          Preskill.</p>
+
+        <!-- ── Current Research ── -->
+        <h3 class="section-title">Current Research</h3>
+
+        <!-- Project card 1 -->
+        <div class="project-card">
+          <h4>Logical qubit encoding using surface codes at scale</h4>
+          <div class="project-card-meta">
+            <span class="qp-chip">Quantum Error Correction</span>
+            <div class="qp-trl">
+              <div class="qp-trl-bar">
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+              </div>
+              <span class="qp-trl-label">TRL 4</span>
+            </div>
+          </div>
+          <a href="03_knowledge_entry.html">View in Knowledge Hub →</a>
+        </div>
+
+        <!-- Project card 2 -->
+        <div class="project-card">
+          <h4>Decoding algorithms for fault-tolerant superconducting systems</h4>
+          <div class="project-card-meta">
+            <span class="qp-chip">Quantum Algorithms</span>
+            <div class="qp-trl">
+              <div class="qp-trl-bar">
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+              </div>
+              <span class="qp-trl-label">TRL 3</span>
+            </div>
+          </div>
+          <a href="#">View in Knowledge Hub →</a>
+        </div>
+
+        <!-- ── Publications ── -->
+        <h3 class="section-title">Publications</h3>
+
+        <div class="pub-row">
+          <a class="pub-title" href="#">Threshold analysis for surface code error correction on near-term
+            superconducting processors</a>
+          <span class="qp-caption">Physical Review X · 2025</span>
+          <span class="qp-chip" style="font-size:11px;">Cited in 4 Qpedia entries</span>
+        </div>
+
+        <div class="pub-row">
+          <a class="pub-title" href="#">Hardware-aware decoding algorithms for logical qubit fault tolerance</a>
+          <span class="qp-caption">Nature Physics · 2024</span>
+          <span class="qp-chip" style="font-size:11px;">Cited in 2 Qpedia entries</span>
+        </div>
+
+        <div class="pub-row">
+          <a class="pub-title" href="#">Comparative analysis of topological codes for near-term quantum hardware</a>
+          <span class="qp-caption">PRX Quantum · 2023</span>
+          <span class="qp-chip" style="font-size:11px;">Cited in 3 Qpedia entries</span>
+        </div>
+
+        <!-- ── Qpedia Contributions ── -->
+        <h3 class="section-title">Qpedia Contributions</h3>
+
+        <div class="contrib-grid">
+
+          <div class="contrib-card">
+            <h4>Surface Code — Threshold Theorem</h4>
+            <span class="qp-badge-expert" style="font-size:11px;">Expert Peer-Reviewed</span>
+            <p class="qp-caption" style="margin-top:8px;">March 2026</p>
+          </div>
+
+          <div class="contrib-card">
+            <h4>Logical Qubit Overhead Analysis</h4>
+            <span class="qp-badge-expert" style="font-size:11px;">Expert Peer-Reviewed</span>
+            <p class="qp-caption" style="margin-top:8px;">January 2026</p>
+          </div>
+
+          <div class="contrib-card">
+            <h4>Fault-Tolerant Gate Synthesis</h4>
+            <span class="qp-badge-editor" style="font-size:11px;">Editor Verified</span>
+            <p class="qp-caption" style="margin-top:8px;">November 2025</p>
+          </div>
+
+        </div><!-- /contrib-grid -->
+
+      </div><!-- /main-content-area -->
+
+    </div><!-- /profile-layout -->
+  </div><!-- /qp-container -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       4. FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <div class="qp-footer">
+    <img src="Logo.jpeg" style="height:32px;" alt="Qpedia wordmark" />
+    <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
+    <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       5. JAVASCRIPT
+  ═══════════════════════════════════════════════════════ -->
+  <script>
+    // ── Tab switching ─────────────────────────────────────────────
+    document.querySelectorAll('.qp-tab').forEach(function (tab) {
+      tab.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelectorAll('.qp-tab').forEach(function (t) { t.classList.remove('active'); });
+        this.classList.add('active');
+      });
+    });
+
+    // ── Ask Qpedia: Text / Voice mode toggle ──────────────────────
+    var modeText = document.getElementById('mode-text');
+    var modeVoice = document.getElementById('mode-voice');
+    var askField = document.getElementById('ask-field');
+    var askIcon = document.getElementById('ask-input-icon');
+    var askMic = document.getElementById('ask-mic');
+    var isListening = false;
+
+    function setMode(mode) {
+      if (mode === 'text') {
+        modeText.classList.add('active'); modeText.setAttribute('aria-pressed', 'true');
+        modeVoice.classList.remove('active'); modeVoice.setAttribute('aria-pressed', 'false');
+        askField.placeholder = 'Ask anything — surface codes, collaborators, publications, ecosystem\u2026';
+        askIcon.textContent = '\uD83D\uDD0D';
+        askField.focus();
+      } else {
+        modeVoice.classList.add('active'); modeVoice.setAttribute('aria-pressed', 'true');
+        modeText.classList.remove('active'); modeText.setAttribute('aria-pressed', 'false');
+        askField.placeholder = 'Listening\u2026 speak your question';
+        askIcon.textContent = '\uD83C\uDFD9\uFE0F';
+        askMic.click();
+      }
+    }
+
+    modeText.addEventListener('click', function () { setMode('text'); });
+    modeVoice.addEventListener('click', function () { setMode('voice'); });
+
+    // ── Mic button: pulsing listening state ───────────────────────
+    askMic.addEventListener('click', function () {
+      isListening = !isListening;
+      if (isListening) {
+        askMic.classList.add('listening');
+        askMic.title = 'Stop listening';
+        // Auto-stop after 8 s (prototype demo)
+        setTimeout(function () {
+          isListening = false;
+          askMic.classList.remove('listening');
+          askMic.title = 'Voice input';
+        }, 8000);
+      } else {
+        askMic.classList.remove('listening');
+        askMic.title = 'Voice input';
+      }
+    });
+
+    // ── Send on Enter ──────────────────────────────────────────────
+    askField.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && this.value.trim()) {
+        document.getElementById('ask-send').click();
+      }
+    });
+
+    // ── Suggestion chips: fill input ──────────────────────────────
+    document.querySelectorAll('.ask-suggest-chip').forEach(function (chip) {
+      chip.addEventListener('click', function (e) {
+        e.preventDefault();
+        var label = chip.textContent.replace(/^[\u26A1\u269B\uFE0F\uD83D\uDCC4\uD83E\uDD1D\uD83C\uDFDB\uFE0F\u2728\u200D ]+/, '').trim();
+        askField.value = label;
+        askField.focus();
+      });
+    });
+  </script>
+  <script src="shared-search.js"></script>
+</body>
+
+</html>

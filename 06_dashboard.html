@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Dashboard — Qpedia</title>
+  <meta name="description"
+    content="Your personalised Qpedia dashboard — continue your learning path, explore matched knowledge, and connect with researchers in quantum technologies." />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    /* ── Page layout ──────────────────────────────────────────── */
+    .page-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr 240px;
+      min-height: calc(100vh - 68px - 80px);
+    }
+
+    /* ── Left sidebar ─────────────────────────────────────────── */
+    .left-sidebar {
+      border-right: 1px solid var(--qp-border);
+      padding: 20px;
+      background: var(--qp-off-white);
+    }
+
+    .right-panel {
+      border-left: 1px solid var(--qp-border);
+      padding: 20px;
+      background: var(--qp-off-white);
+    }
+
+    .main-content {
+      padding: 28px 32px;
+      background: white;
+    }
+
+    /* ── User mini card ───────────────────────────────────────── */
+    .user-mini-card {
+      background: white;
+      border-radius: var(--qp-radius);
+      padding: 16px;
+      border: 1px solid var(--qp-border);
+      margin-bottom: 20px;
+    }
+
+    /* ── Sidebar nav ──────────────────────────────────────────── */
+    .sidebar-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--qp-radius-sm);
+      font-size: 14px;
+      color: var(--qp-text-2);
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 2px;
+      transition: background 0.15s;
+    }
+
+    .sidebar-nav-item:hover {
+      background: var(--qp-blue-light);
+      color: var(--qp-navy);
+    }
+
+    .sidebar-nav-item.active {
+      font-weight: 600;
+      color: var(--qp-navy);
+      background: var(--qp-blue-light);
+      border-left: 3px solid var(--qp-blue);
+      padding-left: 9px;
+    }
+
+    /* ── Upgrade teaser ───────────────────────────────────────── */
+    .upgrade-teaser {
+      background: var(--qp-blue-light);
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 8px;
+    }
+
+    .upgrade-teaser h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 4px;
+    }
+
+    .upgrade-teaser p {
+      font-size: 12px;
+      color: var(--qp-text-2);
+      margin-bottom: 10px;
+    }
+
+    /* ── Continue card ────────────────────────────────────────── */
+    .continue-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: white;
+      border: 2px solid var(--qp-blue);
+      border-radius: var(--qp-radius);
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    .progress-ring-wrap {
+      flex-shrink: 0;
+    }
+
+    .continue-card-body {
+      flex: 1;
+    }
+
+    .continue-card-body h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 4px;
+    }
+
+    .continue-card-body p {
+      font-size: 14px;
+      color: var(--qp-text-2);
+      margin-bottom: 4px;
+    }
+
+    .continue-card-body .eta {
+      font-size: 13px;
+      color: var(--qp-text-3);
+    }
+
+    /* ── Feed cards ───────────────────────────────────────────── */
+    .feed-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      transition: border-color 0.15s;
+    }
+
+    .feed-card:hover {
+      border-color: var(--qp-blue);
+    }
+
+    .feed-card-body {
+      flex: 1;
+    }
+
+    .feed-card-body h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 4px;
+    }
+
+    .feed-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* ── People grid ──────────────────────────────────────────── */
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    /* ── Bookmarks ────────────────────────────────────────────── */
+    .bookmark-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .bookmark-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--qp-off-white);
+      border-radius: var(--qp-radius-sm);
+    }
+
+    .bookmark-item span.title {
+      font-size: 14px;
+      color: var(--qp-navy);
+      flex: 1;
+    }
+
+    .bookmark-item span.x {
+      color: var(--qp-text-3);
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* ── Right widgets ────────────────────────────────────────── */
+    .right-widget {
+      background: white;
+      border-radius: var(--qp-radius);
+      padding: 16px;
+      border: 1px solid var(--qp-border);
+      margin-bottom: 14px;
+    }
+
+    .right-widget h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 12px;
+    }
+
+    .mini-progress-bar {
+      background: var(--qp-border);
+      border-radius: 3px;
+      height: 6px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+
+    .mini-progress-bar-fill {
+      height: 100%;
+      background: var(--qp-blue);
+      border-radius: 3px;
+    }
+
+    .week-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--qp-text-2);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--qp-border);
+    }
+
+    .week-item:last-child {
+      border-bottom: none;
+    }
+
+    .week-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--qp-blue);
+      flex-shrink: 0;
+    }
+
+    /* ── Utility ──────────────────────────────────────────────── */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      margin-top: 28px;
+    }
+
+    .greeting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 24px;
+    }
+
+    /* ── AI Chat search bar ───────────────────────────────────── */
+    .chat-search-bar {
+      background: white;
+      border: 2px solid var(--qp-blue);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 24px rgba(43, 143, 214, 0.10);
+    }
+
+    .chat-search-bar-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--qp-blue);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chat-search-input-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chat-search-input {
+      flex: 1;
+      height: 52px;
+      border: 1.5px solid var(--qp-border);
+      border-radius: 12px;
+      padding: 0 18px;
+      font-size: 16px;
+      font-family: inherit;
+      color: var(--qp-text);
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--qp-off-white);
+    }
+
+    .chat-search-input:focus {
+      border-color: var(--qp-blue);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(43, 143, 214, 0.10);
+    }
+
+    .chat-search-input::placeholder {
+      color: var(--qp-text-3);
+    }
+
+    .voice-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      border: 1.5px solid var(--qp-border);
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      color: var(--qp-text-3);
+    }
+
+    .voice-btn:hover {
+      border-color: var(--qp-blue);
+      background: var(--qp-blue-light);
+      color: var(--qp-blue);
+    }
+
+    .voice-btn.listening {
+      border-color: #EF4444;
+      background: #FEE2E2;
+      color: #EF4444;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.3);
+      }
+
+      50% {
+        box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+      }
+    }
+
+    .send-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      border: none;
+      background: var(--qp-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      flex-shrink: 0;
+      color: white;
+      transition: background 0.2s;
+    }
+
+    .send-btn:hover {
+      background: var(--qp-blue-mid);
+    }
+
+    .chat-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chat-suggestion-chip {
+      background: var(--qp-off-white);
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: var(--qp-text-2);
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .chat-suggestion-chip:hover {
+      background: var(--qp-blue-light);
+      border-color: var(--qp-blue);
+      color: var(--qp-blue-mid);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAV BAR — authenticated
+  ════════════════════════════════════════════════════════════════ -->
+  <nav class="qp-nav">
+    <a class="qp-nav-brand" href="01_homepage.html">
+      <img src="Logo_withName.png" height="40" alt="Qpedia logo" />
+    </a>
+
+    <ul class="qp-nav-links">
+      <li><a href="09_topic_browse.html">Knowledge Hub</a></li>
+      <li><a href="#">Intelligence</a></li>
+      <li><a href="#">Ecosystem</a></li>
+    </ul>
+
+    <div class="qp-nav-actions">
+      <!-- Notification bell with badge -->
+      <div style="position:relative; cursor:pointer;">
+        <span style="font-size:20px;">🔔</span>
+        <span style="position:absolute; top:-4px; right:-4px; background:#EF4444; color:white;
+                     font-size:10px; font-weight:700; border-radius:50%;
+                     width:16px; height:16px; display:flex; align-items:center; justify-content:center;">2</span>
+      </div>
+      <!-- Avatar -->
+      <div class="qp-nav-avatar">AK</div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       THREE-COLUMN PAGE LAYOUT
+  ════════════════════════════════════════════════════════════════ -->
+  <div class="page-layout">
+
+    <!-- ─────────────────────────────────────────────────────────
+         LEFT SIDEBAR
+    ────────────────────────────────────────────────────────────── -->
+    <aside class="left-sidebar">
+
+      <!-- User mini card -->
+      <div class="user-mini-card">
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div style="flex:1;">
+            <h4 style="font-size:15px; font-weight:600; color:var(--qp-navy); margin-bottom:2px;">Arjun Kumar</h4>
+            <p class="qp-caption">PhD Researcher · IISc</p>
+            <div style="display:flex; gap:10px; margin-top:8px; align-items:center;">
+              <a class="qp-btn-ghost" style="font-size:12px; padding:0;" href="08_user_profile.html">Edit Profile</a>
+              <span style="font-size:13px; color:var(--qp-warning);">7-day streak</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar navigation -->
+      <div style="margin-bottom:20px;">
+        <a class="sidebar-nav-item active" href="06_dashboard.html">Dashboard</a>
+        <a class="sidebar-nav-item" href="07_learning_module.html">My Learning Path</a>
+        <a class="sidebar-nav-item" href="#">Bookmarks &nbsp;(12)</a>
+        <a class="sidebar-nav-item" href="#">My Profile</a>
+        <a class="sidebar-nav-item" href="#">Notifications &nbsp;(2)</a>
+        <a class="sidebar-nav-item" href="#">Contribute Entry</a>
+        <a class="sidebar-nav-item" href="#">Settings</a>
+      </div>
+
+      <hr class="qp-divider" />
+
+      <!-- Upgrade teaser -->
+      <div class="upgrade-teaser">
+        <h4>Unlock Intelligence Layer</h4>
+        <p>Supply chain maps, sector dashboards, executive briefings.</p>
+        <a class="qp-btn-ghost" style="font-size:13px; padding:0;" href="#">Start 7-day trial →</a>
+      </div>
+
+      <hr class="qp-divider" />
+
+      <a href="10_editor_workspace.html" style="font-size:12px; color:var(--qp-text-3); text-decoration:none;
+                display:block; text-align:center; padding:8px 0;">
+        🔒 Editor Access
+      </a>
+    </aside>
+
+    <!-- ─────────────────────────────────────────────────────────
+         MAIN CONTENT
+    ────────────────────────────────────────────────────────────── -->
+    <main class="main-content">
+
+      <!-- Greeting row -->
+      <div class="greeting-row">
+        <h2 style="font-size:26px; font-weight:700; color:var(--qp-navy);">Welcome back, Arjun</h2>
+        <span class="qp-caption">Sunday, 29 March &nbsp;·&nbsp; 7-day streak</span>
+      </div>
+
+      <!-- AI CHAT SEARCH BAR -->
+      <div class="chat-search-bar">
+        <div class="chat-search-bar-label">
+          <span>Ask Qpedia anything</span>
+          <span
+            style="font-size:11px; font-weight:400; color:var(--qp-text-3); letter-spacing:0; text-transform:none; margin-left:4px;">Grounded
+            in the knowledge graph</span>
+        </div>
+        <div class="chat-search-input-row">
+          <input class="chat-search-input" id="dashboard-chat-input" type="text"
+            placeholder="Ask anything — 'What are the latest TRL 7 quantum systems in India?' or 'Explain surface codes in simple terms'"
+            autocomplete="off" />
+          <button class="voice-btn" id="voice-btn" title="Search by voice">🎤</button>
+          <button class="send-btn" id="send-btn" title="Send">➤</button>
+        </div>
+        <div class="chat-suggestions">
+          <span class="chat-suggestion-chip" onclick="fillChat(this)">Who are the leading QEC researchers in
+            India?</span>
+          <span class="chat-suggestion-chip" onclick="fillChat(this)">What is the TRL of trapped ion qubits?</span>
+          <span class="chat-suggestion-chip" onclick="fillChat(this)">Show me superconducting qubit supply chain</span>
+          <span class="chat-suggestion-chip" onclick="fillChat(this)">Latest NQM funding updates</span>
+        </div>
+      </div>
+
+      <!-- ── SECTION 1: Continue Learning ─────────────────────── -->
+      <div class="continue-card">
+
+        <!-- Progress ring SVG -->
+        <div class="progress-ring-wrap">
+          <svg width="60" height="60" viewBox="0 0 60 60" aria-label="3 of 12 modules complete">
+            <!-- Background track -->
+            <circle cx="30" cy="30" r="24" fill="none" stroke="var(--qp-border)" stroke-width="5" />
+            <!-- Progress arc (3/12 = 25% → dasharray 37.7 113.1 of circumference 150.8) -->
+            <circle cx="30" cy="30" r="24" fill="none" stroke="var(--qp-blue)" stroke-width="5"
+              stroke-dasharray="90.4 150.8" stroke-linecap="round" transform="rotate(-90 30 30)" />
+            <text x="30" y="35" text-anchor="middle" font-size="12" font-weight="600" fill="#0D2B3E">3/12</text>
+          </svg>
+        </div>
+
+        <!-- Course info -->
+        <div class="continue-card-body">
+          <h4>Quantum Computing Foundations</h4>
+          <p>Module 3.2 — Superconducting Qubit Platforms</p>
+          <span class="eta">⏱ Estimated 18 min to complete</span>
+        </div>
+
+        <a class="qp-btn-primary" href="07_learning_module.html" id="btn-continue-learning">Continue →</a>
+      </div>
+
+      <!-- ── SECTION 2: Knowledge Feed ────────────────────────── -->
+      <div class="section-header">
+        <h3 class="qp-h3">Matched to your interests</h3>
+        <span class="qp-chip" style="font-size:11px;">Personalised</span>
+      </div>
+
+      <!-- Feed card 1 -->
+      <div class="feed-card">
+        <span class="qp-chip">Quantum Computing</span>
+        <div class="feed-card-body">
+          <h4>Surface Code Error Correction</h4>
+          <div class="feed-card-meta">
+            <div class="qp-trl">
+              <div class="qp-trl-bar">
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+              </div>
+            </div>
+            <span class="qp-badge-expert">Expert Peer-Reviewed</span>
+            <span class="qp-caption">Updated 2 days ago</span>
+            <a class="qp-btn-ghost" style="font-size:13px; padding:0; margin-left:auto;"
+              href="03_knowledge_entry.html">Read →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feed card 2 -->
+      <div class="feed-card">
+        <span class="qp-chip">Policy</span>
+        <div class="feed-card-body">
+          <h4>NQM Progress: Error-Corrected Qubits</h4>
+          <div class="feed-card-meta">
+            <span class="qp-badge-editor">Editor Verified</span>
+            <span class="qp-caption">Updated this week</span>
+            <a class="qp-btn-ghost" style="font-size:13px; padding:0; margin-left:auto;" href="#">Read →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feed card 3 -->
+      <div class="feed-card">
+        <span class="qp-chip">Supply Chain</span>
+        <div class="feed-card-body">
+          <h4>Fault-Tolerant QC: Supply Chain Requirements</h4>
+          <div class="feed-card-meta">
+            <div class="qp-trl">
+              <div class="qp-trl-bar">
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment filled"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+                <div class="qp-trl-segment"></div>
+              </div>
+            </div>
+            <span class="qp-badge-expert">Expert Peer-Reviewed</span>
+            <span class="qp-caption">Updated 1 week ago</span>
+            <a class="qp-btn-ghost" style="font-size:13px; padding:0; margin-left:auto;" href="#">Read →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 3: People ─────────────────────────────────── -->
+      <div class="section-header">
+        <h3 class="qp-h3">Researchers in Quantum Error Correction</h3>
+        <a class="qp-btn-ghost" style="font-size:13px;" href="08_user_profile.html">Discover →</a>
+      </div>
+
+      <div class="people-grid">
+
+        <!-- Person 1 -->
+        <div class="qp-person-card">
+          <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+            <div class="qp-avatar">PS</div>
+            <div>
+              <p style="font-size:14px; font-weight:600; color:var(--qp-navy); margin-bottom:2px;">Dr. Priya Sharma</p>
+              <p class="qp-caption">Asst Prof · IISc</p>
+            </div>
+          </div>
+          <span class="qp-chip" style="font-size:11px;">Surface Codes</span>
+          <button class="qp-btn-ghost"
+            style="font-size:12px; padding:4px 0; margin-top:8px; display:block;">Connect</button>
+        </div>
+
+        <!-- Person 2 -->
+        <div class="qp-person-card">
+          <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+            <div class="qp-avatar">RK</div>
+            <div>
+              <p style="font-size:14px; font-weight:600; color:var(--qp-navy); margin-bottom:2px;">Dr. Rajiv Kumar</p>
+              <p class="qp-caption">Researcher · IIT Bombay</p>
+            </div>
+          </div>
+          <span class="qp-chip" style="font-size:11px;">Stabilizer Codes</span>
+          <button class="qp-btn-ghost"
+            style="font-size:12px; padding:4px 0; margin-top:8px; display:block;">Connect</button>
+        </div>
+
+        <!-- Person 3 -->
+        <div class="qp-person-card">
+          <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+            <div class="qp-avatar">SM</div>
+            <div>
+              <p style="font-size:14px; font-weight:600; color:var(--qp-navy); margin-bottom:2px;">Dr. Sara Mehta</p>
+              <p class="qp-caption">PhD Student · IISc</p>
+            </div>
+          </div>
+          <span class="qp-chip" style="font-size:11px;">Fault-Tolerant QC</span>
+          <button class="qp-btn-ghost"
+            style="font-size:12px; padding:4px 0; margin-top:8px; display:block;">Connect</button>
+        </div>
+
+      </div>
+
+      <!-- ── SECTION 4: Bookmarks ──────────────────────────────── -->
+      <div class="section-header">
+        <h3 class="qp-h3">Bookmarks (12)</h3>
+      </div>
+
+      <div class="bookmark-grid">
+
+        <div class="bookmark-item">
+          <span class="qp-chip" style="font-size:11px;">Quantum Computing</span>
+          <span class="title">Transmon Qubit Systems</span>
+          <span class="x">×</span>
+        </div>
+
+        <div class="bookmark-item">
+          <span class="qp-chip" style="font-size:11px;">Policy</span>
+          <span class="title">NQM Overview 2025</span>
+          <span class="x">×</span>
+        </div>
+
+        <div class="bookmark-item">
+          <span class="qp-chip" style="font-size:11px;">Supply Chain</span>
+          <span class="title">Dilution Refrigerators</span>
+          <span class="x">×</span>
+        </div>
+
+        <div class="bookmark-item">
+          <span class="qp-chip" style="font-size:11px;">Quantum Computing</span>
+          <span class="title">Surface Code Threshold</span>
+          <span class="x">×</span>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ─────────────────────────────────────────────────────────
+         RIGHT PANEL
+    ────────────────────────────────────────────────────────────── -->
+    <aside class="right-panel">
+
+      <!-- Widget 1 — Learning Journey -->
+      <div class="right-widget">
+        <h4>Learning Journey</h4>
+        <p style="font-size:14px; color:var(--qp-text); margin-bottom:8px;">
+          Phase 1: Foundations — 3 of 5 modules
+        </p>
+        <div class="mini-progress-bar">
+          <div class="mini-progress-bar-fill" style="width:60%;"></div>
+        </div>
+        <p style="font-size:13px; color:var(--qp-text-3); margin-top:8px;">7-day streak &nbsp;·&nbsp;
+          <a href="07_learning_module.html" style="color:var(--qp-blue); font-size:13px;">View full path →</a>
+        </p>
+      </div>
+
+      <!-- Widget 2 — This Week -->
+      <div class="right-widget">
+        <h4>This Week on Qpedia</h4>
+        <div class="week-item">
+          <span class="week-dot"></span>
+          4 new entries in Quantum Computing
+        </div>
+        <div class="week-item">
+          <span class="week-dot"></span>
+          3 researchers joined from IISc
+        </div>
+        <div class="week-item">
+          <span class="week-dot"></span>
+          NQM update published yesterday
+        </div>
+      </div>
+
+      <!-- Widget 3 — Quick Search -->
+      <div class="right-widget">
+        <h4>Quick Search</h4>
+        <input id="dashboard-search" class="qp-input" style="height:40px; font-size:14px; margin-top:4px;"
+          placeholder="Search knowledge hub…" type="search" />
+      </div>
+
+    </aside>
+  </div><!-- /page-layout -->
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════════════════ -->
+  <footer class="qp-footer">
+    <img src="Logo.jpeg" style="height:32px;" alt="Qpedia wordmark" />
+    <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
+    <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
+  </footer>
+
+  <script>
+    // ── Chat search — Enter / send button → search results ──────
+    function submitChat() {
+      var val = document.getElementById('dashboard-chat-input').value.trim();
+      if (val.length > 0) {
+        window.location.href = '02_search_results.html';
+      }
+    }
+
+    document.getElementById('dashboard-chat-input').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') submitChat();
+    });
+
+    document.getElementById('send-btn').addEventListener('click', submitChat);
+
+    // ── Suggestion chips fill the input and focus it ─────────────
+    function fillChat(el) {
+      document.getElementById('dashboard-chat-input').value = el.textContent;
+      document.getElementById('dashboard-chat-input').focus();
+    }
+
+    // ── Voice button — Web Speech API with visual fallback ───────
+    var isListening = false;
+    var recognition = null;
+
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-IN';
+
+      recognition.onresult = function (event) {
+        var transcript = event.results[0][0].transcript;
+        document.getElementById('dashboard-chat-input').value = transcript;
+        stopListening();
+      };
+      recognition.onerror = function () { stopListening(); };
+      recognition.onend = function () { stopListening(); };
+    }
+
+    function startListening() {
+      isListening = true;
+      document.getElementById('voice-btn').classList.add('listening');
+      document.getElementById('voice-btn').textContent = '⏹';
+      document.getElementById('dashboard-chat-input').placeholder = 'Listening...';
+      if (recognition) recognition.start();
+    }
+
+    function stopListening() {
+      isListening = false;
+      document.getElementById('voice-btn').classList.remove('listening');
+      document.getElementById('voice-btn').textContent = '🎤';
+      document.getElementById('dashboard-chat-input').placeholder =
+        "Ask anything — 'What are the latest TRL 7 quantum systems in India?' or 'Explain surface codes in simple terms'";
+      if (recognition) { try { recognition.stop(); } catch (e) { } }
+    }
+
+    document.getElementById('voice-btn').addEventListener('click', function () {
+      if (isListening) { stopListening(); } else { startListening(); }
+    });
+  </script>
+
+</body>
+
+</html>

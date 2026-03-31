@@ -1,0 +1,2722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Ecosystem — Qpedia</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="description"
+    content="Discover researchers, organisations, opportunities, and supply chain partners across the global quantum ecosystem. AI-assisted discovery powered by Claude, GPT, and Gemini." />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="shared-search.css" />
+
+  <style>
+    /* ============================================================
+       ECOSYSTEM — PAGE-SPECIFIC STYLES
+       All tokens from shared.css
+       ============================================================ */
+
+    /* ── Active nav ─────────────────────────────────────────── */
+    .qp-nav-links a.eco-active {
+      color: var(--qp-navy);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* ── Hero ─────────────────────────────────────────────────── */
+    .eco-hero {
+      background: var(--qp-off-white);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 60px 48px 52px;
+      text-align: center;
+    }
+
+    .eco-hero-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .eco-hero-badge {
+      display: inline-block;
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 18px;
+      letter-spacing: 0.02em;
+    }
+
+    .eco-hero-h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin: 0 0 12px;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    .eco-hero-sub {
+      font-size: 15px;
+      color: var(--qp-text-3);
+      margin: 0 auto 32px;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    .eco-search-wrap {
+      display: flex;
+      max-width: 600px;
+      margin: 0 auto 20px;
+      gap: 0;
+      background: white;
+      border: 1.5px solid var(--qp-border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .eco-search-wrap:focus-within {
+      border-color: var(--qp-blue);
+      box-shadow: 0 0 0 3px rgba(43, 143, 214, 0.12);
+    }
+
+    .eco-search-input {
+      flex: 1;
+      height: 52px;
+      border: none;
+      outline: none;
+      padding: 0 18px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--qp-text);
+      background: transparent;
+    }
+
+    .eco-search-input::placeholder {
+      color: var(--qp-text-3);
+    }
+
+    .eco-search-btn {
+      height: 52px;
+      padding: 0 22px;
+      background: var(--qp-navy);
+      color: white;
+      border: none;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+
+    .eco-search-btn:hover {
+      background: var(--qp-blue-mid);
+    }
+
+    .eco-role-chips {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .eco-role-chip {
+      background: white;
+      color: var(--qp-text-2);
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .eco-role-chip:hover,
+    .eco-role-chip.active {
+      background: var(--qp-navy);
+      color: white;
+      border-color: var(--qp-navy);
+    }
+
+    .eco-hero-note {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      margin-top: 8px;
+    }
+
+    /* ── Stats Strip ──────────────────────────────────────────── */
+    .eco-stats-strip {
+      background: white;
+      border-bottom: 1px solid var(--qp-border);
+      padding: 0;
+    }
+
+    .eco-stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .eco-stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 20px 12px;
+      border-right: 1px solid var(--qp-border);
+    }
+
+    .eco-stat-item:last-child {
+      border-right: none;
+    }
+
+    .eco-stat-value {
+      display: block;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      letter-spacing: -0.02em;
+    }
+
+    .eco-stat-label {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      margin-top: 2px;
+    }
+
+    /* ── Shared section styles ────────────────────────────────── */
+    .eco-section {
+      padding: 56px 0;
+    }
+
+    .eco-section.eco-alt {
+      background: var(--qp-off-white);
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+    }
+
+    .eco-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 32px;
+    }
+
+    .eco-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--qp-blue);
+      margin-bottom: 6px;
+    }
+
+    .eco-section-h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      letter-spacing: -0.01em;
+      margin: 0 0 6px;
+    }
+
+    .eco-section-sub {
+      font-size: 14px;
+      color: var(--qp-text-3);
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    .eco-section-sub1 {
+      font-size: 14px;
+      color: var(--qp-text-3);
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    /* ── Lock pattern ─────────────────────────────────────────── */
+    .eco-locked-wrap {
+      position: relative;
+      border-radius: var(--qp-radius);
+      overflow: hidden;
+    }
+
+    .eco-locked-wrap .eco-lock-inner {
+      filter: blur(3px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .eco-lock-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(248, 250, 252, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--qp-radius);
+      border: 1px solid var(--qp-border);
+    }
+
+    .eco-lock-badge {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--qp-text-2);
+      box-shadow: 0 2px 8px rgba(13, 43, 62, 0.1);
+      white-space: nowrap;
+    }
+
+    /* Inline lock badge (for cards that show badge inside, not overlay) */
+    .eco-lock-badge-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--qp-off-white);
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--qp-text-3);
+    }
+
+    /* ── People Network ───────────────────────────────────────── */
+    .eco-people-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .eco-person-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .eco-person-card:hover {
+      border-color: #B5D0E8;
+      box-shadow: var(--qp-shadow);
+    }
+
+    .eco-person-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .eco-person-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .eco-person-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .eco-person-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .eco-person-role {
+      font-size: 12px;
+      color: var(--qp-text-2);
+      margin: 1px 0;
+    }
+
+    .eco-person-inst {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .eco-person-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .eco-person-chip {
+      background: var(--qp-blue-light);
+      color: var(--qp-blue-mid);
+      border-radius: 12px;
+      padding: 3px 9px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .eco-person-chain {
+      border-top: 1px solid var(--qp-border);
+      padding-top: 10px;
+      font-size: 11px;
+      color: var(--qp-text-3);
+      line-height: 1.5;
+    }
+
+    .eco-person-chain-path {
+      color: var(--qp-blue-mid);
+      font-weight: 500;
+    }
+
+    .eco-people-footer {
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    /* ── Organisation Directory ───────────────────────────────── */
+    .eco-org-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--qp-border);
+      margin-bottom: 24px;
+    }
+
+    .eco-org-tab {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--qp-text-2);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      background: transparent;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: inherit;
+      transition: color 0.15s, border-bottom-color 0.15s;
+      white-space: nowrap;
+    }
+
+    .eco-org-tab:hover {
+      color: var(--qp-navy);
+    }
+
+    .eco-org-tab.active {
+      color: var(--qp-navy);
+      font-weight: 600;
+      border-bottom-color: var(--qp-navy);
+    }
+
+    .eco-org-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .eco-org-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .eco-org-card:hover {
+      border-color: #B5D0E8;
+      box-shadow: var(--qp-shadow);
+    }
+
+    .eco-org-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .eco-org-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--qp-blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .eco-org-type-badge {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--qp-text-3);
+      background: var(--qp-off-white);
+      border: 1px solid var(--qp-border);
+      border-radius: 10px;
+      padding: 3px 9px;
+    }
+
+    .eco-org-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+    }
+
+    .eco-org-location {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .eco-org-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .eco-org-chip {
+      background: var(--qp-off-white);
+      color: var(--qp-text-2);
+      border: 1px solid var(--qp-border);
+      border-radius: 10px;
+      padding: 3px 8px;
+      font-size: 11px;
+    }
+
+    /* ── Opportunity Board ────────────────────────────────────── */
+    .eco-opp-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .eco-opp-tab {
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--qp-text-2);
+      cursor: pointer;
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+
+    .eco-opp-tab:hover {
+      border-color: var(--qp-blue);
+      color: var(--qp-navy);
+    }
+
+    .eco-opp-tab.active {
+      background: var(--qp-navy);
+      color: white;
+      border-color: var(--qp-navy);
+    }
+
+    .eco-opp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .eco-opp-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .eco-opp-card:hover {
+      border-color: #B5D0E8;
+      box-shadow: var(--qp-shadow);
+    }
+
+    .eco-opp-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: var(--qp-blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .eco-opp-body {
+      flex: 1;
+    }
+
+    .eco-opp-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 3px;
+    }
+
+    .eco-opp-org {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      margin-bottom: 6px;
+    }
+
+    .eco-opp-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .eco-opp-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--qp-blue-mid);
+      background: var(--qp-blue-light);
+      border-radius: 10px;
+      padding: 3px 9px;
+    }
+
+    .eco-opp-deadline {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .eco-opp-deadline.urgent {
+      color: var(--qp-warning);
+      font-weight: 500;
+    }
+
+    .eco-opp-action {
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--qp-blue);
+      text-decoration: none;
+      padding: 8px 14px;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius-sm);
+      transition: all 0.15s;
+      align-self: center;
+    }
+
+    .eco-opp-action:hover {
+      background: var(--qp-blue);
+      color: white;
+      border-color: var(--qp-blue);
+    }
+
+    .eco-opp-gate {
+      background: var(--qp-off-white);
+      border: 1px dashed var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .eco-opp-gate-text {
+      font-size: 13px;
+      color: var(--qp-text-3);
+    }
+
+    .eco-opp-gate-text strong {
+      color: var(--qp-text-2);
+    }
+
+    /* ── Ecosystem Map ────────────────────────────────────────── */
+    .eco-map-container {
+      position: relative;
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius-lg);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .eco-map-svg-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 24px 24px 0;
+    }
+
+    .eco-map-svg-wrap svg {
+      width: 100%;
+      max-width: 960px;
+      height: auto;
+    }
+
+    .eco-map-lock-bar {
+      background: linear-gradient(to bottom, transparent, rgba(248, 250, 252, 0.98));
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 190px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 28px;
+      gap: 8px;
+    }
+
+    .eco-map-lock-badge {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--qp-text-2);
+      box-shadow: var(--qp-shadow);
+    }
+
+    .eco-map-lock-sub {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .eco-map-legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 14px 24px;
+      border-top: 1px solid var(--qp-border);
+      background: var(--qp-off-white);
+    }
+
+    .eco-map-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .eco-map-legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Curated Discovery Demo Frame ────────────────────────── */
+    .eco-demo-frame {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--qp-shadow);
+    }
+
+    .eco-demo-chrome {
+      background: var(--qp-off-white);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .eco-demo-chrome-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eco-demo-chrome-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .eco-demo-chrome-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .eco-demo-chrome-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--qp-navy);
+    }
+
+    .eco-demo-model-badges {
+      display: flex;
+      gap: 6px;
+    }
+
+    .eco-model-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 3px 8px;
+      border-radius: 10px;
+    }
+
+    .eco-model-badge.claude {
+      background: #F0F0FF;
+      color: #5B5BD6;
+    }
+
+    .eco-model-badge.gpt {
+      background: #F0FFF4;
+      color: #2F855A;
+    }
+
+    .eco-model-badge.gemini {
+      background: #FFF8F0;
+      color: #C05621;
+    }
+
+    .eco-demo-search-row {
+      padding: 20px 24px 0;
+      display: flex;
+      gap: 10px;
+    }
+
+    .eco-demo-search-input {
+      flex: 1;
+      height: 44px;
+      border: 1.5px solid var(--qp-border);
+      border-radius: 8px;
+      padding: 0 16px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--qp-text);
+      background: var(--qp-off-white);
+      outline: none;
+    }
+
+    .eco-demo-search-btn {
+      height: 44px;
+      padding: 0 22px;
+      background: var(--qp-navy);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: default;
+      white-space: nowrap;
+    }
+
+    .eco-demo-role-row {
+      padding: 10px 24px 16px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .eco-demo-role-chip {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 11px;
+      border-radius: 12px;
+      border: 1px solid var(--qp-border);
+      color: var(--qp-text-3);
+      background: white;
+    }
+
+    .eco-demo-role-chip.active {
+      background: var(--qp-navy);
+      color: white;
+      border-color: var(--qp-navy);
+    }
+
+    .eco-demo-divider {
+      height: 1px;
+      background: var(--qp-border);
+      margin: 0 24px;
+    }
+
+    .eco-demo-response {
+      padding: 20px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .eco-demo-response-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .eco-demo-response-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--qp-blue);
+    }
+
+    .eco-demo-summary {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      line-height: 1.6;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--qp-border);
+    }
+
+    .eco-demo-results-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    /* shared result sub-components (reused inside demo frame) */
+    .eco-discovery-result-group-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--qp-text-3);
+      margin-bottom: 8px;
+    }
+
+    .eco-discovery-mini-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      background: var(--qp-off-white);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: 12px;
+      color: var(--qp-text-2);
+    }
+
+    .eco-discovery-mini-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .eco-discovery-kg-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: var(--qp-blue-light);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: 12px;
+      color: var(--qp-blue-mid);
+      font-weight: 500;
+    }
+
+    .eco-discovery-lock-note {
+      background: var(--qp-off-white);
+      border: 1px dashed var(--qp-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--qp-text-3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Feature pills below the frame */
+    .eco-demo-pills {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .eco-demo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--qp-text-2);
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: 20px;
+      padding: 8px 16px;
+    }
+
+    .eco-demo-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--qp-blue);
+      flex-shrink: 0;
+    }
+
+    /* ── Vendor Directory ─────────────────────────────────────── */
+    .eco-vendor-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .eco-vendor-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .eco-vendor-card:hover {
+      border-color: #B5D0E8;
+      box-shadow: var(--qp-shadow);
+    }
+
+    .eco-vendor-icon {
+      font-size: 24px;
+    }
+
+    .eco-vendor-category {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--qp-blue);
+    }
+
+    .eco-vendor-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 4px;
+    }
+
+    .eco-vendor-examples {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      line-height: 1.5;
+    }
+
+    .eco-vendor-count {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--qp-blue-mid);
+    }
+
+    .eco-vendor-compare-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--qp-text-3);
+      background: var(--qp-off-white);
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius-sm);
+      padding: 8px 12px;
+      cursor: default;
+      font-family: inherit;
+      margin-top: auto;
+    }
+
+    /* ── Events & Summit ──────────────────────────────────────── */
+    .eco-events-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .eco-summit-card {
+      background: var(--qp-navy);
+      border-radius: var(--qp-radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .eco-summit-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .eco-summit-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      line-height: 1.25;
+    }
+
+    .eco-summit-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .eco-summit-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .eco-summit-meta-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--qp-blue);
+      flex-shrink: 0;
+    }
+
+    .eco-summit-pricing {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .eco-summit-price-item {
+      text-align: center;
+    }
+
+    .eco-summit-price-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .eco-summit-price-label {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.45);
+      margin-top: 2px;
+    }
+
+    .eco-summit-price-divider {
+      width: 1px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .eco-summit-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      color: var(--qp-navy);
+      border-radius: var(--qp-radius-sm);
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .eco-summit-cta:hover {
+      background: var(--qp-blue-light);
+    }
+
+    .eco-events-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .eco-event-card {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .eco-event-card:hover {
+      border-color: #B5D0E8;
+      box-shadow: var(--qp-shadow);
+    }
+
+    .eco-event-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .eco-event-type-badge {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--qp-blue-mid);
+      background: var(--qp-blue-light);
+      border-radius: 10px;
+      padding: 3px 9px;
+      white-space: nowrap;
+    }
+
+    .eco-event-free-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--qp-success);
+      background: #F0FFF4;
+      border-radius: 10px;
+      padding: 3px 9px;
+      white-space: nowrap;
+    }
+
+    .eco-event-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+    }
+
+    .eco-event-details {
+      font-size: 12px;
+      color: var(--qp-text-3);
+      display: flex;
+      gap: 14px;
+    }
+
+    .eco-event-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      border-top: 1px solid var(--qp-border);
+    }
+
+    .eco-event-price {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--qp-navy);
+    }
+
+    .eco-event-register {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--qp-blue);
+      text-decoration: none;
+      padding: 7px 14px;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius-sm);
+      transition: all 0.15s;
+    }
+
+    .eco-event-register:hover {
+      background: var(--qp-blue);
+      color: white;
+      border-color: var(--qp-blue);
+    }
+
+    /* ── CSR Strip ────────────────────────────────────────────── */
+    .eco-csr-strip {
+      background: var(--qp-off-white);
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 32px 48px;
+    }
+
+    .eco-csr-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .eco-csr-card {
+      flex: 1;
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .eco-csr-card:hover {
+      border-color: #B5D0E8;
+    }
+
+    .eco-csr-emoji {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .eco-csr-body {
+      flex: 1;
+    }
+
+    .eco-csr-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--qp-blue);
+      margin-bottom: 3px;
+    }
+
+    .eco-csr-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 3px;
+    }
+
+    .eco-csr-sub {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .eco-csr-action {
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--qp-blue);
+      padding: 10px 16px;
+      background: rgba(43, 143, 214, 0.08);
+      border-radius: var(--qp-radius-sm);
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .eco-csr-action:hover {
+      background: var(--qp-blue);
+      color: white;
+    }
+
+    /* ── Revenue Strip ────────────────────────────────────────── */
+    .eco-revenue-strip {
+      background: var(--qp-off-white);
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 32px 48px;
+    }
+
+    .eco-revenue-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .eco-revenue-card {
+      flex: 1;
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius);
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .eco-revenue-card:hover {
+      border-color: var(--qp-blue);
+    }
+
+    .eco-revenue-body {
+      flex: 1;
+    }
+
+    .eco-revenue-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--qp-blue);
+      margin-bottom: 3px;
+    }
+
+    .eco-revenue-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--qp-navy);
+      margin-bottom: 2px;
+    }
+
+    .eco-revenue-sub {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    .eco-revenue-action {
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--qp-blue);
+      padding: 10px 16px;
+      background: rgba(43, 143, 214, 0.08);
+      border-radius: var(--qp-radius-sm);
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .eco-revenue-action:hover {
+      background: var(--qp-blue);
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="qp-page">
+
+    <!-- ══ NAV ══════════════════════════════════════════════════ -->
+    <nav class="qp-nav">
+      <a href="01_homepage.html" class="qp-nav-brand">
+        <img src="Logo_withName.png" alt="Qpedia logo" />
+      </a>
+      <ul class="qp-nav-links">
+        <li><a href="knowledge_hub.html">Knowledge Hub</a></li>
+        <li><a href="intelligence.html">Intelligence</a></li>
+        <li><a href="ecosystem.html" class="eco-active">Ecosystem</a></li>
+      </ul>
+      <div class="qp-nav-actions">
+        <a href="04_signup.html" class="qp-btn-ghost" id="nav-signin">Sign In</a>
+        <a href="04_signup.html" class="qp-btn-primary" id="nav-try-free">Try Free</a>
+      </div>
+    </nav>
+
+    <main class="qp-content">
+
+      <!-- ══ 1. HERO ══════════════════════════════════════════════ -->
+      <section class="eco-hero" id="hero">
+        <div class="eco-hero-inner">
+          <span class="eco-hero-badge">Discovery &amp; Networking Layer</span>
+          <h1 class="eco-hero-h1">The quantum world, made navigable.</h1>
+          <p class="eco-hero-sub">Discover researchers, organisations, opportunities, and supply chain partners across
+            the global quantum ecosystem — powered by AI grounded in Qpedia's knowledge graph.</p>
+
+          <div class="eco-search-wrap" id="hero-search-wrap">
+            <input class="eco-search-input" id="hero-search-input" type="text"
+              placeholder="Who or what are you looking for? e.g. QKD researchers in India" />
+            <button class="eco-search-btn" id="hero-search-btn">Discover →</button>
+          </div>
+
+          <div class="eco-role-chips" id="role-chips" aria-label="Filter by role">
+            <button class="eco-role-chip active" data-role="all">All</button>
+            <button class="eco-role-chip" data-role="researcher">Researcher</button>
+            <button class="eco-role-chip" data-role="founder">Founder</button>
+            <button class="eco-role-chip" data-role="investor">Investor</button>
+            <button class="eco-role-chip" data-role="supplier">Supplier</button>
+            <button class="eco-role-chip" data-role="policymaker">Policymaker</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 2. NETWORK STATS ══════════════════════════════════════ -->
+      <div class="eco-stats-strip" id="network-stats">
+        <div class="eco-stats-inner">
+          <div class="eco-stat-item">
+            <span class="eco-stat-value">2,400+</span>
+            <span class="eco-stat-label">Researchers &amp; Professionals</span>
+          </div>
+          <div class="eco-stat-item">
+            <span class="eco-stat-value">310+</span>
+            <span class="eco-stat-label">Organisations</span>
+          </div>
+          <div class="eco-stat-item">
+            <span class="eco-stat-value">180</span>
+            <span class="eco-stat-label">Open Opportunities</span>
+          </div>
+          <div class="eco-stat-item">
+            <span class="eco-stat-value">47</span>
+            <span class="eco-stat-label">Countries Represented</span>
+          </div>
+          <div class="eco-stat-item">
+            <span class="eco-stat-value">IISc</span>
+            <span class="eco-stat-label">Anchored by IISc Bengaluru</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ 3. PEOPLE NETWORK ═════════════════════════════════════ -->
+      <section class="eco-section" id="people-network">
+        <div class="qp-container">
+          <div class="eco-section-header">
+            <div>
+              <p class="eco-section-label">People Network</p>
+              <h2 class="eco-section-h2">Researchers, founders, and policymakers — all discoverable</h2>
+              <p class="eco-section-sub">Every profile is a live node in the knowledge graph, linked to domains,
+                institutions, and supply chain roles.</p>
+            </div>
+            <a href="04_signup.html" class="qp-btn-secondary qp-btn-sm" id="browse-all-people-cta">Browse all profiles
+              →</a>
+          </div>
+
+          <div class="eco-people-grid" id="people-grid">
+
+            <!-- Card 1 -->
+            <div class="eco-person-card" id="person-card-1">
+              <div class="eco-person-header">
+                <div class="eco-person-avatar" style="background:#1B5E8A;">AI</div>
+                <div class="eco-person-meta">
+                  <div class="eco-person-name">Dr. Ananya Iyer</div>
+                  <div class="eco-person-role">Senior Researcher</div>
+                  <div class="eco-person-inst">Indian Institute of Science, Bengaluru</div>
+                </div>
+              </div>
+              <div class="eco-person-chips">
+                <span class="eco-person-chip">Superconducting Qubits</span>
+                <span class="eco-person-chip">QEC</span>
+              </div>
+              <div class="eco-person-chain">
+                <span class="eco-person-chain-path">IISc → Superconducting QC → Dilution Refrigerators → NQM Phase
+                  2</span>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="eco-person-card" id="person-card-2">
+              <div class="eco-person-header">
+                <div class="eco-person-avatar" style="background:#0F766E;">RK</div>
+                <div class="eco-person-meta">
+                  <div class="eco-person-name">Rohan Kapoor</div>
+                  <div class="eco-person-role">Co-founder &amp; CTO</div>
+                  <div class="eco-person-inst">QuNu Labs, Bengaluru</div>
+                </div>
+              </div>
+              <div class="eco-person-chips">
+                <span class="eco-person-chip">QKD</span>
+                <span class="eco-person-chip">Quantum Cryptography</span>
+              </div>
+              <div class="eco-person-chain">
+                <span class="eco-person-chain-path">QuNu Labs → QKD → Photonic Components → Defence Sector</span>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="eco-person-card" id="person-card-3">
+              <div class="eco-person-header">
+                <div class="eco-person-avatar" style="background:#6B46C1;">SC</div>
+                <div class="eco-person-meta">
+                  <div class="eco-person-name">Prof. Sarah Chen</div>
+                  <div class="eco-person-role">Policy Advisor</div>
+                  <div class="eco-person-inst">NITI Aayog, New Delhi</div>
+                </div>
+              </div>
+              <div class="eco-person-chips">
+                <span class="eco-person-chip">Quantum Policy</span>
+                <span class="eco-person-chip">NQM</span>
+              </div>
+              <div class="eco-person-chain">
+                <span class="eco-person-chain-path">NITI Aayog → National Quantum Mission → G20 Policy</span>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="eco-person-card" id="person-card-4">
+              <div class="eco-person-header">
+                <div class="eco-person-avatar" style="background:#C05621;">AM</div>
+                <div class="eco-person-meta">
+                  <div class="eco-person-name">Arjun Mehta</div>
+                  <div class="eco-person-role">R&amp;D Engineer</div>
+                  <div class="eco-person-inst">TCS Quantum Lab, Mumbai</div>
+                </div>
+              </div>
+              <div class="eco-person-chips">
+                <span class="eco-person-chip">Quantum Algorithms</span>
+                <span class="eco-person-chip">Optimisation</span>
+              </div>
+              <div class="eco-person-chain">
+                <span class="eco-person-chain-path">TCS → Enterprise QC → Quantum Cloud → Finance Sector</span>
+              </div>
+            </div>
+
+            <!-- Card 5 — LOCKED -->
+            <div class="eco-locked-wrap" id="person-card-5-wrap">
+              <div class="eco-lock-inner eco-person-card">
+                <div class="eco-person-header">
+                  <div class="eco-person-avatar" style="background:#2F855A;">PS</div>
+                  <div class="eco-person-meta">
+                    <div class="eco-person-name">Dr. Priya Sharma</div>
+                    <div class="eco-person-role">Postdoctoral Researcher</div>
+                    <div class="eco-person-inst">IIT Bombay</div>
+                  </div>
+                </div>
+                <div class="eco-person-chips">
+                  <span class="eco-person-chip">Photonic Qubits</span>
+                  <span class="eco-person-chip">Quantum Sensing</span>
+                </div>
+                <div class="eco-person-chain">
+                  <span class="eco-person-chain-path">IIT Bombay → Photonic QC → Optical Components</span>
+                </div>
+              </div>
+              <div class="eco-lock-overlay">
+                <a href="04_signup.html" class="eco-lock-badge">🔒 Free account required</a>
+              </div>
+            </div>
+
+            <!-- Card 6 — LOCKED -->
+            <div class="eco-locked-wrap" id="person-card-6-wrap">
+              <div class="eco-lock-inner eco-person-card">
+                <div class="eco-person-header">
+                  <div class="eco-person-avatar" style="background:#0D2B3E;">MW</div>
+                  <div class="eco-person-meta">
+                    <div class="eco-person-name">Marcus Weber</div>
+                    <div class="eco-person-role">Principal, Deep Tech</div>
+                    <div class="eco-person-inst">Quantum Ventures, Berlin</div>
+                  </div>
+                </div>
+                <div class="eco-person-chips">
+                  <span class="eco-person-chip">QC Startups</span>
+                  <span class="eco-person-chip">Series A–B</span>
+                </div>
+                <div class="eco-person-chain">
+                  <span class="eco-person-chain-path">Quantum Ventures → European QC → Policy → NQM</span>
+                </div>
+              </div>
+              <div class="eco-lock-overlay">
+                <a href="04_signup.html" class="eco-lock-badge">🔒 Free account required</a>
+              </div>
+            </div>
+
+          </div><!-- /people-grid -->
+
+          <div class="eco-people-footer">
+            <a href="04_signup.html" class="qp-btn-ghost" id="people-see-more-cta">Sign in to browse 2,400+ profiles
+              →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 4. ORGANISATION DIRECTORY ════════════════════════════ -->
+      <section class="eco-section eco-alt" id="org-directory">
+        <div class="qp-container">
+          <div class="eco-section-header">
+            <div>
+              <p class="eco-section-label">Organisations</p>
+              <h2 class="eco-section-h2">From IISc spin-offs to global system integrators</h2>
+              <p class="eco-section-sub">Every organisation is a node in the knowledge graph — linked to technologies,
+                supply chains, people, and funding relationships.</p>
+            </div>
+          </div>
+
+          <div class="eco-org-tabs" id="org-tabs" role="tablist">
+            <button class="eco-org-tab active" data-group="orgs" data-target="org-panel-all" role="tab">All</button>
+            <button class="eco-org-tab" data-group="orgs" data-target="org-panel-uni" role="tab">Universities &amp;
+              Labs</button>
+            <button class="eco-org-tab" data-group="orgs" data-target="org-panel-startup" role="tab">Startups</button>
+            <button class="eco-org-tab" data-group="orgs" data-target="org-panel-enterprise"
+              role="tab">Enterprises</button>
+            <button class="eco-org-tab" data-group="orgs" data-target="org-panel-govt" role="tab">Government</button>
+          </div>
+
+          <!-- All panel (default) -->
+          <div class="eco-org-grid" id="org-panel-all" data-group="orgs">
+
+            <div class="eco-org-card" id="org-card-1">
+              <div class="eco-org-card-top">
+                <div class="eco-org-icon">🏛️</div>
+                <span class="eco-org-type-badge">University &amp; Lab</span>
+              </div>
+              <div>
+                <div class="eco-org-name">Indian Institute of Science</div>
+                <div class="eco-org-location">Bengaluru, India</div>
+              </div>
+              <div class="eco-org-chips">
+                <span class="eco-org-chip">Quantum Computing</span>
+                <span class="eco-org-chip">QEC</span>
+                <span class="eco-org-chip">Sensing</span>
+              </div>
+            </div>
+
+            <div class="eco-org-card" id="org-card-2">
+              <div class="eco-org-card-top">
+                <div class="eco-org-icon">🔐</div>
+                <span class="eco-org-type-badge">Startup</span>
+              </div>
+              <div>
+                <div class="eco-org-name">QuNu Labs</div>
+                <div class="eco-org-location">Bengaluru, India</div>
+              </div>
+              <div class="eco-org-chips">
+                <span class="eco-org-chip">Quantum Cryptography</span>
+                <span class="eco-org-chip">QKD</span>
+              </div>
+            </div>
+
+            <div class="eco-org-card" id="org-card-3">
+              <div class="eco-org-card-top">
+                <div class="eco-org-icon">🏢</div>
+                <span class="eco-org-type-badge">Enterprise</span>
+              </div>
+              <div>
+                <div class="eco-org-name">Tata Consultancy Services</div>
+                <div class="eco-org-location">Mumbai, India</div>
+              </div>
+              <div class="eco-org-chips">
+                <span class="eco-org-chip">Quantum Algorithms</span>
+                <span class="eco-org-chip">Enterprise QC</span>
+              </div>
+            </div>
+
+            <div class="eco-org-card" id="org-card-4">
+              <div class="eco-org-card-top">
+                <div class="eco-org-icon">🏛️</div>
+                <span class="eco-org-type-badge">Government</span>
+              </div>
+              <div>
+                <div class="eco-org-name">National Quantum Mission</div>
+                <div class="eco-org-location">New Delhi, India</div>
+              </div>
+              <div class="eco-org-chips">
+                <span class="eco-org-chip">Policy</span>
+                <span class="eco-org-chip">Funding</span>
+                <span class="eco-org-chip">NQM</span>
+              </div>
+            </div>
+
+            <!-- Card 5 — LOCKED -->
+            <div class="eco-locked-wrap" id="org-card-5-wrap">
+              <div class="eco-lock-inner eco-org-card">
+                <div class="eco-org-card-top">
+                  <div class="eco-org-icon">⚛️</div>
+                  <span class="eco-org-type-badge">Enterprise</span>
+                </div>
+                <div>
+                  <div class="eco-org-name">IBM Quantum Network</div>
+                  <div class="eco-org-location">Armonk, USA · Global</div>
+                </div>
+                <div class="eco-org-chips">
+                  <span class="eco-org-chip">Superconducting QC</span>
+                  <span class="eco-org-chip">Cloud Access</span>
+                </div>
+              </div>
+              <div class="eco-lock-overlay">
+                <a href="04_signup.html" class="eco-lock-badge">🔒 Discovery subscription</a>
+              </div>
+            </div>
+
+            <!-- Card 6 — LOCKED -->
+            <div class="eco-locked-wrap" id="org-card-6-wrap">
+              <div class="eco-lock-inner eco-org-card">
+                <div class="eco-org-card-top">
+                  <div class="eco-org-icon">🔬</div>
+                  <span class="eco-org-type-badge">University &amp; Lab</span>
+                </div>
+                <div>
+                  <div class="eco-org-name">IIT Bombay</div>
+                  <div class="eco-org-location">Mumbai, India</div>
+                </div>
+                <div class="eco-org-chips">
+                  <span class="eco-org-chip">Photonics</span>
+                  <span class="eco-org-chip">Quantum Sensing</span>
+                </div>
+              </div>
+              <div class="eco-lock-overlay">
+                <a href="04_signup.html" class="eco-lock-badge">🔒 Discovery subscription</a>
+              </div>
+            </div>
+
+          </div><!-- /org-panel-all -->
+
+          <!-- Other tab panels (hidden by default, same structure) -->
+          <div class="eco-org-grid" id="org-panel-uni" data-group="orgs" hidden>
+            <div class="eco-org-card">
+              <div class="eco-org-card-top">
+                <div class="eco-org-icon">🏛️</div><span class="eco-org-type-badge">University &amp; Lab</span>
+              </div>
+              <div>
+                <div class="eco-org-name">Indian Institute of Science</div>
+                <div class="eco-org-location">Bengaluru, India</div>
+              </div>
+              <div class="eco-org-chips"><span class="eco-org-chip">Quantum Computing</span><span
+                  class="eco-org-chip">QEC</span></div>
+            </div>
+            <div class="eco-org-card">
+              <div class="eco-org-card-top">
+                <div class="eco-org-icon">🔬</div><span class="eco-org-type-badge">University &amp; Lab</span>
+              </div>
+              <div>
+                <div class="eco-org-name">IIT Madras</div>
+                <div class="eco-org-location">Chennai, India</div>
+              </div>
+              <div class="eco-org-chips"><span class="eco-org-chip">Topological Qubits</span></div>
+            </div>
+            <div class="eco-locked-wrap">
+              <div class="eco-lock-inner eco-org-card">
+                <div class="eco-org-card-top">
+                  <div class="eco-org-icon">🔬</div><span class="eco-org-type-badge">University &amp; Lab</span>
+                </div>
+                <div>
+                  <div class="eco-org-name">IIT Bombay</div>
+                  <div class="eco-org-location">Mumbai, India</div>
+                </div>
+                <div class="eco-org-chips"><span class="eco-org-chip">Photonics</span></div>
+              </div>
+              <div class="eco-lock-overlay"><a href="04_signup.html" class="eco-lock-badge">🔒 Discovery
+                  subscription</a></div>
+            </div>
+          </div>
+
+          <div class="eco-org-grid" id="org-panel-startup" data-group="orgs" hidden>
+            <div class="eco-org-card">
+              <div class="eco-org-card-top">
+                <div class="eco-org-icon">🔐</div><span class="eco-org-type-badge">Startup</span>
+              </div>
+              <div>
+                <div class="eco-org-name">QuNu Labs</div>
+                <div class="eco-org-location">Bengaluru, India</div>
+              </div>
+              <div class="eco-org-chips"><span class="eco-org-chip">QKD</span><span class="eco-org-chip">Quantum
+                  Cryptography</span></div>
+            </div>
+            <div class="eco-org-card">
+              <div class="eco-org-card-top">
+                <div class="eco-org-icon">⚗️</div><span class="eco-org-type-badge">Startup</span>
+              </div>
+              <div>
+                <div class="eco-org-name">QpiAI</div>
+                <div class="eco-org-location">Bengaluru, India</div>
+              </div>
+              <div class="eco-org-chips"><span class="eco-org-chip">Quantum Hardware</span><span
+                  class="eco-org-chip">Superconducting</span></div>
+            </div>
+            <div class="eco-locked-wrap">
+              <div class="eco-lock-inner eco-org-card">
+                <div class="eco-org-card-top">
+                  <div class="eco-org-icon">💡</div><span class="eco-org-type-badge">Startup</span>
+                </div>
+                <div>
+                  <div class="eco-org-name">BosonQ Psi</div>
+                  <div class="eco-org-location">Durgapur, India</div>
+                </div>
+                <div class="eco-org-chips"><span class="eco-org-chip">Quantum Simulation</span></div>
+              </div>
+              <div class="eco-lock-overlay"><a href="04_signup.html" class="eco-lock-badge">🔒 Discovery
+                  subscription</a></div>
+            </div>
+          </div>
+
+          <div class="eco-org-grid" id="org-panel-enterprise" data-group="orgs" hidden>
+            <div class="eco-org-card">
+              <div class="eco-org-card-top">
+                <div class="eco-org-icon">🏢</div><span class="eco-org-type-badge">Enterprise</span>
+              </div>
+              <div>
+                <div class="eco-org-name">Tata Consultancy Services</div>
+                <div class="eco-org-location">Mumbai, India</div>
+              </div>
+              <div class="eco-org-chips"><span class="eco-org-chip">Quantum Algorithms</span></div>
+            </div>
+            <div class="eco-locked-wrap">
+              <div class="eco-lock-inner eco-org-card">
+                <div class="eco-org-card-top">
+                  <div class="eco-org-icon">⚛️</div><span class="eco-org-type-badge">Enterprise</span>
+                </div>
+                <div>
+                  <div class="eco-org-name">IBM Quantum Network</div>
+                  <div class="eco-org-location">Global</div>
+                </div>
+                <div class="eco-org-chips"><span class="eco-org-chip">Superconducting QC</span></div>
+              </div>
+              <div class="eco-lock-overlay"><a href="04_signup.html" class="eco-lock-badge">🔒 Discovery
+                  subscription</a></div>
+            </div>
+          </div>
+
+          <div class="eco-org-grid" id="org-panel-govt" data-group="orgs" hidden>
+            <div class="eco-org-card">
+              <div class="eco-org-card-top">
+                <div class="eco-org-icon">🏛️</div><span class="eco-org-type-badge">Government</span>
+              </div>
+              <div>
+                <div class="eco-org-name">National Quantum Mission</div>
+                <div class="eco-org-location">New Delhi, India</div>
+              </div>
+              <div class="eco-org-chips"><span class="eco-org-chip">Policy</span><span
+                  class="eco-org-chip">Funding</span></div>
+            </div>
+            <div class="eco-org-card">
+              <div class="eco-org-card-top">
+                <div class="eco-org-icon">🔭</div><span class="eco-org-type-badge">Government Lab</span>
+              </div>
+              <div>
+                <div class="eco-org-name">DRDO — Quantum Division</div>
+                <div class="eco-org-location">New Delhi, India</div>
+              </div>
+              <div class="eco-org-chips"><span class="eco-org-chip">Defence QC</span><span
+                  class="eco-org-chip">QKD</span></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ══ 5. OPPORTUNITY BOARD ══════════════════════════════════ -->
+      <section class="eco-section" id="opportunity-board">
+        <div class="qp-container">
+          <div class="eco-section-header">
+            <div>
+              <p class="eco-section-label">Opportunities</p>
+              <h2 class="eco-section-h2">Jobs, grants, fellowships, and collaboration requests</h2>
+              <p class="eco-section-sub">AI-matched to your profile with Discovery Pro. Browse open opportunities
+                freely.</p>
+            </div>
+            <a href="04_signup.html" class="qp-btn-secondary qp-btn-sm" id="view-all-opps-cta">View all 180 →</a>
+          </div>
+
+          <div class="eco-opp-tabs" id="opp-tabs" role="tablist">
+            <button class="eco-opp-tab active" data-group="opps" data-target="opp-panel-jobs" role="tab">💼 Jobs &amp;
+              Positions</button>
+            <button class="eco-opp-tab" data-group="opps" data-target="opp-panel-grants" role="tab">💰 Grants &amp;
+              Funding</button>
+            <button class="eco-opp-tab" data-group="opps" data-target="opp-panel-collab" role="tab">🤝
+              Collaborations</button>
+          </div>
+
+          <!-- JOBS panel -->
+          <div id="opp-panel-jobs" data-group="opps">
+            <div class="eco-opp-list">
+
+              <div class="eco-opp-card" id="opp-job-1">
+                <div class="eco-opp-icon">🔬</div>
+                <div class="eco-opp-body">
+                  <div class="eco-opp-title">Quantum Research Associate — Superconducting Qubits</div>
+                  <div class="eco-opp-org">Indian Institute of Science, Bengaluru</div>
+                  <div class="eco-opp-meta">
+                    <span class="eco-opp-tag">Full-time</span>
+                    <span class="eco-opp-tag">QEC</span>
+                    <span class="eco-opp-tag">Superconducting</span>
+                    <span class="eco-opp-deadline">Deadline: 30 Apr 2026</span>
+                  </div>
+                </div>
+                <a href="04_signup.html" class="eco-opp-action">Apply →</a>
+              </div>
+
+              <div class="eco-opp-card" id="opp-job-2">
+                <div class="eco-opp-icon">🔐</div>
+                <div class="eco-opp-body">
+                  <div class="eco-opp-title">Senior Quantum Engineer — QKD Systems</div>
+                  <div class="eco-opp-org">QuNu Labs, Bengaluru</div>
+                  <div class="eco-opp-meta">
+                    <span class="eco-opp-tag">Full-time</span>
+                    <span class="eco-opp-tag">QKD</span>
+                    <span class="eco-opp-tag">Photonics</span>
+                    <span class="eco-opp-deadline">Deadline: 15 May 2026</span>
+                  </div>
+                </div>
+                <a href="04_signup.html" class="eco-opp-action">Apply →</a>
+              </div>
+
+              <div class="eco-opp-card" id="opp-job-3">
+                <div class="eco-opp-icon">⚙️</div>
+                <div class="eco-opp-body">
+                  <div class="eco-opp-title">Quantum Algorithm Developer — Enterprise Optimisation</div>
+                  <div class="eco-opp-org">TCS Quantum Lab, Mumbai</div>
+                  <div class="eco-opp-meta">
+                    <span class="eco-opp-tag">Full-time</span>
+                    <span class="eco-opp-tag">VQE</span>
+                    <span class="eco-opp-tag">Optimisation</span>
+                    <span class="eco-opp-deadline" style="color:var(--qp-success);font-weight:500;">Open —
+                      rolling</span>
+                  </div>
+                </div>
+                <a href="04_signup.html" class="eco-opp-action">Apply →</a>
+              </div>
+
+              <div class="eco-opp-card" id="opp-job-4">
+                <div class="eco-opp-icon">🎓</div>
+                <div class="eco-opp-body">
+                  <div class="eco-opp-title">PhD Position — Topological Qubit Materials</div>
+                  <div class="eco-opp-org">IIT Madras, Chennai</div>
+                  <div class="eco-opp-meta">
+                    <span class="eco-opp-tag">PhD</span>
+                    <span class="eco-opp-tag">Topological QC</span>
+                    <span class="eco-opp-tag">Materials Science</span>
+                    <span class="eco-opp-deadline">Deadline: 1 Jun 2026</span>
+                  </div>
+                </div>
+                <a href="04_signup.html" class="eco-opp-action">Apply →</a>
+              </div>
+
+              <!-- Partial lock gate -->
+              <div class="eco-opp-gate" id="opp-jobs-gate">
+                <div class="eco-opp-gate-text">
+                  <strong>47 more positions</strong> — Sign in to browse the full board. Discovery Pro subscribers
+                  receive <strong>weekly AI-matched opportunities</strong> delivered to their inbox.
+                </div>
+                <a href="04_signup.html" class="qp-btn-primary qp-btn-sm" id="opp-gate-cta">Sign in free →</a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- GRANTS panel -->
+          <div id="opp-panel-grants" data-group="opps" hidden>
+            <div class="eco-opp-list">
+
+              <div class="eco-opp-card">
+                <div class="eco-opp-icon">🏛️</div>
+                <div class="eco-opp-body">
+                  <div class="eco-opp-title">DST QUEST — Quantum Enabling S&amp;T</div>
+                  <div class="eco-opp-org">Department of Science &amp; Technology, India</div>
+                  <div class="eco-opp-meta">
+                    <span class="eco-opp-tag">Up to ₹2 Crore</span>
+                    <span class="eco-opp-tag">Research Grant</span>
+                    <span class="eco-opp-deadline" style="color:var(--qp-success);font-weight:500;">Application
+                      open</span>
+                  </div>
+                </div>
+                <a href="04_signup.html" class="eco-opp-action">Apply →</a>
+              </div>
+
+              <div class="eco-opp-card">
+                <div class="eco-opp-icon">⚛️</div>
+                <div class="eco-opp-body">
+                  <div class="eco-opp-title">NQM Phase 2 Research Grants — Multiple Tracks</div>
+                  <div class="eco-opp-org">National Quantum Mission, DST</div>
+                  <div class="eco-opp-meta">
+                    <span class="eco-opp-tag">Multiple tracks</span>
+                    <span class="eco-opp-tag">₹800Cr+ pool</span>
+                    <span class="eco-opp-deadline" style="color:var(--qp-success);font-weight:500;">Rolling
+                      deadline</span>
+                  </div>
+                </div>
+                <a href="04_signup.html" class="eco-opp-action">Apply →</a>
+              </div>
+
+              <div class="eco-opp-card">
+                <div class="eco-opp-icon">🔬</div>
+                <div class="eco-opp-body">
+                  <div class="eco-opp-title">SERB Core Research Grant — Quantum Technologies</div>
+                  <div class="eco-opp-org">Science &amp; Engineering Research Board</div>
+                  <div class="eco-opp-meta">
+                    <span class="eco-opp-tag">Up to ₹80 Lakh</span>
+                    <span class="eco-opp-tag">3-year tenure</span>
+                    <span class="eco-opp-deadline">Deadline: Jun 2026</span>
+                  </div>
+                </div>
+                <a href="04_signup.html" class="eco-opp-action">Apply →</a>
+              </div>
+
+              <div class="eco-opp-gate">
+                <div class="eco-opp-gate-text"><strong>29 more grants tracked</strong> — Sign in for the full funding
+                  board and AI-matched grant alerts.</div>
+                <a href="04_signup.html" class="qp-btn-primary qp-btn-sm">Sign in free →</a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- COLLABORATIONS panel -->
+          <div id="opp-panel-collab" data-group="opps" hidden>
+            <div class="eco-opp-list">
+
+              <div class="eco-opp-card">
+                <div class="eco-opp-icon">🌐</div>
+                <div class="eco-opp-body">
+                  <div class="eco-opp-title">IBM Q Network — Joint Research on Error Mitigation</div>
+                  <div class="eco-opp-org">IBM Research · Open to academic partners</div>
+                  <div class="eco-opp-meta">
+                    <span class="eco-opp-tag">Research collaboration</span>
+                    <span class="eco-opp-tag">Superconducting QC</span>
+                    <span class="eco-opp-deadline" style="color:var(--qp-success);font-weight:500;">Open</span>
+                  </div>
+                </div>
+                <a href="04_signup.html" class="eco-opp-action">Express interest →</a>
+              </div>
+
+              <div class="eco-opp-card">
+                <div class="eco-opp-icon">🏗️</div>
+                <div class="eco-opp-body">
+                  <div class="eco-opp-title">Industry-Academia Bridge — Optimisation Co-development</div>
+                  <div class="eco-opp-org">TCS Quantum Lab × IIT/IISER partner</div>
+                  <div class="eco-opp-meta">
+                    <span class="eco-opp-tag">Industry-academic</span>
+                    <span class="eco-opp-tag">VQE · QAOA</span>
+                    <span class="eco-opp-deadline" style="color:var(--qp-success);font-weight:500;">Open</span>
+                  </div>
+                </div>
+                <a href="04_signup.html" class="eco-opp-action">Express interest →</a>
+              </div>
+
+              <div class="eco-opp-card">
+                <div class="eco-opp-icon">🏛️</div>
+                <div class="eco-opp-body">
+                  <div class="eco-opp-title">Quantum Readiness Assessment — G20 Policymakers</div>
+                  <div class="eco-opp-org">NITI Aayog · Research groups invited</div>
+                  <div class="eco-opp-meta">
+                    <span class="eco-opp-tag">Policy research</span>
+                    <span class="eco-opp-tag">NQM alignment</span>
+                    <span class="eco-opp-deadline" style="color:var(--qp-warning);font-weight:500;">Closing soon</span>
+                  </div>
+                </div>
+                <a href="04_signup.html" class="eco-opp-action">Express interest →</a>
+              </div>
+
+              <div class="eco-opp-gate">
+                <div class="eco-opp-gate-text"><strong>21 more collaboration requests</strong> — Sign in to browse and
+                  respond to open requests.</div>
+                <a href="04_signup.html" class="qp-btn-primary qp-btn-sm">Sign in free →</a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ══ 6. ECOSYSTEM MAP ══════════════════════════════════════ -->
+      <section class="eco-section eco-alt" id="ecosystem-map">
+        <div class="qp-container">
+          <div class="eco-section-header">
+            <div>
+              <p class="eco-section-label">Ecosystem Map</p>
+              <h2 class="eco-section-h2">The quantum ecosystem, visualised</h2>
+              <p class="eco-section-sub1">Dr. Ananya Rao, working on trapped-ion qubits at IISc, is one node in this
+                graph which is connected to her supply chain dependencies, the government programs her work is relevant
+                to, and the enterprise clients actively looking for her exact expertise.</p>
+            </div>
+            <a href="04_signup.html" class="qp-btn-secondary qp-btn-sm" id="map-unlock-cta">Unlock interactive map →</a>
+          </div>
+
+          <div class="eco-map-container" id="map-container">
+            <div class="eco-map-svg-wrap">
+              <svg viewBox="0 0 820 400" xmlns="http://www.w3.org/2000/svg"
+                aria-label="Ecosystem map — Dr. Ananya Rao, Trapped-Ion Qubits researcher at IISc, and her connections across supply chain, government programs, and enterprise clients">
+
+                <!-- ── Cross-links (lightest, drawn first) ──────────── -->
+                <!-- IISc ↔ domain -->
+                <line x1="255" y1="115" x2="445" y2="72" stroke="#D0E4F0" stroke-width="1" stroke-dasharray="3 3" />
+                <!-- domain → NQM (relevance) -->
+                <line x1="445" y1="72" x2="570" y2="72" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 3" />
+                <!-- IISc → NQM (institutional) -->
+                <line x1="255" y1="115" x2="570" y2="72" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 3" />
+
+                <!-- ── Government program edges (dashed amber) ────────── -->
+                <line x1="410" y1="200" x2="570" y2="72" stroke="#D97706" stroke-width="1.5" stroke-dasharray="6 3"
+                  opacity="0.55" />
+                <line x1="410" y1="200" x2="665" y2="48" stroke="#D97706" stroke-width="1.5" stroke-dasharray="6 3"
+                  opacity="0.55" />
+                <line x1="410" y1="200" x2="700" y2="148" stroke="#D97706" stroke-width="1.5" stroke-dasharray="6 3"
+                  opacity="0.55" />
+
+                <!-- ── Enterprise "discoverable by" edges (dotted purple) -->
+                <line x1="410" y1="200" x2="640" y2="255" stroke="#6B46C1" stroke-width="1.5" stroke-dasharray="3 4"
+                  opacity="0.45" />
+                <line x1="410" y1="200" x2="728" y2="318" stroke="#6B46C1" stroke-width="1.5" stroke-dasharray="3 4"
+                  opacity="0.45" />
+                <line x1="410" y1="200" x2="558" y2="338" stroke="#6B46C1" stroke-width="1.5" stroke-dasharray="3 4"
+                  opacity="0.45" />
+
+                <!-- ── Supply chain edges (solid teal) ────────────────── -->
+                <line x1="410" y1="200" x2="115" y2="152" stroke="#0F766E" stroke-width="1.5" opacity="0.5" />
+                <line x1="410" y1="200" x2="75" y2="238" stroke="#0F766E" stroke-width="1.5" opacity="0.5" />
+                <line x1="410" y1="200" x2="148" y2="322" stroke="#0F766E" stroke-width="1.5" opacity="0.5" />
+
+                <!-- ── Institution / domain edges (solid mid-blue) ────── -->
+                <line x1="410" y1="200" x2="255" y2="115" stroke="#1B5E8A" stroke-width="1.5" opacity="0.6" />
+                <line x1="410" y1="200" x2="445" y2="72" stroke="#2B8FD6" stroke-width="1.5" opacity="0.6" />
+
+                <!-- ── Supply chain nodes ─────────────────────────────── -->
+                <circle cx="115" cy="152" r="23" fill="#0F766E" />
+                <text x="115" y="149" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5"
+                  font-weight="600" fill="white">Ion Trap</text>
+                <text x="115" y="160" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5"
+                  fill="rgba(255,255,255,0.75)">Hardware</text>
+
+                <circle cx="75" cy="238" r="23" fill="#0F766E" />
+                <text x="75" y="235" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5"
+                  font-weight="600" fill="white">Precision</text>
+                <text x="75" y="246" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5"
+                  fill="rgba(255,255,255,0.75)">Lasers</text>
+
+                <circle cx="148" cy="322" r="23" fill="#0F766E" />
+                <text x="148" y="319" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5"
+                  font-weight="600" fill="white">Dilution</text>
+                <text x="148" y="330" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5"
+                  fill="rgba(255,255,255,0.75)">Cryostats</text>
+
+                <!-- ── Institution node ───────────────────────────────── -->
+                <circle cx="255" cy="115" r="28" fill="#1B5E8A" />
+                <text x="255" y="111" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5"
+                  font-weight="700" fill="white">IISc</text>
+                <text x="255" y="124" text-anchor="middle" font-family="Inter,sans-serif" font-size="8"
+                  fill="rgba(255,255,255,0.65)">Institution</text>
+
+                <!-- ── Technology domain node ─────────────────────────── -->
+                <circle cx="445" cy="72" r="26" fill="#2B8FD6" />
+                <text x="445" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5"
+                  font-weight="600" fill="white">Trapped-Ion</text>
+                <text x="445" y="80" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5"
+                  fill="rgba(255,255,255,0.8)">QC Domain</text>
+
+                <!-- ── Government program nodes ───────────────────────── -->
+                <circle cx="570" cy="72" r="23" fill="#D97706" />
+                <text x="570" y="69" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5"
+                  font-weight="600" fill="white">NQM</text>
+                <text x="570" y="80" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5"
+                  fill="rgba(255,255,255,0.8)">Phase 2</text>
+
+                <circle cx="665" cy="48" r="23" fill="#D97706" />
+                <text x="665" y="45" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5"
+                  font-weight="600" fill="white">DRDO</text>
+                <text x="665" y="56" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5"
+                  fill="rgba(255,255,255,0.8)">Quantum</text>
+
+                <circle cx="700" cy="148" r="23" fill="#D97706" />
+                <text x="700" y="145" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5"
+                  font-weight="600" fill="white">DST</text>
+                <text x="700" y="156" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5"
+                  fill="rgba(255,255,255,0.8)">QUEST</text>
+
+                <!-- ── Enterprise client nodes ────────────────────────── -->
+                <circle cx="640" cy="255" r="23" fill="#6B46C1" />
+                <text x="640" y="252" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5"
+                  font-weight="600" fill="white">TCS</text>
+                <text x="640" y="263" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5"
+                  fill="rgba(255,255,255,0.8)">Quantum</text>
+
+                <circle cx="728" cy="318" r="23" fill="#6B46C1" />
+                <text x="728" y="315" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5"
+                  font-weight="600" fill="white">HDFC</text>
+                <text x="728" y="326" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5"
+                  fill="rgba(255,255,255,0.8)">Fin. Sector</text>
+
+                <circle cx="558" cy="338" r="23" fill="#6B46C1" />
+                <text x="558" y="335" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5"
+                  font-weight="600" fill="white">BEL</text>
+                <text x="558" y="346" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5"
+                  fill="rgba(255,255,255,0.8)">Defence</text>
+
+                <!-- ── Central researcher node ────────────────────────── -->
+                <!-- Outer pulse ring -->
+                <circle cx="410" cy="200" r="46" fill="none" stroke="#0D2B3E" stroke-width="1" opacity="0.15" />
+                <circle cx="410" cy="200" r="38" fill="#0D2B3E" />
+                <text x="410" y="194" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5"
+                  font-weight="700" fill="white">Dr. A. Rao</text>
+                <text x="410" y="206" text-anchor="middle" font-family="Inter,sans-serif" font-size="9"
+                  fill="rgba(255,255,255,0.7)">Trapped-Ion</text>
+                <text x="410" y="217" text-anchor="middle" font-family="Inter,sans-serif" font-size="8"
+                  fill="rgba(255,255,255,0.5)">IISc · Researcher</text>
+
+              </svg>
+            </div>
+
+            <!-- Lock gradient overlay -->
+            <div class="eco-map-lock-bar">
+              <a href="04_signup.html" class="eco-map-lock-badge" id="map-lock-badge">🔒 Discovery subscription — unlock
+                the full interactive ecosystem map</a>
+              <span class="eco-map-lock-sub">310+ organisations · 2,400+ people · supply chain edges · filter by domain,
+                TRL, geography</span>
+            </div>
+
+            <div class="eco-map-legend">
+              <div class="eco-map-legend-item">
+                <div class="eco-map-legend-dot" style="background:#0D2B3E;"></div> Researcher
+              </div>
+              <div class="eco-map-legend-item">
+                <div class="eco-map-legend-dot" style="background:#1B5E8A;"></div> Institution
+              </div>
+              <div class="eco-map-legend-item">
+                <div class="eco-map-legend-dot" style="background:#2B8FD6;"></div> Technology Domain
+              </div>
+              <div class="eco-map-legend-item">
+                <div class="eco-map-legend-dot" style="background:#0F766E;"></div> Supply Chain
+              </div>
+              <div class="eco-map-legend-item">
+                <div class="eco-map-legend-dot" style="background:#D97706;"></div> Government Program
+              </div>
+              <div class="eco-map-legend-item">
+                <div class="eco-map-legend-dot" style="background:#6B46C1;"></div> Enterprise Client
+              </div>
+              <div class="eco-map-legend-item">
+                <div style="width:18px;height:0;border-top:1.5px solid #718096;"></div>&nbsp;Direct connection
+              </div>
+              <div class="eco-map-legend-item">
+                <div style="width:18px;height:0;border-top:1.5px dashed #718096;"></div>&nbsp;Relevance / discoverable
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ══ 7. CURATED DISCOVERY DEMO ════════════════════════════ -->
+      <section class="eco-section" id="ai-discovery">
+        <div class="qp-container">
+          <div class="eco-section-header">
+            <div>
+              <p class="eco-section-label">Curated Discovery</p>
+              <h2 class="eco-section-h2">Cross-pillar discovery, grounded in the knowledge graph</h2>
+              <p class="eco-section-sub">Ask in natural language. Get cited, structured responses linking people,
+                knowledge entries, supply chain nodes, and opportunities — all in one query.</p>
+            </div>
+          </div>
+
+          <!-- Unified demo frame -->
+          <div class="eco-demo-frame" id="discovery-demo-frame">
+
+            <!-- App chrome header -->
+            <div class="eco-demo-chrome">
+              <div class="eco-demo-chrome-left">
+                <span class="eco-demo-chrome-title">Qpedia Discovery</span>
+              </div>
+            </div>
+
+            <div
+              style="margin-top: 10px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--qp-text-3);">
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🔗</span> Cross-linked to: Knowledge Hub entry on QKD ·
+              Supply chain:
+              Photonic components ·
+              NQM funding tracker
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--qp-text-3);">
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✅</span> Sources cited · Editorial trust level shown on
+              every result
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--qp-text-3);">
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🎯</span> Adapted to your role: Researcher / Founder /
+              Investor
+            </div>
+            <!-- Query bar -->
+            <div class="eco-demo-search-row">
+              <input class="eco-demo-search-input" type="text" readonly
+                value="Find researchers working on quantum key distribution in India, relevant supply chain suppliers, and open collaboration opportunities." />
+              <button class="eco-demo-search-btn">Search</button>
+            </div>
+
+            <!-- Role chips -->
+            <div class="eco-demo-role-row">
+              <span class="eco-demo-role-chip">All</span>
+              <span class="eco-demo-role-chip active">Researcher</span>
+              <span class="eco-demo-role-chip">Founder</span>
+              <span class="eco-demo-role-chip">Investor</span>
+              <span class="eco-demo-role-chip">Policymaker</span>
+            </div>
+
+            <div class="eco-demo-divider"></div>
+
+            <!-- Response area -->
+            <div class="eco-demo-response">
+
+              <div class="eco-demo-response-header">
+                <span class="eco-demo-response-label">Qpedia Discovery Response</span>
+                <span style="font-size:11px;color:var(--qp-text-3);">3 pillars · 7 sources cited</span>
+              </div>
+
+              <div class="eco-demo-summary">
+                Found <strong>12 researchers</strong> specialising in QKD across 6 Indian institutions,
+                <strong>4 photonic component suppliers</strong> in the Qpedia supply chain graph, and
+                <strong>3 open collaboration requests</strong> — including an active request from IBM Q Network.
+              </div>
+
+              <div class="eco-demo-results-row">
+
+                <!-- People column -->
+                <div>
+                  <div class="eco-discovery-result-group-label">People · 3 of 12 shown</div>
+                  <div class="eco-discovery-mini-card">
+                    <div class="eco-discovery-mini-avatar" style="background:#0F766E;">RK</div>
+                    <div><strong style="color:var(--qp-navy);">Rohan Kapoor</strong> · Co-founder, QuNu Labs · QKD ·
+                      Photonics</div>
+                  </div>
+                  <div class="eco-discovery-mini-card">
+                    <div class="eco-discovery-mini-avatar" style="background:#1B5E8A;">VP</div>
+                    <div><strong style="color:var(--qp-navy);">Dr. Vikram Patel</strong> · Researcher, IISc · Free-space
+                      QKD · Fibre QKD</div>
+                  </div>
+                  <div class="eco-discovery-mini-card" style="opacity:0.5;">
+                    <div class="eco-discovery-mini-avatar" style="background:#6B46C1;">+9</div>
+                    <div style="color:var(--qp-text-3);">9 more — <a href="04_signup.html"
+                        style="color:var(--qp-blue);">sign in to view</a></div>
+                  </div>
+                </div>
+
+                <!-- Knowledge + lock column -->
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div>
+                    <div class="eco-discovery-result-group-label">Knowledge Entry</div>
+                    <div class="eco-discovery-kg-link">
+                      <span>📖</span>
+                      <span>Quantum Key Distribution — Expert Peer-Reviewed · TRL 6–8 · Updated Mar 2026</span>
+                    </div>
+                  </div>
+                  <div class="eco-discovery-lock-note">
+                    <span>🔒</span>
+                    <span>Supply chain suppliers, collaboration matches, and voice discovery require
+                      <a href="04_signup.html" style="color:var(--qp-blue);font-weight:500;">Discovery Pro</a>.</span>
+                  </div>
+                </div>
+
+              </div><!-- /results-row -->
+            </div><!-- /demo-response -->
+          </div><!-- /demo-frame -->
+
+          <!-- Feature pills -->
+          <div class="eco-demo-pills">
+            <span class="eco-demo-pill"><span class="eco-demo-pill-dot"></span>Cross-pillar results</span>
+            <span class="eco-demo-pill"><span class="eco-demo-pill-dot"></span>Cited to source</span>
+            <span class="eco-demo-pill"><span class="eco-demo-pill-dot"></span>Role-adaptive</span>
+            <span class="eco-demo-pill"><span class="eco-demo-pill-dot"></span>Knowledge graph grounded</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ══ 8. VENDOR DIRECTORY ═══════════════════════════════════ -->
+      <section class="eco-section eco-alt" id="vendor-directory">
+        <div class="qp-container">
+          <div class="eco-section-header">
+            <div>
+              <p class="eco-section-label">Vendor &amp; Product Directory</p>
+              <h2 class="eco-section-h2">Quantum hardware, software, and peripheral suppliers</h2>
+              <p class="eco-section-sub">Searchable directory of vendors linked to their supply chain position, TRL
+                classification, and ecosystem relationships.</p>
+            </div>
+          </div>
+
+          <div class="eco-vendor-grid" id="vendor-grid">
+
+            <div class="eco-vendor-card" id="vendor-hardware">
+              <div class="eco-vendor-icon">⚛️</div>
+              <div>
+                <div class="eco-vendor-category">Quantum Hardware</div>
+                <div class="eco-vendor-title">Quantum Processors &amp; Systems</div>
+                <div class="eco-vendor-examples">IBM, IonQ, Quantinuum, QpiAI, Rigetti</div>
+              </div>
+              <div class="eco-vendor-count">12 vendors · TRL 5–7</div>
+              <button class="eco-vendor-compare-btn" disabled>
+                <span class="eco-lock-badge-inline">🔒 Pro</span> Compare vendors
+              </button>
+            </div>
+
+            <div class="eco-vendor-card" id="vendor-software">
+              <div class="eco-vendor-icon">💻</div>
+              <div>
+                <div class="eco-vendor-category">Quantum Software</div>
+                <div class="eco-vendor-title">SDKs, Platforms &amp; Compilers</div>
+                <div class="eco-vendor-examples">Qiskit, Cirq, PennyLane, Braket, Q#</div>
+              </div>
+              <div class="eco-vendor-count">28 platforms · TRL 6–9</div>
+              <button class="eco-vendor-compare-btn" disabled>
+                <span class="eco-lock-badge-inline">🔒 Pro</span> Compare vendors
+              </button>
+            </div>
+
+            <div class="eco-vendor-card" id="vendor-peripheral">
+              <div class="eco-vendor-icon">🌡️</div>
+              <div>
+                <div class="eco-vendor-category">Peripheral &amp; Enabling</div>
+                <div class="eco-vendor-title">Cryogenics, Lasers &amp; Electronics</div>
+                <div class="eco-vendor-examples">Bluefors, Oxford Instruments, Delft Circuits</div>
+              </div>
+              <div class="eco-vendor-count">47 suppliers · TRL 7–9</div>
+              <button class="eco-vendor-compare-btn" disabled>
+                <span class="eco-lock-badge-inline">🔒 Pro</span> Compare suppliers
+              </button>
+            </div>
+
+            <div class="eco-vendor-card" id="vendor-integrators">
+              <div class="eco-vendor-icon">🏗️</div>
+              <div>
+                <div class="eco-vendor-category">System Integrators</div>
+                <div class="eco-vendor-title">End-to-end Quantum Deployment</div>
+                <div class="eco-vendor-examples">TCS Quantum, Accenture, Infosys QC</div>
+              </div>
+              <div class="eco-vendor-count">8 integrators · TRL 5–7</div>
+              <button class="eco-vendor-compare-btn" disabled>
+                <span class="eco-lock-badge-inline">🔒 Pro</span> Compare vendors
+              </button>
+            </div>
+
+          </div>
+
+          <div style="margin-top:20px;text-align:center;">
+            <a href="04_signup.html" class="qp-btn-ghost" id="browse-all-vendors-cta">Browse full directory · 95 vendors
+              and suppliers →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 9. EVENTS & SUMMIT ════════════════════════════════════ -->
+      <section class="eco-section" id="events">
+        <div class="qp-container">
+          <div class="eco-section-header">
+            <div>
+              <p class="eco-section-label">Events</p>
+              <h2 class="eco-section-h2">Qpedia Quantum Summit &amp; Events</h2>
+              <p class="eco-section-sub">Bringing the global quantum ecosystem together — in person and online.</p>
+            </div>
+          </div>
+
+          <div class="eco-events-layout">
+
+            <!-- Summit featured card (navy — card-level only) -->
+            <div class="eco-summit-card" id="summit-card">
+              <div class="eco-summit-label">Flagship Annual Event</div>
+              <div class="eco-summit-title">Qpedia Quantum<br>Summit 2026</div>
+              <div class="eco-summit-meta">
+                <div class="eco-summit-meta-item">
+                  <div class="eco-summit-meta-dot"></div>
+                  15–16 November 2026 · New Delhi, India
+                </div>
+                <div class="eco-summit-meta-item">
+                  <div class="eco-summit-meta-dot"></div>
+                  In-person + livestream for registered delegates
+                </div>
+                <div class="eco-summit-meta-item">
+                  <div class="eco-summit-meta-dot"></div>
+                  Researchers · Founders · Investors · Policymakers
+                </div>
+              </div>
+              <div class="eco-summit-pricing">
+                <div class="eco-summit-price-item">
+                  <div class="eco-summit-price-value">₹9,999</div>
+                  <div class="eco-summit-price-label">Standard Delegate</div>
+                </div>
+                <div class="eco-summit-price-divider"></div>
+                <div class="eco-summit-price-item">
+                  <div class="eco-summit-price-value">₹4,999</div>
+                  <div class="eco-summit-price-label">Academic / Student</div>
+                </div>
+                <div class="eco-summit-price-divider"></div>
+                <div class="eco-summit-price-item">
+                  <div class="eco-summit-price-value">Custom</div>
+                  <div class="eco-summit-price-label">Institutional Group</div>
+                </div>
+              </div>
+              <a href="04_signup.html" class="eco-summit-cta" id="summit-register-cta">Register Interest →</a>
+            </div>
+
+            <!-- Right: 2 smaller event cards -->
+            <div class="eco-events-right">
+
+              <div class="eco-event-card" id="event-workshop">
+                <div class="eco-event-card-top">
+                  <div>
+                    <div class="eco-event-title">Regional Quantum Workshop — Bengaluru</div>
+                  </div>
+                  <span class="eco-event-type-badge">In-person</span>
+                </div>
+                <div class="eco-event-details">
+                  <span>📅 28 June 2026</span>
+                  <span>📍 IISc Campus, Bengaluru</span>
+                  <span>⏱ Full day</span>
+                </div>
+                <p style="font-size:13px;color:var(--qp-text-2);line-height:1.5;">Hands-on sessions for researchers,
+                  engineers, and founders. Topics: QEC, supply chain navigation, NQM funding pathways.</p>
+                <div class="eco-event-card-footer">
+                  <span class="eco-event-price">₹2,999 · Academic ₹999</span>
+                  <a href="04_signup.html" class="eco-event-register" id="workshop-register-cta">Register →</a>
+                </div>
+              </div>
+
+              <div class="eco-event-card" id="event-webinar">
+                <div class="eco-event-card-top">
+                  <div>
+                    <div class="eco-event-title">Webinar: Quantum Computing for Finance</div>
+                  </div>
+                  <span class="eco-event-free-badge">Free</span>
+                </div>
+                <div class="eco-event-details">
+                  <span>📅 12 April 2026</span>
+                  <span>🌐 Virtual · Zoom</span>
+                  <span>⏱ 90 min</span>
+                </div>
+                <p style="font-size:13px;color:var(--qp-text-2);line-height:1.5;">Portfolio optimisation, risk
+                  modelling, and PQC migration — practical briefing for finance sector professionals.</p>
+                <div class="eco-event-card-footer">
+                  <span class="eco-event-price" style="color:var(--qp-success);">Free to attend</span>
+                  <a href="04_signup.html" class="eco-event-register" id="webinar-register-cta">Register →</a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 10. CSR / INSTITUTIONAL STRIP ════════════════════════ -->
+      <div class="eco-csr-strip" id="csr-strip">
+        <div class="eco-csr-inner">
+
+          <div class="eco-csr-card" id="csr-access-card">
+            <div class="eco-csr-emoji">🎓</div>
+            <div class="eco-csr-body">
+              <p class="eco-csr-label">CSR-Funded Access</p>
+              <p class="eco-csr-title">Free access for government college students</p>
+              <p class="eco-csr-sub">CSR contributions and government grants fund subsidised Qpedia access for students
+                at qualifying institutions — NQM and DST aligned.</p>
+            </div>
+            <a href="04_signup.html" class="eco-csr-action" id="csr-apply-cta">Apply for access →</a>
+          </div>
+
+          <div class="eco-csr-card" id="institutional-access-card">
+            <div class="eco-csr-emoji">🏛️</div>
+            <div class="eco-csr-body">
+              <p class="eco-csr-label">Institutional Access</p>
+              <p class="eco-csr-title">Campus-wide access for universities &amp; research institutions</p>
+              <p class="eco-csr-sub">SSO login, bulk user management, co-branding options, and NAAC-aligned reporting.
+                IITs, IISERs, NITs, and central universities welcome.</p>
+            </div>
+            <a href="04_signup.html" class="eco-csr-action" id="institutional-apply-cta">Contact us →</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ 11. REVENUE STRIP ═════════════════════════════════════ -->
+      <div class="eco-revenue-strip" id="revenue-strip">
+        <div class="eco-revenue-inner">
+
+          <div class="eco-revenue-card" id="rev-discovery-card">
+            <div class="eco-revenue-body">
+              <p class="eco-revenue-label">Discovery Subscription</p>
+              <p class="eco-revenue-title">Unlock the full quantum professional network</p>
+              <p class="eco-revenue-sub">Full people &amp; org directory · AI-matched opportunities · Cross-pillar
+                synthesis · Vendor comparison · Ecosystem map</p>
+            </div>
+            <a href="04_signup.html" class="eco-revenue-action" id="rev-discovery-cta">Start free trial →</a>
+          </div>
+
+          <div class="eco-revenue-card" id="rev-summit-card">
+            <div class="eco-revenue-body">
+              <p class="eco-revenue-label">Qpedia Quantum Summit</p>
+              <p class="eco-revenue-title">India Quantum Ecosystem Report 2026</p>
+              <p class="eco-revenue-sub">Annual flagship publication · Summit delegate access · Workshop registration ·
+                Dataset licensing available</p>
+            </div>
+            <a href="04_signup.html" class="eco-revenue-action" id="rev-summit-cta">Register interest →</a>
+          </div>
+
+          <div class="eco-revenue-card" id="rev-csr-card">
+            <div class="eco-revenue-body">
+              <p class="eco-revenue-label">CSR &amp; Government Access</p>
+              <p class="eco-revenue-title">Partner with Qpedia for subsidised quantum education</p>
+              <p class="eco-revenue-sub">Fund free access for students at government institutions · NQM and DST-aligned
+                · Impact reporting dashboard included</p>
+            </div>
+            <a href="04_signup.html" class="eco-revenue-action" id="rev-csr-cta">Partner with us →</a>
+          </div>
+
+        </div>
+      </div>
+
+    </main><!-- /qp-content -->
+
+    <!-- ══ FOOTER ════════════════════════════════════════════════ -->
+    <footer class="qp-footer">
+      <a href="01_homepage.html" id="footer-logo">
+        <img src="Logo.jpeg" alt="Qpedia" style="height:32px;" />
+      </a>
+      <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
+      <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
+    </footer>
+
+  </div><!-- /qp-page -->
+
+  <script src="shared-search.js"></script>
+  <script>
+    /* ============================================================
+       ECOSYSTEM — PAGE INTERACTIONS
+       ============================================================ */
+
+    // ── Tab switching (generic: data-group + data-target) ──────
+    document.querySelectorAll('[data-group]').forEach(function (el) {
+      if (el.tagName !== 'BUTTON') return;
+      el.addEventListener('click', function () {
+        var group = el.dataset.group;
+        var targetId = el.dataset.target;
+
+        // Deactivate all tab buttons in this group
+        document.querySelectorAll('button[data-group="' + group + '"]').forEach(function (btn) {
+          btn.classList.remove('active');
+        });
+        el.classList.add('active');
+
+        // Hide all panels in this group, show target
+        document.querySelectorAll('[data-group="' + group + '"]:not(button)').forEach(function (panel) {
+          panel.hidden = true;
+        });
+        var target = document.getElementById(targetId);
+        if (target) target.hidden = false;
+      });
+    });
+
+    // ── Role chips (hero filter) ───────────────────────────────
+    document.querySelectorAll('.eco-role-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        document.querySelectorAll('.eco-role-chip').forEach(function (c) {
+          c.classList.remove('active');
+        });
+        chip.classList.add('active');
+      });
+    });
+
+    // ── Hero search (pass query to search overlay) ─────────────
+    var heroInput = document.getElementById('hero-search-input');
+    var heroBtn = document.getElementById('hero-search-btn');
+    if (heroBtn && heroInput) {
+      heroBtn.addEventListener('click', function () {
+        if (typeof openSearchOverlay === 'function') {
+          openSearchOverlay(heroInput.value);
+        }
+      });
+      heroInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && typeof openSearchOverlay === 'function') {
+          openSearchOverlay(heroInput.value);
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>
