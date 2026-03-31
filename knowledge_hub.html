@@ -513,37 +513,47 @@
     /* Sidebar */
     .kh-sidebar-ad {
       background: var(--qp-off-white);
-      border-radius: 12px;
+      border-radius: var(--qp-radius);
       border: 1px solid var(--qp-border);
-      padding: 20px;
+      padding: 24px;
       margin-bottom: 20px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .kh-sidebar-ad:hover {
+      border-color: #B5D0E8;
+      box-shadow: var(--qp-shadow);
     }
 
     .kh-sidebar-sponsor-label {
-      font-size: 11px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       color: var(--qp-text-3);
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
     .kh-sidebar-ad-title {
-      font-size: 15px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 700;
       color: var(--qp-navy);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      line-height: 1.3;
     }
 
     .kh-sidebar-ad-desc {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--qp-text-2);
-      margin-bottom: 14px;
-      line-height: 1.5;
+      margin-bottom: 18px;
+      line-height: 1.6;
     }
 
     .kh-sidebar-ad-footer {
       font-size: 11px;
       color: var(--qp-text-3);
-      margin-top: 8px;
+      margin-top: 10px;
       text-align: center;
     }
 
@@ -790,6 +800,224 @@
       margin-top: 8px;
     }
 
+    /* ── Researcher network strip ───────────────────────────── */
+    .kh-network-strip {
+      background: white;
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 28px 0;
+    }
+
+    .kh-network-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .kh-network-avatars {
+      display: flex;
+      flex-shrink: 0;
+    }
+
+    .kh-network-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--qp-blue-light);
+      border: 2.5px solid white;
+      margin-left: -10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--qp-blue-mid);
+      flex-shrink: 0;
+    }
+
+    .kh-network-avatar:first-child {
+      margin-left: 0;
+    }
+
+    .kh-network-avatar.more {
+      background: var(--qp-navy);
+      color: white;
+      font-size: 11px;
+    }
+
+    .kh-network-text {
+      flex: 1;
+    }
+
+    .kh-network-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin-bottom: 4px;
+    }
+
+    .kh-network-sub {
+      font-size: 13px;
+      color: var(--qp-text-3);
+    }
+
+    .kh-network-stats {
+      display: flex;
+      gap: 24px;
+      flex-shrink: 0;
+    }
+
+    .kh-network-stat {
+      text-align: center;
+    }
+
+    .kh-network-stat .n {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      display: block;
+      line-height: 1;
+    }
+
+    .kh-network-stat .l {
+      font-size: 11px;
+      color: var(--qp-text-3);
+      margin-top: 3px;
+    }
+
+    /* ── Summit + Report double tile ─────────────────────────── */
+    .kh-events-strip {
+      padding: 40px 0;
+      background: var(--qp-off-white);
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+    }
+
+    .kh-events-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .kh-event-tile {
+      background: white;
+      border: 1px solid var(--qp-border);
+      border-radius: var(--qp-radius-lg);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .kh-event-tile-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .kh-event-tile-icon.summit {
+      background: #EBF4FB;
+    }
+
+    .kh-event-tile-icon.report {
+      background: #FDF3DC;
+    }
+
+    .kh-event-tile-body {
+      flex: 1;
+    }
+
+    .kh-event-tile-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .kh-event-tile-eyebrow.summit {
+      color: var(--qp-blue-mid);
+    }
+
+    .kh-event-tile-eyebrow.report {
+      color: #92600A;
+    }
+
+    .kh-event-tile-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .kh-event-tile-meta {
+      font-size: 12px;
+      color: var(--qp-text-3);
+    }
+
+    /* ── CSR / grant access row ──────────────────────────────── */
+    .kh-csr-row {
+      border-top: 1px solid var(--qp-border);
+      margin-top: 24px;
+      padding-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .kh-csr-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .kh-csr-icon {
+      width: 40px;
+      height: 40px;
+      background: #ECFDF5;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .kh-csr-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #065F46;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .kh-csr-desc {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      margin: 0;
+    }
+
+    .kh-csr-ctas {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
     /* ---- Nav active underline override ---------------------- */
     .qp-nav-links a.kh-active {
       color: var(--qp-navy);
@@ -895,6 +1123,728 @@
       background: var(--qp-blue);
       color: white;
     }
+
+    /* ── Sponsored Banner  (Revenue Stream G) ─────────────────── */
+    .kh-ad-bar {
+      background: var(--qp-blue-light);
+      padding: 40px 0;
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+    }
+
+    .kh-ad-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .kh-ad-bar-left {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .kh-ad-bar-sponsored {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.8);
+      color: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .kh-ad-bar-logo {
+      width: 80px;
+      height: 80px;
+      background: var(--qp-navy);
+      border-radius: var(--qp-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      font-weight: 800;
+      color: #ffffff;
+      flex-shrink: 0;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .kh-ad-bar-copy {
+      flex: 1;
+    }
+
+    .kh-ad-bar-headline {
+      font-size: 20px;
+      font-weight: 700;
+      color: rgb(0, 0, 0);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .kh-ad-bar-sub {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.6);
+      line-height: 1.5;
+    }
+
+    .kh-ad-bar-right {
+      flex-shrink: 0;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .kh-ad-bar-tagline {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.7);
+      white-space: nowrap;
+    }
+
+    .kh-ad-bar-cta {
+      display: inline-block;
+      background: white;
+      color: var(--qp-navy);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: var(--qp-radius-sm);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .kh-ad-bar-cta:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       RESPONSIVE — Tablet (≤1024px)
+       ============================================================ */
+    @media (max-width: 1024px) {
+
+      /* Nav */
+      .qp-nav {
+        padding: 0 24px;
+      }
+
+      /* Hero */
+      .kh-hero {
+        padding: 40px 24px 36px;
+      }
+
+      .kh-hero-h1 {
+        font-size: 28px;
+      }
+
+      .kh-hero-sub {
+        font-size: 14px;
+      }
+
+      .kh-search-input {
+        height: 52px;
+        font-size: 15px;
+        padding-right: 110px;
+      }
+
+      /* Trust bar */
+      .kh-trust-bar {
+        padding: 14px 24px;
+      }
+
+      /* Ad bar */
+      .kh-ad-bar-inner {
+        padding: 0 24px;
+      }
+
+      /* Container override */
+      .qp-container {
+        padding: 0 24px;
+      }
+
+      /* News grid — 2 cols */
+      .kh-news-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* Domain grid — 3 cols */
+      .kh-domain-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      /* Featured layout — stack sidebar below */
+      .kh-featured-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      /* Learning section */
+      .kh-learning-inner {
+        padding: 0 24px;
+        gap: 40px;
+      }
+
+      .kh-learn-h3 {
+        font-size: 24px;
+      }
+
+      /* Events strip */
+      .kh-events-inner {
+        padding: 0 24px;
+      }
+
+      /* Journal strip */
+      .kh-journal-strip {
+        padding: 32px 24px;
+      }
+
+      /* Network strip */
+      .kh-network-inner {
+        padding: 0 24px;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .kh-network-stats {
+        gap: 16px;
+      }
+
+      /* Institutional section */
+      .kh-institutional-card {
+        padding: 28px 24px;
+      }
+
+      /* Footer */
+      .qp-footer {
+        padding: 28px 24px;
+      }
+    }
+
+    /* ============================================================
+       RESPONSIVE — Small Tablet / Large Phone (≤768px)
+       ============================================================ */
+    @media (max-width: 768px) {
+
+      /* Nav — compact */
+      .qp-nav {
+        padding: 0 16px;
+        height: 56px;
+      }
+
+      .qp-nav-brand img {
+        height: 32px;
+      }
+
+      .qp-nav-links {
+        gap: 16px;
+      }
+
+      .qp-nav-links a {
+        font-size: 13px;
+      }
+
+      .qp-nav-actions {
+        gap: 8px;
+      }
+
+      .qp-nav-actions .qp-btn-ghost,
+      .qp-nav-actions .qp-btn-primary {
+        font-size: 13px;
+        padding: 8px 14px;
+      }
+
+      /* Hero */
+      .kh-hero {
+        padding: 32px 16px 28px;
+      }
+
+      .kh-hero-h1 {
+        font-size: 24px;
+      }
+
+      .kh-hero-sub {
+        font-size: 13px;
+        max-width: 100%;
+      }
+
+      .kh-search-wrap {
+        max-width: 100%;
+      }
+
+      .kh-search-input {
+        height: 48px;
+        font-size: 14px;
+        padding: 0 100px 0 42px;
+        border-radius: 12px;
+      }
+
+      .kh-search-icon {
+        left: 14px;
+        font-size: 16px;
+      }
+
+      .kh-search-hint {
+        font-size: 12px;
+      }
+
+      .kh-trending-row {
+        gap: 6px;
+      }
+
+      .kh-trending-chip {
+        font-size: 11px;
+        padding: 4px 10px;
+      }
+
+      /* Stats row */
+      .kh-stats-row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .kh-stat-item {
+        padding: 0 16px;
+      }
+
+      .kh-stat-item .stat-num {
+        font-size: 18px;
+      }
+
+      /* Trust bar */
+      .kh-trust-bar {
+        padding: 12px 16px;
+      }
+
+      .kh-trust-inner {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+
+      .kh-trust-right {
+        justify-content: center;
+      }
+
+      /* Ad bar — stacked */
+      .kh-ad-bar {
+        padding: 28px 0;
+      }
+
+      .kh-ad-bar-inner {
+        padding: 0 16px;
+        flex-direction: column;
+        gap: 24px;
+        align-items: flex-start;
+      }
+
+      .kh-ad-bar-left {
+        flex-direction: column;
+        gap: 14px;
+        align-items: flex-start;
+      }
+
+      .kh-ad-bar-right {
+        align-items: flex-start;
+        text-align: left;
+        width: 100%;
+      }
+
+      .kh-ad-bar-headline {
+        font-size: 18px;
+      }
+
+      .kh-ad-bar-sub {
+        font-size: 13px;
+      }
+
+      .kh-ad-bar-logo {
+        width: 44px;
+        height: 44px;
+        font-size: 10px;
+      }
+
+      .kh-ad-bar-cta {
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Container override */
+      .qp-container {
+        padding: 0 16px;
+      }
+
+      /* News section — mobile */
+      .kh-news-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .kh-news-section {
+        padding: 28px 0;
+      }
+
+      .kh-news-card {
+        padding: 16px;
+      }
+
+      .kh-news-headline {
+        font-size: 14px;
+      }
+
+      .kh-news-meta {
+        font-size: 12px;
+      }
+
+      .kh-news-category {
+        font-size: 10px;
+      }
+
+      /* Domain grid — 2 cols */
+      .kh-domains-section {
+        padding: 32px 0;
+      }
+
+      .kh-domain-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .kh-domain-card {
+        padding: 16px 14px;
+      }
+
+      .kh-domain-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .kh-domain-name {
+        font-size: 13px;
+      }
+
+      .kh-domain-count {
+        font-size: 12px;
+      }
+
+      /* Ticker */
+      .kh-ticker-item {
+        padding: 0 16px;
+      }
+
+      .kh-ticker-headline {
+        max-width: 200px;
+        font-size: 13px;
+      }
+
+      /* Featured entries */
+      .kh-featured-section {
+        padding: 32px 0;
+      }
+
+      .kh-entry-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
+
+      .kh-entry-title {
+        font-size: 14px;
+      }
+
+      .kh-entry-excerpt {
+        font-size: 12px;
+      }
+
+      /* Learning section — stack */
+      .kh-learning-section {
+        padding: 40px 0;
+      }
+
+      .kh-learning-inner {
+        flex-direction: column;
+        padding: 0 16px;
+        gap: 28px;
+      }
+
+      .kh-learn-h3 {
+        font-size: 22px;
+      }
+
+      .kh-learn-sub {
+        font-size: 14px;
+      }
+
+      .kh-learn-ctas {
+        flex-direction: column;
+      }
+
+      .kh-learn-cta-primary,
+      .kh-learn-cta-ghost {
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Events strip — stack */
+      .kh-events-strip {
+        padding: 28px 0;
+      }
+
+      .kh-events-inner {
+        padding: 0 16px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .kh-event-tile {
+        padding: 18px 16px;
+        gap: 14px;
+      }
+
+      .kh-event-tile-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+        border-radius: 12px;
+      }
+
+      /* Journal strip — stack */
+      .kh-journal-strip {
+        padding: 24px 16px;
+      }
+
+      .kh-journal-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .kh-journal-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .kh-journal-action {
+        align-self: flex-start;
+      }
+
+      /* Network strip — stack */
+      .kh-network-strip {
+        padding: 20px 0;
+      }
+
+      .kh-network-inner {
+        flex-direction: column;
+        padding: 0 16px;
+        text-align: center;
+        gap: 16px;
+      }
+
+      .kh-network-avatars {
+        justify-content: center;
+      }
+
+      .kh-network-stats {
+        justify-content: center;
+      }
+
+      .kh-network-sub {
+        font-size: 12px;
+      }
+
+      /* Institutional section */
+      .kh-institutional-section {
+        padding: 32px 0;
+      }
+
+      .kh-institutional-card {
+        flex-direction: column;
+        padding: 24px 16px;
+        text-align: center;
+        gap: 20px;
+      }
+
+      .kh-inst-left {
+        min-width: 0;
+      }
+
+      .kh-inst-desc {
+        max-width: 100%;
+      }
+
+      .kh-inst-h3 {
+        font-size: 20px;
+      }
+
+      .kh-csr-row {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .kh-csr-left {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .kh-csr-ctas {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .kh-csr-ctas a {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+      }
+
+      /* Footer */
+      .qp-footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        padding: 20px 16px;
+      }
+    }
+
+    /* ============================================================
+       RESPONSIVE — Phone (≤480px)
+       ============================================================ */
+    @media (max-width: 480px) {
+
+      /* Nav — minimal */
+      .qp-nav-links {
+        display: none;
+      }
+
+      .qp-nav-actions .qp-btn-ghost {
+        display: none;
+      }
+
+      /* Hero */
+      .kh-hero {
+        padding: 24px 12px 20px;
+      }
+
+      .kh-hero-badge {
+        font-size: 11px;
+        padding: 4px 10px;
+      }
+
+      .kh-hero-h1 {
+        font-size: 20px;
+      }
+
+      .kh-hero-sub {
+        font-size: 12px;
+      }
+
+      .kh-search-input {
+        height: 44px;
+        font-size: 13px;
+        padding: 0 90px 0 36px;
+      }
+
+      .kh-search-icon {
+        left: 10px;
+        font-size: 14px;
+      }
+
+      .kh-search-ai-chip {
+        font-size: 10px;
+        padding: 3px 8px;
+      }
+
+      .kh-search-mic {
+        width: 30px;
+        height: 30px;
+        font-size: 13px;
+      }
+
+      .kh-trending-row {
+        gap: 4px;
+      }
+
+      .kh-trending-chip {
+        font-size: 10px;
+        padding: 3px 8px;
+      }
+
+      .kh-search-hint {
+        font-size: 11px;
+      }
+
+      /* Stats row — 2x2 grid */
+      .kh-stats-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        padding-top: 16px;
+      }
+
+      .kh-stat-item {
+        padding: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--qp-border);
+        padding-bottom: 10px;
+      }
+
+      .kh-stat-item:nth-child(3),
+      .kh-stat-item:nth-child(4) {
+        border-bottom: none;
+      }
+
+      /* Domain grid — 1 col */
+      .kh-domain-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Container override */
+      .qp-container {
+        padding: 0 12px;
+      }
+
+      /* Section headers */
+      .kh-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      /* Ad bar — compact */
+      .kh-ad-bar {
+        padding: 20px 0;
+      }
+
+      .kh-ad-bar-inner {
+        padding: 0 12px;
+      }
+
+      .kh-ad-bar-headline {
+        font-size: 16px;
+      }
+
+      .kh-ad-bar-logo {
+        width: 36px;
+        height: 36px;
+        font-size: 9px;
+      }
+    }
   </style>
 </head>
 
@@ -989,6 +1939,28 @@
         <span class="kh-trust-item">✓ Expert Peer-Reviewed</span>
         <span class="kh-trust-item">✓ TRL-Tagged</span>
         <span class="kh-trust-item">✓ DPDP Act Compliant</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       3b. SPONSORED BANNER (Revenue Stream G)
+       ========================================================= -->
+  <div class="kh-ad-bar">
+    <div class="kh-ad-bar-inner">
+      <div class="kh-ad-bar-left">
+        <div class="kh-ad-bar-logo">IonQ</div>
+        <div class="kh-ad-bar-copy">
+          <span class="kh-ad-bar-sponsored">Sponsored</span>
+          <div class="kh-ad-bar-headline">IonQ Forte Enterprise — Trapped-Ion Quantum Systems for Research &amp;
+            Industry</div>
+          <div class="kh-ad-bar-sub">Highest published #AQ 35 · Cloud &amp; on-premise · Available on AWS Braket, Azure
+            Quantum, Google Cloud</div>
+        </div>
+      </div>
+      <div class="kh-ad-bar-right">
+        <span class="kh-ad-bar-tagline">Access starts at <strong> ₹ 1,00,000 / year</strong></span>
+        <a href="#" class="kh-ad-bar-cta">Request Demo →</a>
       </div>
     </div>
   </div>
@@ -1130,6 +2102,41 @@
       </div>
     </div>
   </section>
+
+  <!-- =========================================================
+       5b. RESEARCHER NETWORK STRIP
+       ========================================================= -->
+  <div class="kh-network-strip">
+    <div class="kh-network-inner">
+      <div class="kh-network-avatars">
+        <div class="kh-network-avatar">PS</div>
+        <div class="kh-network-avatar">RK</div>
+        <div class="kh-network-avatar">AN</div>
+        <div class="kh-network-avatar">SM</div>
+        <div class="kh-network-avatar more">300+</div>
+      </div>
+      <div class="kh-network-text">
+        <div class="kh-network-title">300+ verified quantum researchers on Qpedia</div>
+        <p class="kh-network-sub">Find collaborators, follow experts, discover open positions and grant co-applicants —
+          across India and globally</p>
+      </div>
+      <div class="kh-network-stats">
+        <div class="kh-network-stat">
+          <span class="n">142</span>
+          <span class="l">PhDs &amp; PostDocs</span>
+        </div>
+        <div class="kh-network-stat">
+          <span class="n">67</span>
+          <span class="l">Industry experts</span>
+        </div>
+        <div class="kh-network-stat">
+          <span class="n">38</span>
+          <span class="l">Policy researchers</span>
+        </div>
+      </div>
+      <a href="04_signup.html" class="qp-btn-primary" style="white-space:nowrap; flex-shrink:0;">Unlock Network →</a>
+    </div>
+  </div>
 
   <!-- =========================================================
        6. FEATURED ENTRIES + SIDEBAR AD
@@ -1366,6 +2373,39 @@
   </section>
 
   <!-- =========================================================
+       8b. SUMMIT + ANNUAL REPORT STRIP
+       ========================================================= -->
+  <div class="kh-events-strip">
+    <div class="kh-events-inner">
+
+      <!-- Summit tile -->
+      <div class="kh-event-tile">
+        <div class="kh-event-tile-icon summit">🎙️</div>
+        <div class="kh-event-tile-body">
+          <div class="kh-event-tile-eyebrow summit">Upcoming Event · Stream H</div>
+          <div class="kh-event-tile-title">Qpedia Quantum Summit 2026</div>
+          <div class="kh-event-tile-meta">June 12 · New Delhi · In-person &amp; virtual · 8 domain tracks</div>
+        </div>
+        <a href="04_signup.html" class="qp-btn-primary"
+          style="font-size:13px; padding:10px 18px; white-space:nowrap; flex-shrink:0;">Register →</a>
+      </div>
+
+      <!-- Annual Report tile -->
+      <div class="kh-event-tile">
+        <div class="kh-event-tile-icon report">📘</div>
+        <div class="kh-event-tile-body">
+          <div class="kh-event-tile-eyebrow report">Annual Report · Pre-order</div>
+          <div class="kh-event-tile-title">India Quantum Ecosystem Report 2026</div>
+          <div class="kh-event-tile-meta">Full ecosystem · supply chain · policy · funding · 180+ pages · ₹24,000</div>
+        </div>
+        <a href="04_signup.html" class="qp-btn-ghost"
+          style="font-size:13px; padding:10px 18px; white-space:nowrap; flex-shrink:0;">Pre-order →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
        9. INSTITUTIONAL TEASER
        ========================================================= -->
   <section class="qp-container kh-institutional-section" id="institutional-teaser">
@@ -1381,6 +2421,28 @@
           id="institutional-cta">Contact for institutional access</a>
         <p class="kh-inst-sub">Universities, IITs, IISERs, NITs, and enterprise teams</p>
       </div>
+
+      <!-- CSR / grant access row — full width below -->
+      <div style="width:100%;">
+        <div class="kh-csr-row">
+          <div class="kh-csr-left">
+            <div class="kh-csr-icon">🌱</div>
+            <div>
+              <div class="kh-csr-label">CSR &amp; Grant Access · Stream E</div>
+              <p class="kh-csr-desc">Supporting quantum education in India — sponsor student subscriptions through your
+                CSR programme, or apply for a grant-funded access waiver for researchers at public institutions.</p>
+            </div>
+          </div>
+          <div class="kh-csr-ctas">
+            <a href="04_signup.html" class="qp-btn-primary"
+              style="font-size:13px; padding:10px 18px; background:#065F46; border-color:#065F46; white-space:nowrap;">Sponsor
+              Access →</a>
+            <a href="04_signup.html" class="qp-btn-ghost"
+              style="font-size:13px; padding:10px 18px; white-space:nowrap;">Apply for Waiver →</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 

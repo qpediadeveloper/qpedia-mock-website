@@ -1408,6 +1408,108 @@
       background: var(--qp-blue);
       color: white;
     }
+
+    /* ── Discovery Ad Bar (Stream G) ──────────────────────── */
+    .eco-ad-bar {
+      background: var(--qp-blue-light);
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 40px 0;
+    }
+
+    .eco-ad-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .eco-ad-bar-left {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .eco-ad-bar-logo {
+      width: 80px;
+      height: 80px;
+      background: #CC0000;
+      border-radius: var(--qp-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #ffffff;
+      flex-shrink: 0;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .eco-ad-bar-copy {
+      flex: 1;
+    }
+
+    .eco-ad-bar-sponsored {
+      display: inline-block;
+      background: rgba(13, 43, 62, 0.08);
+      color: var(--qp-text-3);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .eco-ad-bar-headline {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .eco-ad-bar-sub {
+      font-size: 14px;
+      color: var(--qp-text-2);
+      line-height: 1.5;
+    }
+
+    .eco-ad-bar-right {
+      flex-shrink: 0;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .eco-ad-bar-tagline {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      line-height: 1.5;
+    }
+
+    .eco-ad-bar-cta {
+      display: inline-block;
+      background: var(--qp-navy);
+      color: #fff;
+      border-radius: var(--qp-radius-sm);
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .eco-ad-bar-cta:hover {
+      background: var(--qp-blue);
+    }
   </style>
 </head>
 
@@ -1479,6 +1581,24 @@
           <div class="eco-stat-item">
             <span class="eco-stat-value">IISc</span>
             <span class="eco-stat-label">Anchored by IISc Bengaluru</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ 2b. SPONSORED AD BAR (Revenue Stream G) ══════════════ -->
+      <div class="eco-ad-bar">
+        <div class="eco-ad-bar-inner">
+          <div class="eco-ad-bar-left">
+            <div class="eco-ad-bar-logo">Springer<br>Nature</div>
+            <div class="eco-ad-bar-copy">
+              <span class="eco-ad-bar-sponsored">Sponsored</span>
+              <div class="eco-ad-bar-headline">Springer Nature — Connecting Quantum Researchers to the World's Largest Author Network</div>
+              <div class="eco-ad-bar-sub">3,000+ quantum-related journals · Open-access publishing · Peer-review matching · Co-author discovery across 190 countries</div>
+            </div>
+          </div>
+          <div class="eco-ad-bar-right">
+            <span class="eco-ad-bar-tagline">Free researcher profile<br><strong>Institutional access from ₹4,50,000 / yr</strong></span>
+            <a href="#" class="eco-ad-bar-cta">Explore Journals →</a>
           </div>
         </div>
       </div>

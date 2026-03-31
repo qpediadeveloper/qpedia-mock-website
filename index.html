@@ -248,6 +248,191 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* ── Stream G: D-Wave Ad Bar ────────────────────────────── */
+    .idx-ad-bar {
+      background: var(--qp-blue-light);
+      border-top: 1px solid var(--qp-border);
+      border-bottom: 1px solid var(--qp-border);
+      padding: 40px 0;
+    }
+
+    .idx-ad-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .idx-ad-bar-left {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .idx-ad-bar-logo {
+      width: 80px;
+      height: 80px;
+      background: #0F1923;
+      border-radius: var(--qp-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #00BFFF;
+      flex-shrink: 0;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .idx-ad-bar-copy {
+      flex: 1;
+    }
+
+    .idx-ad-bar-sponsored {
+      display: inline-block;
+      background: rgba(13, 43, 62, 0.08);
+      color: var(--qp-text-3);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .idx-ad-bar-headline {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--qp-navy);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .idx-ad-bar-sub {
+      font-size: 14px;
+      color: var(--qp-text-2);
+      line-height: 1.5;
+    }
+
+    .idx-ad-bar-right {
+      flex-shrink: 0;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .idx-ad-bar-tagline {
+      font-size: 13px;
+      color: var(--qp-text-2);
+      line-height: 1.5;
+    }
+
+    .idx-ad-bar-cta {
+      display: inline-block;
+      background: var(--qp-navy);
+      color: #fff;
+      border-radius: var(--qp-radius-sm);
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .idx-ad-bar-cta:hover {
+      background: var(--qp-blue);
+    }
+
+    /* ── Stream H: Summit Strip ─────────────────────────────── */
+    .idx-summit-strip {
+      background: linear-gradient(135deg, #0D2B3E 0%, #1B5E8A 100%);
+      padding: 36px 0;
+    }
+
+    .idx-summit-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .idx-summit-tile {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .idx-summit-tile+.idx-summit-tile {
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      padding-left: 40px;
+    }
+
+    .idx-summit-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .idx-summit-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 4px;
+    }
+
+    .idx-summit-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .idx-summit-meta {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .idx-summit-btn {
+      display: inline-block;
+      border-radius: var(--qp-radius-sm);
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .idx-summit-btn-primary {
+      background: #fff;
+      color: var(--qp-navy);
+    }
+
+    .idx-summit-btn-ghost {
+      color: #93C5FD;
+      border: 1.5px solid rgba(147, 197, 253, 0.4);
+    }
+
+    .idx-summit-btn-primary:hover {
+      background: var(--qp-off-white);
+    }
+
+    .idx-summit-btn-ghost:hover {
+      border-color: #93C5FD;
+    }
   </style>
 </head>
 
@@ -282,13 +467,13 @@
   <div class="qp-content">
     <section class="hero">
       <!-- Logo with name -->
-      <img src="Logo_withName.png" alt="Qpedia" style="height:52px; display:block; margin:0 auto 24px;" />
+      <img src="Logo_withName.png" alt="Qpedia" style="height:100px; display:block; margin:0 auto 24px;" />
 
       <!-- Pill badge -->
       <span class="hero-badge">India's Quantum Intelligence Platform</span>
 
       <!-- Headline -->
-      <h1 class="qp-h1 hero-h1">The System of Record for&nbsp;Quantum Technologies</h1>
+      <h1 class="qp-h1 hero-h1" style="font-size: 35px;">The System of Record for&nbsp;Quantum Technologies</h1>
 
       <!-- Sub-heading -->
       <p class="qp-body-lg hero-sub">
@@ -414,6 +599,29 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════
+         SPONSORED AD BAR — Stream G (D-Wave)
+    ═══════════════════════════════════════════════════════ -->
+    <div class="idx-ad-bar">
+      <div class="idx-ad-bar-inner">
+        <div class="idx-ad-bar-left">
+          <div class="idx-ad-bar-logo">D‑Wave<br>Quantum</div>
+          <div class="idx-ad-bar-copy">
+            <span class="idx-ad-bar-sponsored">Sponsored</span>
+            <div class="idx-ad-bar-headline">D-Wave Advantage — Production-Scale Quantum Annealing for Optimisation
+              Problems</div>
+            <div class="idx-ad-bar-sub">5,000+ qubits · Leap cloud access · Ready-to-deploy hybrid solvers · Logistics,
+              materials &amp; finance use cases</div>
+          </div>
+        </div>
+        <div class="idx-ad-bar-right">
+          <span class="idx-ad-bar-tagline">Free developer access available<br><strong>Enterprise plans from ₹8,00,000 /
+              yr</strong></span>
+          <a href="#" class="idx-ad-bar-cta">Start on Leap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
          CAPABILITY TEASERS
     ═══════════════════════════════════════════════════════ -->
     <section class="capability-section">
@@ -442,14 +650,49 @@
         </div>
 
         <!-- CTA -->
-        <div class="capability-cta">
+        <div class="capability-cta"
+          style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
           <a class="qp-btn-ghost" href="04_signup.html">
             Sign up free to access the full platform →
+          </a>
+          <a class="qp-btn-primary" href="intelligence.html" style="background:var(--qp-navy); font-size:13px;">
+            Enterprise access — from ₹12,00,000 / yr →
           </a>
         </div>
       </div>
     </section>
   </div><!-- /.qp-content -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       SUMMIT + ANNUAL REPORT STRIP — Stream H
+  ═══════════════════════════════════════════════════════ -->
+  <div class="idx-summit-strip">
+    <div class="idx-summit-inner">
+
+      <!-- Tile 1: Summit -->
+      <div class="idx-summit-tile">
+        <div class="idx-summit-icon">🏛️</div>
+        <div>
+          <div class="idx-summit-label">Live Event</div>
+          <div class="idx-summit-title">Qpedia Quantum Summit 2026</div>
+          <div class="idx-summit-meta">Bengaluru · 18–19 Sep 2026 · 400+ delegates</div>
+        </div>
+        <a href="#" class="idx-summit-btn idx-summit-btn-primary">Register →</a>
+      </div>
+
+      <!-- Tile 2: Annual Report -->
+      <div class="idx-summit-tile">
+        <div class="idx-summit-icon">📑</div>
+        <div>
+          <div class="idx-summit-label">New Report</div>
+          <div class="idx-summit-title">India Quantum Ecosystem Report 2026</div>
+          <div class="idx-summit-meta">180 pages · Free for registered users</div>
+        </div>
+        <a href="#" class="idx-summit-btn idx-summit-btn-ghost">Download →</a>
+      </div>
+
+    </div>
+  </div>
 
   <!-- ═══════════════════════════════════════════════════════
        FOOTER
