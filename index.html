@@ -4,716 +4,469 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Qpedia — The System of Record for Quantum Technologies</title>
+  <title>Qpedia</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <meta name="description"
-    content="Search 500+ peer-reviewed entries covering quantum hardware, supply chains, research groups, and ecosystem intelligence." />
   <link rel="stylesheet" href="shared.css" />
-  <link rel="stylesheet" href="shared-tour.css" />
   <style>
-    /* ── Hero ──────────────────────────────────────────────── */
-    .hero {
-      width: 100%;
-      background: var(--qp-white);
-      padding: 80px 48px 64px;
-      text-align: center;
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
     }
 
-    .hero-badge {
-      display: inline-block;
-      background: var(--qp-blue-light);
-      color: var(--qp-blue-mid);
-      border-radius: 20px;
-      padding: 6px 16px;
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      max-width: 720px;
-      margin: 0 auto 16px;
-    }
-
-    .hero .hero-sub {
-      max-width: 540px;
-      margin: 0 auto 36px;
-      color: var(--qp-text-2);
-    }
-
-    /* ── Search box ─────────────────────────────────────────── */
-    .search-wrap {
-      max-width: 640px;
-      margin: 0 auto;
+    /* ══════════════════════════════════════════════════════════
+       BASE — light background, dot grid, ambient orb
+    ══════════════════════════════════════════════════════════ */
+    .splash {
+      min-height: 100vh;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      overflow: hidden;
+      background: radial-gradient(ellipse 85% 85% at 50% 50%, #FFFFFF 0%, #E8EFF6 100%);
     }
 
-    .search-wrap input[type="text"] {
-      width: 100%;
-      height: 58px;
-      border: 2px solid var(--qp-border);
-      border-radius: 14px;
-      padding: 0 120px 0 52px;
-      font-size: 16px;
-      font-family: inherit;
-      color: var(--qp-text);
-      outline: none;
-      box-shadow: 0 4px 24px rgba(13, 43, 62, 0.10);
-      transition: border-color 0.2s;
-    }
-
-    .search-wrap input[type="text"]:focus {
-      border-color: var(--qp-blue);
-    }
-
-    .search-wrap input[type="text"]::placeholder {
-      color: var(--qp-text-3);
-    }
-
-    .search-icon {
+    .splash::after {
+      content: '';
       position: absolute;
-      left: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 18px;
-      color: var(--qp-text-3);
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(13, 43, 62, 0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
       pointer-events: none;
-      line-height: 1;
+      z-index: 0;
     }
 
-    .search-right {
+    .splash::before {
+      content: '';
       position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .search-mic {
-      font-size: 16px;
-      cursor: pointer;
-      line-height: 1;
-      color: var(--qp-text-3);
-      transition: color 0.15s;
-    }
-
-    .search-mic:hover {
-      color: var(--qp-navy);
-    }
-
-    .search-hint {
-      margin-top: 12px;
-      text-align: center;
-    }
-
-    /* ── Trending tags ──────────────────────────────────────── */
-    .trending-row {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    /* ── Featured cards section ─────────────────────────────── */
-    .featured-section {
-      margin-top: 64px;
-      padding-bottom: 64px;
-    }
-
-    .featured-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .entry-card {
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .entry-card .card-title {
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--qp-navy);
-      margin: 12px 0 8px;
-      line-height: 1.35;
-    }
-
-    .entry-card .card-excerpt {
-      font-size: 14px;
-      color: var(--qp-text-2);
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid var(--qp-border);
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .card-footer-left {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    /* ── Capability teasers ─────────────────────────────────── */
-    .capability-section {
-      background: var(--qp-off-white);
-      padding: 56px 48px;
-      margin-top: 0;
-      border-top: 1px solid var(--qp-border);
-    }
-
-    .capability-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-    }
-
-    .capability-col {
-      text-align: center;
-    }
-
-    .capability-icon {
-      width: 56px;
-      height: 56px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(43, 143, 214, 0.09) 0%, transparent 68%);
       border-radius: 50%;
-      background: var(--qp-blue-light);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: ambientPulse 5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes ambientPulse {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.18);
+        opacity: 0.5;
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       DARK OVERLAY — near-black burn reveals light bg
+    ══════════════════════════════════════════════════════════ */
+    #dark-overlay {
+      position: absolute;
+      inset: 0;
+      background: #020C14;
+      z-index: 2;
+      opacity: 1;
+      transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+      pointer-events: none;
+    }
+
+    #dark-overlay.fade-out {
+      opacity: 0;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       SPLASH ROW
+    ══════════════════════════════════════════════════════════ */
+    #splash-row {
+      position: relative;
+      z-index: 3;
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-      font-size: 24px;
     }
 
-    .capability-col .qp-h3 {
-      margin-bottom: 8px;
-    }
-
-    .capability-cta {
-      text-align: center;
-      margin-top: 32px;
-    }
-
-    /* ── Responsive ─────────────────────────────────────────── */
-    @media (max-width: 1100px) {
-      .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .capability-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 32px;
-      }
-
-      .qp-nav {
-        padding: 0 24px;
-      }
-
-      .hero {
-        padding: 60px 24px 48px;
-      }
-
-      .capability-section {
-        padding: 48px 24px;
-      }
-
-      .qp-footer {
-        padding: 24px;
-      }
-    }
-
-    @media (max-width: 768px) {
-
-      .cards-grid,
-      .capability-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ── Stream G: D-Wave Ad Bar ────────────────────────────── */
-    .idx-ad-bar {
-      background: var(--qp-blue-light);
-      border-top: 1px solid var(--qp-border);
-      border-bottom: 1px solid var(--qp-border);
-      padding: 40px 0;
-    }
-
-    .idx-ad-bar-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 48px;
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .idx-ad-bar-left {
-      flex: 1;
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-    }
-
-    .idx-ad-bar-logo {
-      width: 80px;
-      height: 80px;
-      background: #0F1923;
-      border-radius: var(--qp-radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 800;
-      color: #00BFFF;
+    /* ══════════════════════════════════════════════════════════
+       LOGO
+    ══════════════════════════════════════════════════════════ */
+    #splash-logo {
+      width: 600px;
+      max-height: 90vh;
+      object-fit: contain;
       flex-shrink: 0;
-      text-align: center;
-      line-height: 1.2;
+      display: block;
+      pointer-events: none;
+      opacity: 0;
+      animation: logoEntrance 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
     }
 
-    .idx-ad-bar-copy {
-      flex: 1;
+    @keyframes logoEntrance {
+      from {
+        opacity: 0;
+        transform: scale(0.75);
+        filter: blur(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px);
+      }
     }
 
-    .idx-ad-bar-sponsored {
-      display: inline-block;
-      background: rgba(13, 43, 62, 0.08);
+    /* ══════════════════════════════════════════════════════════
+       GLOW RING
+    ══════════════════════════════════════════════════════════ */
+    #glow-ring {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.85);
+      border: 1.5px solid rgba(43, 143, 214, 0);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    #glow-ring.burst {
+      animation: glowBurst 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes glowBurst {
+      0% {
+        transform: translate(-50%, -50%) scale(0.85);
+        border-color: rgba(43, 143, 214, 0.5);
+        box-shadow: 0 0 40px rgba(43, 143, 214, 0.18), inset 0 0 30px rgba(43, 143, 214, 0.07);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1.75);
+        border-color: rgba(43, 143, 214, 0);
+        box-shadow: 0 0 0 rgba(43, 143, 214, 0);
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       HINT TEXT
+    ══════════════════════════════════════════════════════════ */
+    #splash-hint {
+      position: absolute;
+      bottom: 52px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      font-family: 'Inter', system-ui, sans-serif;
       color: var(--qp-text-3);
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .idx-ad-bar-headline {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--qp-navy);
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-
-    .idx-ad-bar-sub {
-      font-size: 14px;
-      color: var(--qp-text-2);
-      line-height: 1.5;
-    }
-
-    .idx-ad-bar-right {
-      flex-shrink: 0;
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 12px;
-    }
-
-    .idx-ad-bar-tagline {
-      font-size: 13px;
-      color: var(--qp-text-2);
-      line-height: 1.5;
-    }
-
-    .idx-ad-bar-cta {
-      display: inline-block;
-      background: var(--qp-navy);
-      color: #fff;
-      border-radius: var(--qp-radius-sm);
-      padding: 10px 20px;
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .idx-ad-bar-cta:hover {
-      background: var(--qp-blue);
-    }
-
-    /* ── Stream H: Summit Strip ─────────────────────────────── */
-    .idx-summit-strip {
-      background: linear-gradient(135deg, #0D2B3E 0%, #1B5E8A 100%);
-      padding: 36px 0;
-    }
-
-    .idx-summit-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 48px;
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .idx-summit-tile {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .idx-summit-tile+.idx-summit-tile {
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
-      padding-left: 40px;
-    }
-
-    .idx-summit-icon {
-      font-size: 32px;
-      flex-shrink: 0;
-    }
-
-    .idx-summit-label {
-      font-size: 10px;
-      font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.55);
-      margin-bottom: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      animation: hintFadeIn 0.6s ease 3s forwards, hintPulse 2.8s ease-in-out 3.6s infinite;
+      transition: opacity 0.35s ease;
+      z-index: 3;
+      pointer-events: none;
     }
 
-    .idx-summit-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.3;
-      margin-bottom: 4px;
+    #splash-hint.hidden {
+      opacity: 0 !important;
+      animation: none;
     }
 
-    .idx-summit-meta {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.65);
+    @keyframes hintFadeIn {
+      to {
+        opacity: 0.7;
+      }
     }
 
-    .idx-summit-btn {
-      display: inline-block;
-      border-radius: var(--qp-radius-sm);
-      padding: 9px 18px;
-      font-size: 13px;
-      font-weight: 700;
+    @keyframes hintPulse {
+
+      0%,
+      100% {
+        opacity: 0.4;
+      }
+
+      50% {
+        opacity: 0.85;
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       BUTTON GROUP
+    ══════════════════════════════════════════════════════════ */
+    #btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    #btn-group-heading {
+      font-size: 11px;
+      font-weight: 500;
+      font-family: 'Inter', system-ui, sans-serif;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--qp-text-3);
+      padding: 0 4px 14px 4px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #btn-group-heading.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn-wrap {
+      overflow: visible;
+      padding: 5px 0;
+    }
+
+    /* Ghost button — transparent, barely-there border, dark text */
+    .splash-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 300px;
+      padding: 15px 24px;
+
+      background: transparent;
+      border: 1px solid rgba(13, 43, 62, 0.14);
+      border-radius: 14px;
+
+      color: var(--qp-navy);
+      font-size: 17px;
+      font-weight: 600;
+      font-family: 'Inter', system-ui, sans-serif;
+      letter-spacing: 0.01em;
       text-decoration: none;
       white-space: nowrap;
+
+      opacity: 0;
+      transform: translateX(20px) scale(0.95);
+      pointer-events: none;
+
+      transition:
+        opacity 0.32s ease,
+        transform 0.28s ease-out,
+        border-color 0.28s ease-out,
+        box-shadow 0.28s ease-out,
+        background 0.28s ease-out;
+    }
+
+    .splash-btn::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 22px;
+      background: radial-gradient(ellipse at center, rgba(13, 43, 62, 0.07) 0%, transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease-out;
+      z-index: -1;
+    }
+
+    .btn-label {
+      flex: 1;
+    }
+
+    .btn-arrow {
+      font-size: 16px;
+      color: rgba(13, 43, 62, 0.30);
+      transition: transform 0.28s ease-out, color 0.28s ease-out;
       flex-shrink: 0;
     }
 
-    .idx-summit-btn-primary {
-      background: #fff;
+    .splash-btn.visible {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .btn-wrap .splash-btn.visible:hover {
+      border-color: rgba(13, 43, 62, 0.65);
+      background: rgba(13, 43, 62, 0.035);
+      box-shadow: 0 4px 20px rgba(13, 43, 62, 0.09);
+      transform: translateY(-2px) scale(1.02);
+      transition:
+        transform 0.15s ease-out,
+        border-color 0.15s ease-out,
+        box-shadow 0.15s ease-out,
+        background 0.15s ease-out;
+    }
+
+    .btn-wrap .splash-btn.visible:hover::before {
+      opacity: 1;
+      transition: opacity 0.15s ease-out;
+    }
+
+    .btn-wrap .splash-btn.visible:hover .btn-arrow {
+      transform: translateX(4px);
       color: var(--qp-navy);
+      transition: transform 0.15s ease-out, color 0.15s ease-out;
     }
 
-    .idx-summit-btn-ghost {
-      color: #93C5FD;
-      border: 1.5px solid rgba(147, 197, 253, 0.4);
+    /* ══════════════════════════════════════════════════════════
+       DESKTOP
+    ══════════════════════════════════════════════════════════ */
+    @media (min-width: 769px) {
+      #splash-row {
+        gap: 0;
+        transition: gap 0.45s ease-out;
+      }
+
+      #splash-row.revealed {
+        gap: 72px;
+      }
+
+      #btn-group {
+        width: 0;
+        transition: width 0.45s ease-out;
+      }
+
+      #splash-row.revealed #btn-group {
+        width: 312px;
+      }
     }
 
-    .idx-summit-btn-primary:hover {
-      background: var(--qp-off-white);
-    }
+    /* ══════════════════════════════════════════════════════════
+       MOBILE
+    ══════════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      #splash-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        transition: gap 0.45s ease-out;
+      }
 
-    .idx-summit-btn-ghost:hover {
-      border-color: #93C5FD;
+      #splash-row.revealed {
+        gap: 40px;
+      }
+
+      #splash-logo {
+        width: 240px;
+      }
+
+      #btn-group {
+        width: 300px;
+        max-height: 0;
+        transition: max-height 0.5s ease-out;
+        align-items: stretch;
+      }
+
+      #splash-row.revealed #btn-group {
+        max-height: 480px;
+      }
+
+      .splash-btn {
+        width: 100%;
+      }
+
+      #splash-hint {
+        bottom: 36px;
+        font-size: 11px;
+      }
+
+      .splash::before {
+        width: 360px;
+        height: 360px;
+      }
     }
   </style>
 </head>
 
-<body class="qp-page">
+<body>
 
-  <!-- ═══════════════════════════════════════════════════════
-       NAV BAR
-  ═══════════════════════════════════════════════════════ -->
-  <nav class="qp-nav">
-    <!-- Brand -->
-    <a href="index.html" class="qp-nav-brand">
-      <img src="Logo_withName.png" alt="Qpedia" height="40" />
-    </a>
+  <div class="splash" id="splash">
 
-    <!-- Links -->
-    <ul class="qp-nav-links">
-      <li><a href="knowledge_hub.html">Knowledge Hub</a></li>
-      <li><a href="intelligence.html">Intelligence</a></li>
-      <li><a href="ecosystem.html">Ecosystem</a></li>
-    </ul>
+    <div id="dark-overlay"></div>
+    <div id="glow-ring"></div>
 
-    <!-- Actions -->
-    <div class="qp-nav-actions">
-      <a class="qp-btn-ghost" href="04_signup.html">Sign In</a>
-      <a class="qp-btn-primary" href="04_signup.html">Try Free</a>
-    </div>
-  </nav>
+    <div id="splash-row">
+      <img id="splash-logo" src="Logo_OpeningPage.png" alt="Qpedia" />
 
-  <!-- ═══════════════════════════════════════════════════════
-       HERO
-  ═══════════════════════════════════════════════════════ -->
-  <div class="qp-content">
-    <section class="hero">
-      <!-- Logo with name -->
-      <img src="Logo_withName.png" alt="Qpedia" style="height:100px; display:block; margin:0 auto 24px;" />
+      <div id="btn-group">
+        <p id="btn-group-heading">What brings you to Qpedia?</p>
 
-      <!-- Pill badge -->
-      <span class="hero-badge">India's Quantum Intelligence Platform</span>
-
-      <!-- Headline -->
-      <h1 class="qp-h1 hero-h1" style="font-size: 35px;">The System of Record for&nbsp;Quantum Technologies</h1>
-
-      <!-- Sub-heading -->
-      <p class="qp-body-lg hero-sub">
-        Search 500+ peer-reviewed entries covering quantum hardware, supply chains,
-        research groups, and ecosystem intelligence.
-      </p>
-
-      <!-- Search box -->
-      <div class="search-wrap">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="main-search" placeholder="Ask anything about quantum technologies..."
-          autocomplete="off" />
-        <div class="search-right">
-          <span class="qp-chip" style="font-size:11px; padding:4px 10px;">AI</span>
-          <span class="search-mic" title="Voice search">🎤</span>
-        </div>
-      </div>
-
-      <!-- Hint -->
-      <p class="qp-caption search-hint">
-        Try: "What is quantum error correction?" or "Superconducting qubit companies in India"
-      </p>
-
-      <!-- Trending tags -->
-      <div class="trending-row">
-        <a class="qp-chip qp-step-1" href="02_search_results.html">Superconducting Qubit Companies India</a>
-        <a class="qp-chip" href="#">India NQM Progress</a>
-        <a class="qp-chip" href="#">TRL 7 Qubits</a>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════
-         FEATURED KNOWLEDGE ENTRIES
-    ═══════════════════════════════════════════════════════ -->
-    <div class="qp-container featured-section">
-      <div class="featured-header">
-        <h3 class="qp-h3">Featured Knowledge Entries</h3>
-        <span class="qp-caption">Updated today</span>
-      </div>
-
-      <div class="cards-grid">
-
-        <!-- Card 1 — Quantum Error Correction -->
-        <a class="qp-card entry-card" href="09_quantum_error_correction.html" style="text-decoration:none;">
-          <span class="qp-chip" style="align-self:flex-start;">Quantum Computing</span>
-          <div class="card-title">Quantum Error Correction — Overview</div>
-          <p class="card-excerpt qp-body">
-            Techniques for protecting quantum information from decoherence and other
-            quantum noise, fundamental to fault-tolerant quantum computing.
-          </p>
-          <div class="card-footer">
-            <div class="card-footer-left">
-              <!-- TRL: 9 segments, 4 filled -->
-              <div class="qp-trl">
-                <div class="qp-trl-bar">
-                  <div class="qp-trl-segment filled"></div>
-                  <div class="qp-trl-segment filled"></div>
-                  <div class="qp-trl-segment filled"></div>
-                  <div class="qp-trl-segment filled"></div>
-                  <div class="qp-trl-segment empty"></div>
-                  <div class="qp-trl-segment empty"></div>
-                  <div class="qp-trl-segment empty"></div>
-                  <div class="qp-trl-segment empty"></div>
-                  <div class="qp-trl-segment empty"></div>
-                </div>
-                <span class="qp-trl-label">TRL 4</span>
-              </div>
-              <span class="qp-badge-expert">✦ Expert Peer-Reviewed</span>
-            </div>
-            <span class="qp-btn-ghost" style="font-size:13px; padding:0;">Read entry →</span>
-          </div>
-        </a>
-
-        <!-- Card 2 — India National Quantum Mission -->
-        <a class="qp-card entry-card" href="#" style="text-decoration:none;">
-          <span class="qp-chip" style="align-self:flex-start; background:#EDE9FE; color:#5B21B6;">Policy</span>
-          <div class="card-title">India National Quantum Mission</div>
-          <p class="card-excerpt qp-body">
-            India's ₹6,003 crore National Quantum Mission aims to develop intermediate-scale
-            quantum computers and build sovereign quantum capabilities by 2031.
-          </p>
-          <div class="card-footer">
-            <div class="card-footer-left">
-              <span class="qp-label" style="color: var(--qp-text-3); font-size:11px;">Policy &amp; Funding</span>
-              <span class="qp-badge-editor">✎ Editor Verified</span>
-            </div>
-            <span class="qp-btn-ghost" style="font-size:13px; padding:0;">Read entry →</span>
-          </div>
-        </a>
-
-        <!-- Card 3 — Superconducting Transmon Qubit -->
-        <a class="qp-card entry-card" href="#" style="text-decoration:none;">
-          <span class="qp-chip" style="align-self:flex-start;">Quantum Computing</span>
-          <div class="card-title">Superconducting Transmon Qubit</div>
-          <p class="card-excerpt qp-body">
-            A leading qubit architecture for gate-based quantum computation using the
-            transmon design with improved charge noise tolerance.
-          </p>
-          <div class="card-footer">
-            <div class="card-footer-left">
-              <!-- TRL: 9 segments, 7 filled -->
-              <div class="qp-trl">
-                <div class="qp-trl-bar">
-                  <div class="qp-trl-segment filled"></div>
-                  <div class="qp-trl-segment filled"></div>
-                  <div class="qp-trl-segment filled"></div>
-                  <div class="qp-trl-segment filled"></div>
-                  <div class="qp-trl-segment filled"></div>
-                  <div class="qp-trl-segment filled"></div>
-                  <div class="qp-trl-segment filled"></div>
-                  <div class="qp-trl-segment empty"></div>
-                  <div class="qp-trl-segment empty"></div>
-                </div>
-                <span class="qp-trl-label">TRL 7</span>
-              </div>
-              <span class="qp-badge-expert">✦ Expert Peer-Reviewed</span>
-            </div>
-            <span class="qp-btn-ghost" style="font-size:13px; padding:0;">Read entry →</span>
-          </div>
-        </a>
-
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════════════
-         SPONSORED AD BAR — Stream G (D-Wave)
-    ═══════════════════════════════════════════════════════ -->
-    <div class="idx-ad-bar">
-      <div class="idx-ad-bar-inner">
-        <div class="idx-ad-bar-left">
-          <div class="idx-ad-bar-logo">D‑Wave<br>Quantum</div>
-          <div class="idx-ad-bar-copy">
-            <span class="idx-ad-bar-sponsored">Sponsored</span>
-            <div class="idx-ad-bar-headline">D-Wave Advantage — Production-Scale Quantum Annealing for Optimisation
-              Problems</div>
-            <div class="idx-ad-bar-sub">5,000+ qubits · Leap cloud access · Ready-to-deploy hybrid solvers · Logistics,
-              materials &amp; finance use cases</div>
-          </div>
-        </div>
-        <div class="idx-ad-bar-right">
-          <span class="idx-ad-bar-tagline">Free developer access available<br><strong>Enterprise plans from ₹8,00,000 /
-              yr</strong></span>
-          <a href="#" class="idx-ad-bar-cta">Start on Leap →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════════════
-         CAPABILITY TEASERS
-    ═══════════════════════════════════════════════════════ -->
-    <section class="capability-section">
-      <div class="qp-container">
-        <div class="capability-grid">
-
-          <!-- Col 1 -->
-          <div class="capability-col">
-            <h3 class="qp-h3">500+ Peer-Reviewed Entries</h3>
-            <p class="qp-body">The authoritative system-of-record for the global quantum ecosystem.</p>
-          </div>
-
-          <!-- Col 2 -->
-          <div class="capability-col">
-            <h3 class="qp-h3">Intelligence Layer</h3>
-            <p class="qp-body">Supply chain maps, TRL tracking, and sector dashboards for enterprises and government.
-            </p>
-          </div>
-
-          <!-- Col 3 -->
-          <div class="capability-col">
-            <h3 class="qp-h3">Ecosystem</h3>
-            <p class="qp-body">Connect researchers, founders, and policymakers across the global quantum world.</p>
-          </div>
-
-        </div>
-
-        <!-- CTA -->
-        <div class="capability-cta"
-          style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
-          <a class="qp-btn-ghost" href="04_signup.html">
-            Sign up free to access the full platform →
+        <div class="btn-wrap">
+          <a class="splash-btn" href="01_homepage.html?intent=technology">
+            <span class="btn-label">Technology</span><span class="btn-arrow">→</span>
           </a>
-          <a class="qp-btn-primary" href="intelligence.html" style="background:var(--qp-navy); font-size:13px;">
-            Enterprise access — from ₹12,00,000 / yr →
+        </div>
+        <div class="btn-wrap">
+          <a class="splash-btn" href="01_homepage.html?intent=discover">
+            <span class="btn-label">Discover</span><span class="btn-arrow">→</span>
+          </a>
+        </div>
+        <div class="btn-wrap">
+          <a class="splash-btn" href="01_homepage.html?intent=business">
+            <span class="btn-label">Business</span><span class="btn-arrow">→</span>
+          </a>
+        </div>
+        <div class="btn-wrap">
+          <a class="splash-btn" href="01_homepage.html?intent=opportunities">
+            <span class="btn-label">Opportunities</span><span class="btn-arrow">→</span>
           </a>
         </div>
       </div>
-    </section>
-  </div><!-- /.qp-content -->
-
-  <!-- ═══════════════════════════════════════════════════════
-       SUMMIT + ANNUAL REPORT STRIP — Stream H
-  ═══════════════════════════════════════════════════════ -->
-  <div class="idx-summit-strip">
-    <div class="idx-summit-inner">
-
-      <!-- Tile 1: Summit -->
-      <div class="idx-summit-tile">
-        <div class="idx-summit-icon">🏛️</div>
-        <div>
-          <div class="idx-summit-label">Live Event</div>
-          <div class="idx-summit-title">Qpedia Quantum Summit 2026</div>
-          <div class="idx-summit-meta">Bengaluru · 18–19 Sep 2026 · 400+ delegates</div>
-        </div>
-        <a href="#" class="idx-summit-btn idx-summit-btn-primary">Register →</a>
-      </div>
-
-      <!-- Tile 2: Annual Report -->
-      <div class="idx-summit-tile">
-        <div class="idx-summit-icon">📑</div>
-        <div>
-          <div class="idx-summit-label">New Report</div>
-          <div class="idx-summit-title">India Quantum Ecosystem Report 2026</div>
-          <div class="idx-summit-meta">180 pages · Free for registered users</div>
-        </div>
-        <a href="#" class="idx-summit-btn idx-summit-btn-ghost">Download →</a>
-      </div>
-
     </div>
+
+    <p id="splash-hint">Click anywhere to begin</p>
+
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════
-       FOOTER
-  ═══════════════════════════════════════════════════════ -->
-  <footer class="qp-footer">
-    <img src="Logo.jpeg" alt="Qpedia" style="height:32px;" />
-    <span class="qp-footer-center">Anchored by Indian Institute of Science, Bengaluru</span>
-    <span class="qp-footer-right">© 2026 Qpedia · Confidential MVP</span>
-  </footer>
-
-  <!-- ═══════════════════════════════════════════════════════
-       VANILLA JS
-  ═══════════════════════════════════════════════════════ -->
   <script>
-    document.getElementById('main-search').addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' && this.value.trim() !== '') {
-        window.location.href = '02_search_results.html';
-      }
+    const overlay = document.getElementById('dark-overlay');
+    const glowRing = document.getElementById('glow-ring');
+    const splash = document.getElementById('splash');
+    const splashRow = document.getElementById('splash-row');
+    const btnGroup = document.getElementById('btn-group');
+    const heading = document.getElementById('btn-group-heading');
+    const hint = document.getElementById('splash-hint');
+    const buttons = document.querySelectorAll('.splash-btn');
+    let revealed = false;
+
+    setTimeout(function () { overlay.classList.add('fade-out'); }, 300);
+    setTimeout(function () { glowRing.classList.add('burst'); }, 2200);
+
+    splash.addEventListener('click', function (e) {
+      if (e.target.closest('.splash-btn')) return;
+      if (revealed) return;
+
+      revealed = true;
+      splash.style.cursor = 'default';
+      hint.classList.add('hidden');
+      splashRow.classList.add('revealed');
+
+      setTimeout(function () { heading.classList.add('visible'); }, 280);
+
+      buttons.forEach(function (btn, i) {
+        setTimeout(function () { btn.classList.add('visible'); }, 380 + i * 110);
+      });
+
+      setTimeout(function () {
+        btnGroup.style.overflow = 'visible';
+        buttons.forEach(function (btn) { btn.style.transitionDelay = '0s'; });
+      }, 1300);
     });
   </script>
-  <script src="shared-tour.js"></script>
+
 </body>
 
 </html>
