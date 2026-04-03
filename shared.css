@@ -761,3 +761,107 @@ body {
   font-weight: 600;
   border-bottom-color: var(--qp-navy);
 }
+
+/* ============================================================
+   NAVIGATION — MOBILE RESPONSIVE
+   ============================================================ */
+
+/* Hamburger hidden on desktop */
+.qp-nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--qp-navy);
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .qp-nav {
+    padding: 0 20px;
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 68px;
+    align-content: flex-start;
+  }
+
+  /* Brand row takes up full height of 68px */
+  .qp-nav-brand {
+    height: 68px;
+  }
+
+  .qp-nav-hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 68px;
+  }
+
+  /* Hide links and actions by default on mobile */
+  .qp-nav-links,
+  .qp-nav-actions {
+    display: none;
+    width: 100%;
+  }
+
+  /* When menu is open, show links stacked */
+  .qp-nav.mobile-open .qp-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 4px 0 12px;
+    border-top: 1px solid var(--qp-border);
+    list-style: none;
+  }
+
+  .qp-nav.mobile-open .qp-nav-links li a {
+    display: block;
+    padding: 13px 4px;
+    font-size: 15px;
+    color: var(--qp-text-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--qp-border);
+  }
+
+  .qp-nav.mobile-open .qp-nav-links li:last-child a {
+    border-bottom: none;
+  }
+
+  .qp-nav.mobile-open .qp-nav-links li a:hover,
+  .qp-nav.mobile-open .qp-nav-links li a.active,
+  .qp-nav.mobile-open .qp-nav-links li a.int-active,
+  .qp-nav.mobile-open .qp-nav-links li a.kh-active {
+    color: var(--qp-navy);
+    font-weight: 600;
+  }
+
+  /* When menu is open, show actions row */
+  .qp-nav.mobile-open .qp-nav-actions {
+    display: flex;
+    gap: 10px;
+    padding: 12px 0 16px;
+  }
+
+  .qp-nav.mobile-open .qp-nav-actions .qp-btn-ghost,
+  .qp-nav.mobile-open .qp-nav-actions .qp-btn-primary {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* Avatar/bell row (authenticated pages) stays visible but stacked */
+  .qp-nav.mobile-open .qp-nav-actions .qp-nav-avatar,
+  .qp-nav.mobile-open .qp-nav-actions .qp-nav-bell {
+    flex: unset;
+  }
+
+  /* Search bar in 02_search_results — always visible on mobile as second row */
+  .nav-search-wrap {
+    width: 100%;
+    order: 10;
+    padding: 0 0 12px;
+    border-top: 1px solid var(--qp-border);
+  }
+}
